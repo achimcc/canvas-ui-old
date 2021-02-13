@@ -61,7 +61,7 @@ let api: ApiPromise;
 
 export { api };
 
-async function retrieve(api: ApiPromise): Promise<ChainData> {
+async function retrieve (api: ApiPromise): Promise<ChainData> {
   const [properties, systemChain, systemChainType, systemName, systemVersion, injectedAccounts] = await Promise.all([
     api.rpc.system.properties(),
     api.rpc.system.chain(),
@@ -99,7 +99,7 @@ async function retrieve(api: ApiPromise): Promise<ChainData> {
   };
 }
 
-async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiState> {
+async function loadOnReady (api: ApiPromise, store?: KeyringStore): Promise<ApiState> {
   const { injectedAccounts, properties, systemChain, systemChainType, systemName, systemVersion } = await retrieve(api);
   const ss58Format = uiSettings.prefix === -1 ? properties.ss58Format.unwrapOr(DEFAULT_SS58).toNumber() : uiSettings.prefix;
   const tokenSymbol = properties.tokenSymbol.unwrapOr(undefined)?.toString();
@@ -154,18 +154,23 @@ async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiSt
   };
 }
 
-function Api({ children, store, url }: Props): React.ReactElement<Props> | null {
+function Api ({ children, store, url }: Props): React.ReactElement<Props> | null {
   const { queuePayload, queueSetTxStatus } = useContext(StatusContext);
   const [state, setState] = useState<ApiState>(({ isApiReady: false } as unknown) as ApiState);
   const [isApiConnected, setIsApiConnected] = useState(false);
   const [isApiInitialized, setIsApiInitialized] = useState(false);
   const [extensions, setExtensions] = useState<InjectedExtension[] | undefined>();
-  const props = useMemo<ApiProps>(() => ({ ...state, api, extensions, isApiConnected, isApiInitialized, isWaitingInjected: !extensions }), [
-    extensions,
-    isApiConnected,
-    isApiInitialized,
-    state
-  ]);
+  const props = useMemo<ApiProps>(
+    () => ({
+      ...state,
+      api,
+      extensions,
+      isApiConnected,
+      isApiInitialized,
+      isWaitingInjected: !extensions
+    }),
+    [extensions, isApiConnected, isApiInitialized, state]
+  );
 
   // initial initialization
   useEffect((): void => {

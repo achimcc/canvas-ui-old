@@ -21,8 +21,27 @@ module.exports = (() => {
             ['got@<11', { dependencies: { '@types/responselike': '^1.0.0', '@types/keyv': '^3.1.1' } }],
             ['cacheable-lookup@<4.1.2', { dependencies: { '@types/keyv': '^3.1.1' } }],
             ['http-link-dataloader@*', { peerDependencies: { graphql: '^0.13.1 || ^14.0.0' } }],
-            ['typescript-language-server@*', { dependencies: { 'vscode-jsonrpc': '^5.0.1', 'vscode-languageserver-protocol': '^3.15.0' } }],
-            ['postcss-syntax@*', { peerDependenciesMeta: { 'postcss-html': i, 'postcss-jsx': i, 'postcss-less': i, 'postcss-markdown': i, 'postcss-scss': i } }],
+            [
+              'typescript-language-server@*',
+              {
+                dependencies: {
+                  'vscode-jsonrpc': '^5.0.1',
+                  'vscode-languageserver-protocol': '^3.15.0'
+                }
+              }
+            ],
+            [
+              'postcss-syntax@*',
+              {
+                peerDependenciesMeta: {
+                  'postcss-html': i,
+                  'postcss-jsx': i,
+                  'postcss-less': i,
+                  'postcss-markdown': i,
+                  'postcss-scss': i
+                }
+              }
+            ],
             ['jss-plugin-rule-value-function@<=10.1.1', { dependencies: { 'tiny-warning': '^1.0.2' } }],
             ['ink-select-input@*', { peerDependencies: { react: '^16.8.2' } }],
             ['promise-inflight@*', { peerDependenciesMeta: { bluebird: i } }],
@@ -33,8 +52,19 @@ module.exports = (() => {
             ['@apollographql/apollo-tools@*', { peerDependencies: { graphql: '^14.2.1 || ^15.0.0' } }],
             ['material-table@^2.0.0', { dependencies: { '@babel/runtime': '^7.11.2' } }],
             ['@babel/parser@*', { dependencies: { '@babel/types': '^7.8.3' } }],
-            ['fork-ts-checker-webpack-plugin@*', { peerDependencies: { eslint: '>= 6', typescript: '>= 2.7', webpack: '>= 4' }, peerDependenciesMeta: { eslint: i } }],
-            ['rc-animate@*', { peerDependencies: { react: '^15.0.0 || ^16.0.0', 'react-dom': '^15.0.0 || ^16.0.0' } }],
+            [
+              'fork-ts-checker-webpack-plugin@*',
+              {
+                peerDependencies: { eslint: '>= 6', typescript: '>= 2.7', webpack: '>= 4' },
+                peerDependenciesMeta: { eslint: i }
+              }
+            ],
+            [
+              'rc-animate@*',
+              {
+                peerDependencies: { react: '^15.0.0 || ^16.0.0', 'react-dom': '^15.0.0 || ^16.0.0' }
+              }
+            ],
             ['react-bootstrap-table2-paginator@*', { dependencies: { classnames: '^2.2.6' } }],
             ['react-draggable@<=4.4.3', { peerDependencies: { react: '>= 16.3.0', 'react-dom': '>= 16.3.0' } }]
           ];
@@ -109,7 +139,12 @@ module.exports = (() => {
                   ? e
                   : n.makeDescriptor(
                       e,
-                      n.makeRange({ protocol: 'patch:', source: n.stringifyDescriptor(e), selector: `builtin<compat/${n.stringifyIdent(e)}>`, params: null })
+                      n.makeRange({
+                        protocol: 'patch:',
+                        source: n.stringifyDescriptor(e),
+                        selector: `builtin<compat/${n.stringifyIdent(e)}>`,
+                        params: null
+                      })
                     )
             }
           };
@@ -133,9 +168,22 @@ module.exports = (() => {
             return this.cli.run(['dlx', ...e, o.stringifyIdent(r), ...this.args]);
           }
         }
-        (0, n.gn)([A.Command.String('-p,--package', { description: 'The package to run the provided command from' })], s.prototype, 'pkg', void 0),
+        (0, n.gn)(
+          [
+            A.Command.String('-p,--package', {
+              description: 'The package to run the provided command from'
+            })
+          ],
+          s.prototype,
+          'pkg',
+          void 0
+        ),
           (0, n.gn)(
-            [A.Command.Boolean('-q,--quiet', { description: 'Only report critical errors instead of printing the full install logs' })],
+            [
+              A.Command.Boolean('-q,--quiet', {
+                description: 'Only report critical errors instead of printing the full install logs'
+              })
+            ],
             s.prototype,
             'quiet',
             void 0
@@ -205,9 +253,22 @@ module.exports = (() => {
             "\n      This command will install a package within a temporary environment, and run its binary script if it contains any. The binary will run within the current cwd.\n\n      By default Yarn will download the package named `command`, but this can be changed through the use of the `-p,--package` flag which will instruct Yarn to still run the same command but from a different package.\n\n      Using `yarn dlx` as a replacement of `yarn add` isn't recommended, as it makes your project non-deterministic (Yarn doesn't keep track of the packages installed through `dlx` - neither their name, nor their version).\n    ",
           examples: [['Use create-react-app to create a new React app', 'yarn dlx create-react-app ./my-app']]
         })),
-          (0, n.gn)([A.Command.String('-p,--package', { description: 'The package to run the provided command from' })], h.prototype, 'pkg', void 0),
           (0, n.gn)(
-            [A.Command.Boolean('-q,--quiet', { description: 'Only report critical errors instead of printing the full install logs' })],
+            [
+              A.Command.String('-p,--package', {
+                description: 'The package to run the provided command from'
+              })
+            ],
+            h.prototype,
+            'pkg',
+            void 0
+          ),
+          (0, n.gn)(
+            [
+              A.Command.Boolean('-q,--quiet', {
+                description: 'Only report critical errors instead of printing the full install logs'
+              })
+            ],
             h.prototype,
             'quiet',
             void 0
@@ -310,12 +371,23 @@ module.exports = (() => {
           })(async (n) => {
             y.y1.isAbsolute(e) || (e = y.y1.relative(r.cwd, y.y1.resolve(t, e))).match(/^\.{0,2}\//) || (e = './' + e);
             const { project: i } = r,
-              o = await N(f.makeIdent(null, 'archive'), e, { project: r.project, cache: n, workspace: r });
+              o = await N(f.makeIdent(null, 'archive'), e, {
+                project: r.project,
+                cache: n,
+                workspace: r
+              });
             if (!o) throw new Error('Assertion failed: The descriptor should have been found');
             const A = new I.$(),
               s = i.configuration.makeResolver(),
               a = i.configuration.makeFetcher(),
-              c = { checksums: i.storedChecksums, project: i, cache: n, fetcher: a, report: A, resolver: s },
+              c = {
+                checksums: i.storedChecksums,
+                project: i,
+                cache: n,
+                fetcher: a,
+                report: A,
+                resolver: s
+              },
               g = s.bindDescriptor(o, r.anchoredLocator, c),
               l = f.convertDescriptorToLocator(g),
               u = await a.fetch(l, c),
@@ -327,7 +399,16 @@ module.exports = (() => {
         async function F(e, { project: t, workspace: r, cache: n, target: o, modifier: s, strategies: a, maxResults: c = 1 / 0 }) {
           if (!(c >= 0)) throw new Error(`Invalid maxResults (${c})`);
           if ('unknown' !== e.range)
-            return { suggestions: [{ descriptor: e, name: 'Use ' + f.prettyDescriptor(t.configuration, e), reason: '(unambiguous explicit request)' }], rejections: [] };
+            return {
+              suggestions: [
+                {
+                  descriptor: e,
+                  name: 'Use ' + f.prettyDescriptor(t.configuration, e),
+                  reason: '(unambiguous explicit request)'
+                }
+              ],
+              rejections: []
+            };
           const g = (null != r && r.manifest[o].get(e.identHash)) || null,
             l = [],
             u = [],
@@ -343,7 +424,12 @@ module.exports = (() => {
             switch (u) {
               case A.KEEP:
                 await h(async () => {
-                  g && l.push({ descriptor: g, name: 'Keep ' + f.prettyDescriptor(t.configuration, g), reason: '(no changes)' });
+                  g &&
+                    l.push({
+                      descriptor: g,
+                      name: 'Keep ' + f.prettyDescriptor(t.configuration, g),
+                      reason: '(no changes)'
+                    });
                 });
                 break;
               case A.REUSE:
@@ -352,7 +438,11 @@ module.exports = (() => {
                     if (1 === i.length && i[0].locatorHash === r.anchoredLocator.locatorHash && a.includes(A.KEEP)) continue;
                     let e = '(originally used by ' + f.prettyLocator(t.configuration, i[0]);
                     (e += i.length > 1 ? ` and ${i.length - 1} other${i.length > 2 ? 's' : ''})` : ')'),
-                      l.push({ descriptor: n, name: 'Reuse ' + f.prettyDescriptor(t.configuration, n), reason: e });
+                      l.push({
+                        descriptor: n,
+                        name: 'Reuse ' + f.prettyDescriptor(t.configuration, n),
+                        reason: e
+                      });
                   }
                 });
                 break;
@@ -360,7 +450,11 @@ module.exports = (() => {
                 await h(async () => {
                   for (const r of t.storedDescriptors.values())
                     r.identHash === e.identHash &&
-                      l.push({ descriptor: r, name: 'Reuse ' + f.prettyDescriptor(t.configuration, r), reason: '(already used somewhere in the lockfile)' });
+                      l.push({
+                        descriptor: r,
+                        name: 'Reuse ' + f.prettyDescriptor(t.configuration, r),
+                        reason: '(already used somewhere in the lockfile)'
+                      });
                 });
                 break;
               case A.PROJECT:
@@ -368,16 +462,41 @@ module.exports = (() => {
                   if (null !== r.manifest.name && e.identHash === r.manifest.name.identHash) return;
                   const n = t.tryWorkspaceByIdent(e);
                   null !== n &&
-                    l.push({ descriptor: n.anchoredDescriptor, name: 'Attach ' + f.prettyWorkspace(t.configuration, n), reason: `(local workspace at ${n.cwd})` });
+                    l.push({
+                      descriptor: n.anchoredDescriptor,
+                      name: 'Attach ' + f.prettyWorkspace(t.configuration, n),
+                      reason: `(local workspace at ${n.cwd})`
+                    });
                 });
                 break;
               case A.LATEST:
                 await h(async () => {
-                  if ('unknown' !== e.range) l.push({ descriptor: e, name: 'Use ' + f.prettyRange(t.configuration, e.range), reason: '(explicit range requested)' });
-                  else if (o === i.PEER) l.push({ descriptor: f.makeDescriptor(e, '*'), name: 'Use *', reason: '(catch-all peer dependency pattern)' });
+                  if ('unknown' !== e.range)
+                    l.push({
+                      descriptor: e,
+                      name: 'Use ' + f.prettyRange(t.configuration, e.range),
+                      reason: '(explicit range requested)'
+                    });
+                  else if (o === i.PEER)
+                    l.push({
+                      descriptor: f.makeDescriptor(e, '*'),
+                      name: 'Use *',
+                      reason: '(catch-all peer dependency pattern)'
+                    });
                   else if (t.configuration.get('enableNetwork')) {
-                    let i = await N(e, 'latest', { project: t, cache: n, workspace: r, preserveModifier: !1 });
-                    i && ((i = S(i, s)), l.push({ descriptor: i, name: 'Use ' + f.prettyDescriptor(t.configuration, i), reason: '(resolved from latest)' }));
+                    let i = await N(e, 'latest', {
+                      project: t,
+                      cache: n,
+                      workspace: r,
+                      preserveModifier: !1
+                    });
+                    i &&
+                      ((i = S(i, s)),
+                      l.push({
+                        descriptor: i,
+                        name: 'Use ' + f.prettyDescriptor(t.configuration, i),
+                        reason: '(resolved from latest)'
+                      }));
                   } else
                     l.push({
                       descriptor: null,
@@ -394,7 +513,14 @@ module.exports = (() => {
             s = new I.$(),
             a = r.configuration.makeFetcher(),
             c = r.configuration.makeResolver(),
-            g = { project: r, fetcher: a, cache: n, checksums: r.storedChecksums, report: s, skipIntegrityCheck: !0 },
+            g = {
+              project: r,
+              fetcher: a,
+              cache: n,
+              checksums: r.storedChecksums,
+              report: s,
+              skipIntegrityCheck: !0
+            },
             l = { ...g, resolver: c, fetchOptions: g },
             u = c.bindDescriptor(A, i.anchoredLocator, l),
             h = await c.getCandidates(u, new Map(), l);
@@ -471,8 +597,25 @@ module.exports = (() => {
                           `Package "${f.prettyIdent(e.project.configuration, t)}" cannot simultaneously be a dev dependency and an optional dependency`
                         );
                       return n ? i.PEER : r || o ? i.DEVELOPMENT : s ? i.REGULAR : a ? i.DEVELOPMENT : i.REGULAR;
-                    })(n, t, { dev: this.dev, peer: this.peer, preferDev: this.preferDev, optional: this.optional });
-                  return [t, await F(t, { project: r, workspace: n, cache: o, target: A, modifier: I, strategies: E, maxResults: m }), A];
+                    })(n, t, {
+                      dev: this.dev,
+                      peer: this.peer,
+                      preferDev: this.preferDev,
+                      optional: this.optional
+                    });
+                  return [
+                    t,
+                    await F(t, {
+                      project: r,
+                      workspace: n,
+                      cache: o,
+                      target: A,
+                      modifier: I,
+                      strategies: E,
+                      maxResults: m
+                    }),
+                    A
+                  ];
                 })
               ),
               y = await l.h.start({ configuration: t, stdout: this.context.stdout, suggestInstall: !1 }, async (e) => {
@@ -520,16 +663,28 @@ module.exports = (() => {
                 this.optional &&
                   ('dependencies' === t
                     ? (n.manifest.ensureDependencyMeta({ ...r, range: 'unknown' }).optional = !0)
-                    : 'peerDependencies' === t && (n.manifest.ensurePeerDependencyMeta({ ...r, range: 'unknown' }).optional = !0)),
+                    : 'peerDependencies' === t &&
+                      (n.manifest.ensurePeerDependencyMeta({
+                        ...r,
+                        range: 'unknown'
+                      }).optional = !0)),
                 void 0 === s ? Q.push([n, t, r, E]) : b.push([n, t, s, r]));
             }
             await t.triggerMultipleHooks((e) => e.afterWorkspaceDependencyAddition, Q),
               await t.triggerMultipleHooks((e) => e.afterWorkspaceDependencyReplacement, b),
               w && this.context.stdout.write('\n');
             return (
-              await p.Pk.start({ configuration: t, json: this.json, stdout: this.context.stdout, includeLogs: !this.context.quiet }, async (e) => {
-                await r.install({ cache: o, report: e });
-              })
+              await p.Pk.start(
+                {
+                  configuration: t,
+                  json: this.json,
+                  stdout: this.context.stdout,
+                  includeLogs: !this.context.quiet
+                },
+                async (e) => {
+                  await r.install({ cache: o, report: e });
+                }
+              )
             ).exitCode();
           }
         }
@@ -551,26 +706,74 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.Rest()], R.prototype, 'packages', void 0),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], R.prototype, 'json', void 0),
-          (0, a.gn)([d.Command.Boolean('-E,--exact', { description: "Don't use any semver modifier on the resolved range" })], R.prototype, 'exact', void 0),
-          (0, a.gn)([d.Command.Boolean('-T,--tilde', { description: 'Use the `~` semver modifier on the resolved range' })], R.prototype, 'tilde', void 0),
-          (0, a.gn)([d.Command.Boolean('-C,--caret', { description: 'Use the `^` semver modifier on the resolved range' })], R.prototype, 'caret', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-E,--exact', {
+                description: "Don't use any semver modifier on the resolved range"
+              })
+            ],
+            R.prototype,
+            'exact',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-T,--tilde', {
+                description: 'Use the `~` semver modifier on the resolved range'
+              })
+            ],
+            R.prototype,
+            'tilde',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-C,--caret', {
+                description: 'Use the `^` semver modifier on the resolved range'
+              })
+            ],
+            R.prototype,
+            'caret',
+            void 0
+          ),
           (0, a.gn)([d.Command.Boolean('-D,--dev', { description: 'Add a package as a dev dependency' })], R.prototype, 'dev', void 0),
           (0, a.gn)([d.Command.Boolean('-P,--peer', { description: 'Add a package as a peer dependency' })], R.prototype, 'peer', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-O,--optional', { description: 'Add / upgrade a package to an optional regular / peer dependency' })],
+            [
+              d.Command.Boolean('-O,--optional', {
+                description: 'Add / upgrade a package to an optional regular / peer dependency'
+              })
+            ],
             R.prototype,
             'optional',
             void 0
           ),
-          (0, a.gn)([d.Command.Boolean('--prefer-dev', { description: 'Add / upgrade a package to a dev dependency' })], R.prototype, 'preferDev', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-i,--interactive', { description: 'Reuse the specified package from other workspaces in the project' })],
+            [
+              d.Command.Boolean('--prefer-dev', {
+                description: 'Add / upgrade a package to a dev dependency'
+              })
+            ],
+            R.prototype,
+            'preferDev',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-i,--interactive', {
+                description: 'Reuse the specified package from other workspaces in the project'
+              })
+            ],
             R.prototype,
             'interactive',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('--cached', { description: 'Reuse the highest version already used somewhere within the project' })],
+            [
+              d.Command.Boolean('--cached', {
+                description: 'Reuse the highest version already used somewhere within the project'
+              })
+            ],
             R.prototype,
             'cached',
             void 0
@@ -612,7 +815,11 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.String({ required: !1 })], L.prototype, 'name', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-v,--verbose', { description: 'Print both the binary name and the locator of the package that provides the binary' })],
+            [
+              d.Command.Boolean('-v,--verbose', {
+                description: 'Print both the binary name and the locator of the package that provides the binary'
+              })
+            ],
             L.prototype,
             'verbose',
             void 0
@@ -643,9 +850,22 @@ module.exports = (() => {
             ['Remove all the archives stored in the ~/.yarn directory', '$0 cache clean --mirror']
           ]
         })),
-          (0, a.gn)([d.Command.Boolean('--mirror', { description: 'Remove the global cache files instead of the local cache files' })], x.prototype, 'mirror', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('--all', { description: 'Remove both the global cache files and the local cache files of the current project' })],
+            [
+              d.Command.Boolean('--mirror', {
+                description: 'Remove the global cache files instead of the local cache files'
+              })
+            ],
+            x.prototype,
+            'mirror',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--all', {
+                description: 'Remove both the global cache files and the local cache files of the current project'
+              })
+            ],
             x.prototype,
             'all',
             void 0
@@ -665,9 +885,17 @@ module.exports = (() => {
             if (void 0 === e.settings.get(t)) throw new d.UsageError(`Couldn't find a configuration settings named "${t}"`);
             const n = j(e.getSpecial(t, { hideSecrets: !this.unsafe, getNativePaths: !0 })),
               i = r ? T()(n, r) : n,
-              o = await p.Pk.start({ configuration: e, includeFooter: !1, json: this.json, stdout: this.context.stdout }, async (e) => {
-                e.reportJson(i);
-              });
+              o = await p.Pk.start(
+                {
+                  configuration: e,
+                  includeFooter: !1,
+                  json: this.json,
+                  stdout: this.context.stdout
+                },
+                async (e) => {
+                  e.reportJson(i);
+                }
+              );
             if (!this.json) {
               if ('string' == typeof i) return this.context.stdout.write(i + '\n'), o.exitCode();
               (O.inspect.styles.name = 'cyan'), this.context.stdout.write((0, O.inspect)(i, { depth: 1 / 0, colors: e.get('enableColors'), compact: !1 }) + '\n');
@@ -697,7 +925,16 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.String()], U.prototype, 'name', void 0),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], U.prototype, 'json', void 0),
-          (0, a.gn)([d.Command.Boolean('--no-redacted', { description: "Don't redact secrets (such as tokens) from the output" })], U.prototype, 'unsafe', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--no-redacted', {
+                description: "Don't redact secrets (such as tokens) from the output"
+              })
+            ],
+            U.prototype,
+            'unsafe',
+            void 0
+          ),
           (0, a.gn)([d.Command.Path('config', 'get')], U.prototype, 'execute', null);
         var Y = r(82558),
           G = r.n(Y),
@@ -722,12 +959,24 @@ module.exports = (() => {
               }
               return { ...e, [t]: n };
             });
-            const o = j((await s.VK.find(this.context.cwd, this.context.plugins)).getSpecial(t, { hideSecrets: !0, getNativePaths: !0 })),
+            const o = j(
+                (await s.VK.find(this.context.cwd, this.context.plugins)).getSpecial(t, {
+                  hideSecrets: !0,
+                  getNativePaths: !0
+                })
+              ),
               A = r ? T()(o, r) : o;
             return (
               await p.Pk.start({ configuration: e, includeFooter: !1, stdout: this.context.stdout }, async (t) => {
                 (O.inspect.styles.name = 'cyan'),
-                  t.reportInfo(u.b.UNNAMED, `Successfully set ${this.name} to ${(0, O.inspect)(A, { depth: 1 / 0, colors: e.get('enableColors'), compact: !1 })}`);
+                  t.reportInfo(
+                    u.b.UNNAMED,
+                    `Successfully set ${this.name} to ${(0, O.inspect)(A, {
+                      depth: 1 / 0,
+                      colors: e.get('enableColors'),
+                      compact: !1
+                    })}`
+                  );
               })
             ).exitCode();
           }
@@ -753,8 +1002,26 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.String()], _.prototype, 'name', void 0),
           (0, a.gn)([d.Command.String()], _.prototype, 'value', void 0),
-          (0, a.gn)([d.Command.Boolean('--json', { description: 'Set complex configuration settings to JSON values' })], _.prototype, 'json', void 0),
-          (0, a.gn)([d.Command.Boolean('-H,--home', { description: 'Update the home configuration instead of the project configuration' })], _.prototype, 'home', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--json', {
+                description: 'Set complex configuration settings to JSON values'
+              })
+            ],
+            _.prototype,
+            'json',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-H,--home', {
+                description: 'Update the home configuration instead of the project configuration'
+              })
+            ],
+            _.prototype,
+            'home',
+            void 0
+          ),
           (0, a.gn)([d.Command.Path('config', 'set')], _.prototype, 'execute', null);
         var q = r(73632);
         class z extends c.BaseCommand {
@@ -802,12 +1069,25 @@ module.exports = (() => {
           examples: [['Print the active configuration settings', '$0 config']]
         })),
           (0, a.gn)(
-            [d.Command.Boolean('-v,--verbose', { description: 'Print the setting description on top of the regular key/value information' })],
+            [
+              d.Command.Boolean('-v,--verbose', {
+                description: 'Print the setting description on top of the regular key/value information'
+              })
+            ],
             z.prototype,
             'verbose',
             void 0
           ),
-          (0, a.gn)([d.Command.Boolean('--why', { description: 'Print the reason why a setting is set a particular way' })], z.prototype, 'why', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--why', {
+                description: 'Print the reason why a setting is set a particular way'
+              })
+            ],
+            z.prototype,
+            'why',
+            void 0
+          ),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], z.prototype, 'json', void 0),
           (0, a.gn)([d.Command.Path('config')], z.prototype, 'execute', null);
         var W,
@@ -867,11 +1147,23 @@ module.exports = (() => {
                   A = new I.$(),
                   s = o.makeResolver(),
                   a = o.makeFetcher(),
-                  c = { cache: n, checksums: e.storedChecksums, fetcher: a, project: e, report: A, skipIntegrityCheck: !0 },
+                  c = {
+                    cache: n,
+                    checksums: e.storedChecksums,
+                    fetcher: a,
+                    project: e,
+                    report: A,
+                    skipIntegrityCheck: !0
+                  },
                   g = { project: e, resolver: s, report: A, fetchOptions: c };
                 return await i.startTimerPromise('Deduplication step', async () => {
                   const n = te[t],
-                    A = await n(e, r, { resolver: s, resolveOptions: g, fetcher: a, fetchOptions: c }),
+                    A = await n(e, r, {
+                      resolver: s,
+                      resolveOptions: g,
+                      fetcher: a,
+                      fetchOptions: c
+                    }),
                     l = X.yG.progressViaCounter(A.length);
                   i.reportProgress(l);
                   let h,
@@ -885,7 +1177,11 @@ module.exports = (() => {
                             p++;
                             const { descriptor: r, currentPackage: n, updatedPackage: A } = t;
                             i.reportInfo(u.b.UNNAMED, `${f.prettyDescriptor(o, r)} can be deduped from ${f.prettyLocator(o, n)} to ${f.prettyLocator(o, A)}`),
-                              i.reportJson({ descriptor: f.stringifyDescriptor(r), currentResolution: f.stringifyLocator(n), updatedResolution: f.stringifyLocator(A) }),
+                              i.reportJson({
+                                descriptor: f.stringifyDescriptor(r),
+                                currentResolution: f.stringifyLocator(n),
+                                updatedResolution: f.stringifyLocator(A)
+                              }),
                               e.storedResolutions.set(r.descriptorHash, A.locatorHash);
                           })
                           .finally(() => l.tick())
@@ -937,9 +1233,22 @@ module.exports = (() => {
             ]
           })),
           (0, a.gn)([d.Command.Rest()], re.prototype, 'patterns', void 0),
-          (0, a.gn)([d.Command.String('-s,--strategy', { description: 'The strategy to use when deduping dependencies' })], re.prototype, 'strategy', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-c,--check', { description: 'Exit with exit code 1 when duplicates are found, without persisting the dependency tree' })],
+            [
+              d.Command.String('-s,--strategy', {
+                description: 'The strategy to use when deduping dependencies'
+              })
+            ],
+            re.prototype,
+            'strategy',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-c,--check', {
+                description: 'Exit with exit code 1 when duplicates are found, without persisting the dependency tree'
+              })
+            ],
             re.prototype,
             'check',
             void 0
@@ -1094,7 +1403,10 @@ module.exports = (() => {
                     };
                   }),
                   i = q.sortMap([...r], (e) => f.stringifyLocator(e));
-                return { selection: i.filter((e) => 0 === n.length || n.some((t) => t(e))), sortedLookup: i };
+                return {
+                  selection: i.filter((e) => 0 === n.length || n.some((t) => t(e))),
+                  sortedLookup: i
+                };
               })({ all: this.all, recursive: this.recursive });
             if (0 === a.length) throw new d.UsageError('No package matched your request');
             const u = new Map();
@@ -1114,7 +1426,14 @@ module.exports = (() => {
             const C = {},
               y = { children: C },
               w = e.makeFetcher(),
-              Q = { project: t, fetcher: w, cache: n, checksums: t.storedChecksums, report: new I.$(), skipIntegrityCheck: !0 },
+              Q = {
+                project: t,
+                fetcher: w,
+                cache: n,
+                checksums: t.storedChecksums,
+                report: new I.$(),
+                skipIntegrityCheck: !0
+              },
               v = [
                 async (e, t, r) => {
                   var n, i;
@@ -1126,7 +1445,10 @@ module.exports = (() => {
                   } finally {
                     null === (n = o.releaseFs) || void 0 === n || n.call(o);
                   }
-                  r('Manifest', { License: m.tuple(m.Type.NO_HINT, A.license), Homepage: m.tuple(m.Type.URL, null !== (i = A.raw.homepage) && void 0 !== i ? i : null) });
+                  r('Manifest', {
+                    License: m.tuple(m.Type.NO_HINT, A.license),
+                    Homepage: m.tuple(m.Type.URL, null !== (i = A.raw.homepage) && void 0 !== i ? i : null)
+                  });
                 },
                 async (e, r, i) => {
                   var o;
@@ -1139,7 +1461,11 @@ module.exports = (() => {
                       a = B.xfs.statSync(s);
                     } catch (e) {}
                   const c = void 0 !== a ? [a.size, m.Type.SIZE] : void 0;
-                  i('Cache', { Checksum: m.tuple(m.Type.NO_HINT, A), Path: m.tuple(m.Type.PATH, s), Size: c });
+                  i('Cache', {
+                    Checksum: m.tuple(m.Type.NO_HINT, A),
+                    Path: m.tuple(m.Type.PATH, s),
+                    Size: c
+                  });
                 }
               ];
             for (const r of a) {
@@ -1204,7 +1530,12 @@ module.exports = (() => {
                     })
                   );
             }
-            ge.emitTree(y, { configuration: e, json: this.json, stdout: this.context.stdout, separators: this.nameOnly ? 0 : 2 });
+            ge.emitTree(y, {
+              configuration: e,
+              json: this.json,
+              stdout: this.context.stdout,
+              separators: this.nameOnly ? 0 : 2
+            });
           }
         }
         (le.usage = d.Command.Usage({
@@ -1213,29 +1544,86 @@ module.exports = (() => {
             '\n      This command prints various information related to the specified packages, accepting glob patterns.\n\n      By default, if the locator reference is missing, Yarn will default to print the information about all the matching direct dependencies of the package for the active workspace. To instead print all versions of the package that are direct dependencies of any of your workspaces, use the `-A,--all` flag. Adding the `-R,--recursive` flag will also report transitive dependencies.\n\n      Some fields will be hidden by default in order to keep the output readable, but can be selectively displayed by using additional options (`--dependents`, `--manifest`, `--virtuals`, ...) described in the option descriptions.\n\n      Note that this command will only print the information directly related to the selected packages - if you wish to know why the package is there in the first place, use `yarn why` which will do just that (it also provides a `-R,--recursive` flag that may be of some help).\n    ',
           examples: [['Show information about Lodash', '$0 info lodash']]
         })),
-          (0, a.gn)([d.Command.Boolean('-A,--all', { description: 'Print versions of a package from the whole project' })], le.prototype, 'all', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-R,--recursive', { description: 'Print information for all packages, including transitive dependencies' })],
+            [
+              d.Command.Boolean('-A,--all', {
+                description: 'Print versions of a package from the whole project'
+              })
+            ],
+            le.prototype,
+            'all',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-R,--recursive', {
+                description: 'Print information for all packages, including transitive dependencies'
+              })
+            ],
             le.prototype,
             'recursive',
             void 0
           ),
-          (0, a.gn)([d.Command.Array('-X,--extra', { description: 'An array of requests of extra data provided by plugins' })], le.prototype, 'extra', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('--cache', { description: 'Print information about the cache entry of a package (path, size, checksum)' })],
+            [
+              d.Command.Array('-X,--extra', {
+                description: 'An array of requests of extra data provided by plugins'
+              })
+            ],
+            le.prototype,
+            'extra',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--cache', {
+                description: 'Print information about the cache entry of a package (path, size, checksum)'
+              })
+            ],
             le.prototype,
             'cache',
             void 0
           ),
-          (0, a.gn)([d.Command.Boolean('--dependents', { description: 'Print all dependents for each matching package' })], le.prototype, 'dependents', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('--manifest', { description: 'Print data obtained by looking at the package archive (license, homepage, ...)' })],
+            [
+              d.Command.Boolean('--dependents', {
+                description: 'Print all dependents for each matching package'
+              })
+            ],
+            le.prototype,
+            'dependents',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--manifest', {
+                description: 'Print data obtained by looking at the package archive (license, homepage, ...)'
+              })
+            ],
             le.prototype,
             'manifest',
             void 0
           ),
-          (0, a.gn)([d.Command.Boolean('--name-only', { description: 'Only print the name for the matching packages' })], le.prototype, 'nameOnly', void 0),
-          (0, a.gn)([d.Command.Boolean('--virtuals', { description: 'Print each instance of the virtual packages' })], le.prototype, 'virtuals', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--name-only', {
+                description: 'Only print the name for the matching packages'
+              })
+            ],
+            le.prototype,
+            'nameOnly',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--virtuals', {
+                description: 'Print each instance of the virtual packages'
+              })
+            ],
+            le.prototype,
+            'virtuals',
+            void 0
+          ),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], le.prototype, 'json', void 0),
           (0, a.gn)([d.Command.Rest()], le.prototype, 'patterns', void 0),
           (0, a.gn)([d.Command.Path('info')], le.prototype, 'execute', null);
@@ -1248,7 +1636,10 @@ module.exports = (() => {
           async execute() {
             var e, t, r;
             const n = await s.VK.find(this.context.cwd, this.context.plugins);
-            void 0 !== this.inlineBuilds && n.useWithSource('<cli>', { enableInlineBuilds: this.inlineBuilds }, n.startingCwd, { overwrite: !0 });
+            void 0 !== this.inlineBuilds &&
+              n.useWithSource('<cli>', { enableInlineBuilds: this.inlineBuilds }, n.startingCwd, {
+                overwrite: !0
+              });
             const i = !!process.env.NOW_BUILDER,
               o = !!process.env.NETLIFY,
               A = !!process.env.FUNCTION_TARGET || !!process.env.GOOGLE_RUNTIME,
@@ -1291,62 +1682,83 @@ module.exports = (() => {
                 ? null !== (e = n.get('enableImmutableInstalls')) && void 0 !== e && e
                 : null !== (r = null !== (t = this.immutable) && void 0 !== t ? t : this.frozenLockfile) && void 0 !== r && r;
             if (null !== n.projectCwd) {
-              const e = await p.Pk.start({ configuration: n, json: this.json, stdout: this.context.stdout, includeFooter: !1 }, async (e) => {
-                (await (async function (e, t) {
-                  if (!e.projectCwd) return !1;
-                  const r = y.y1.join(e.projectCwd, e.get('lockfileFilename'));
-                  if (!(await B.xfs.existsPromise(r))) return !1;
-                  const n = await B.xfs.readFilePromise(r, 'utf8');
-                  if (!n.includes('<<<<<<<')) return !1;
-                  if (t) throw new X.lk(u.b.AUTOMERGE_IMMUTABLE, 'Cannot autofix a lockfile when running an immutable install');
-                  const [i, o] = (function (e) {
-                    const t = [[], []],
-                      r = e.split(/\r?\n/g);
-                    let n = !1;
-                    for (; r.length > 0; ) {
-                      const e = r.shift();
-                      if (void 0 === e) throw new Error('Assertion failed: Some lines should remain');
-                      if (e.startsWith('<<<<<<<')) {
-                        for (; r.length > 0; ) {
-                          const e = r.shift();
-                          if (void 0 === e) throw new Error('Assertion failed: Some lines should remain');
-                          if ('=======' === e) {
-                            n = !1;
-                            break;
+              const e = await p.Pk.start(
+                {
+                  configuration: n,
+                  json: this.json,
+                  stdout: this.context.stdout,
+                  includeFooter: !1
+                },
+                async (e) => {
+                  (await (async function (e, t) {
+                    if (!e.projectCwd) return !1;
+                    const r = y.y1.join(e.projectCwd, e.get('lockfileFilename'));
+                    if (!(await B.xfs.existsPromise(r))) return !1;
+                    const n = await B.xfs.readFilePromise(r, 'utf8');
+                    if (!n.includes('<<<<<<<')) return !1;
+                    if (t) throw new X.lk(u.b.AUTOMERGE_IMMUTABLE, 'Cannot autofix a lockfile when running an immutable install');
+                    const [i, o] = (function (e) {
+                      const t = [[], []],
+                        r = e.split(/\r?\n/g);
+                      let n = !1;
+                      for (; r.length > 0; ) {
+                        const e = r.shift();
+                        if (void 0 === e) throw new Error('Assertion failed: Some lines should remain');
+                        if (e.startsWith('<<<<<<<')) {
+                          for (; r.length > 0; ) {
+                            const e = r.shift();
+                            if (void 0 === e) throw new Error('Assertion failed: Some lines should remain');
+                            if ('=======' === e) {
+                              n = !1;
+                              break;
+                            }
+                            n || e.startsWith('|||||||') ? (n = !0) : t[0].push(e);
                           }
-                          n || e.startsWith('|||||||') ? (n = !0) : t[0].push(e);
-                        }
-                        for (; r.length > 0; ) {
-                          const e = r.shift();
-                          if (void 0 === e) throw new Error('Assertion failed: Some lines should remain');
-                          if (e.startsWith('>>>>>>>')) break;
-                          t[1].push(e);
-                        }
-                      } else t[0].push(e), t[1].push(e);
+                          for (; r.length > 0; ) {
+                            const e = r.shift();
+                            if (void 0 === e) throw new Error('Assertion failed: Some lines should remain');
+                            if (e.startsWith('>>>>>>>')) break;
+                            t[1].push(e);
+                          }
+                        } else t[0].push(e), t[1].push(e);
+                      }
+                      return [t[0].join('\n'), t[1].join('\n')];
+                    })(n);
+                    let A, s;
+                    try {
+                      (A = (0, ue.parseSyml)(i)), (s = (0, ue.parseSyml)(o));
+                    } catch (e) {
+                      throw new X.lk(u.b.AUTOMERGE_FAILED_TO_PARSE, 'The individual variants of the lockfile failed to parse');
                     }
-                    return [t[0].join('\n'), t[1].join('\n')];
-                  })(n);
-                  let A, s;
-                  try {
-                    (A = (0, ue.parseSyml)(i)), (s = (0, ue.parseSyml)(o));
-                  } catch (e) {
-                    throw new X.lk(u.b.AUTOMERGE_FAILED_TO_PARSE, 'The individual variants of the lockfile failed to parse');
-                  }
-                  const a = { ...A, ...s };
-                  for (const [e, t] of Object.entries(a)) 'string' == typeof t && delete a[e];
-                  return await B.xfs.changeFilePromise(r, (0, ue.stringifySyml)(a), { automaticNewlines: !0 }), !0;
-                })(n, l)) && (e.reportInfo(u.b.AUTOMERGE_SUCCESS, 'Automatically fixed merge conflicts 👍'), e.reportSeparator());
-              });
+                    const a = { ...A, ...s };
+                    for (const [e, t] of Object.entries(a)) 'string' == typeof t && delete a[e];
+                    return (
+                      await B.xfs.changeFilePromise(r, (0, ue.stringifySyml)(a), {
+                        automaticNewlines: !0
+                      }),
+                      !0
+                    );
+                  })(n, l)) && (e.reportInfo(u.b.AUTOMERGE_SUCCESS, 'Automatically fixed merge conflicts 👍'), e.reportSeparator());
+                }
+              );
               if (e.hasErrors()) return e.exitCode();
             }
             if (null !== n.projectCwd) {
-              const e = await p.Pk.start({ configuration: n, json: this.json, stdout: this.context.stdout, includeFooter: !1 }, async (e) => {
-                var t;
-                (null === (t = s.VK.telemetry) || void 0 === t ? void 0 : t.isNew) &&
-                  (e.reportInfo(u.b.TELEMETRY_NOTICE, 'Yarn will periodically gather anonymous telemetry: https://yarnpkg.com/advanced/telemetry'),
-                  e.reportInfo(u.b.TELEMETRY_NOTICE, `Run ${m.pretty(n, 'yarn config set --home enableTelemetry 0', m.Type.CODE)} to disable`),
-                  e.reportSeparator());
-              });
+              const e = await p.Pk.start(
+                {
+                  configuration: n,
+                  json: this.json,
+                  stdout: this.context.stdout,
+                  includeFooter: !1
+                },
+                async (e) => {
+                  var t;
+                  (null === (t = s.VK.telemetry) || void 0 === t ? void 0 : t.isNew) &&
+                    (e.reportInfo(u.b.TELEMETRY_NOTICE, 'Yarn will periodically gather anonymous telemetry: https://yarnpkg.com/advanced/telemetry'),
+                    e.reportInfo(u.b.TELEMETRY_NOTICE, `Run ${m.pretty(n, 'yarn config set --home enableTelemetry 0', m.Type.CODE)} to disable`),
+                    e.reportSeparator());
+                }
+              );
               if (e.hasErrors()) return e.exitCode();
             }
             const { project: f, workspace: d } = await h.I.find(n, this.context.cwd),
@@ -1354,7 +1766,12 @@ module.exports = (() => {
             if (!d) throw new c.WorkspaceRequiredError(f.cwd, this.context.cwd);
             return (
               await p.Pk.start({ configuration: n, json: this.json, stdout: this.context.stdout, includeLogs: !0 }, async (e) => {
-                await f.install({ cache: C, report: e, immutable: l, skipBuild: this.skipBuilds });
+                await f.install({
+                  cache: C,
+                  report: e,
+                  immutable: l,
+                  skipBuild: this.skipBuilds
+                });
               })
             ).exitCode();
           }
@@ -1371,19 +1788,31 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], pe.prototype, 'json', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('--immutable', { description: 'Abort with an error exit code if the lockfile was to be modified' })],
+            [
+              d.Command.Boolean('--immutable', {
+                description: 'Abort with an error exit code if the lockfile was to be modified'
+              })
+            ],
             pe.prototype,
             'immutable',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('--immutable-cache', { description: 'Abort with an error exit code if the cache folder was to be modified' })],
+            [
+              d.Command.Boolean('--immutable-cache', {
+                description: 'Abort with an error exit code if the cache folder was to be modified'
+              })
+            ],
             pe.prototype,
             'immutableCache',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('--check-cache', { description: 'Always refetch the packages and ensure that their checksums are consistent' })],
+            [
+              d.Command.Boolean('--check-cache', {
+                description: 'Always refetch the packages and ensure that their checksums are consistent'
+              })
+            ],
             pe.prototype,
             'checkCache',
             void 0
@@ -1395,7 +1824,11 @@ module.exports = (() => {
           (0, a.gn)([d.Command.Boolean('--ignore-engines', { hidden: !0 })], pe.prototype, 'ignoreEngines', void 0),
           (0, a.gn)([d.Command.String('--registry', { hidden: !0 })], pe.prototype, 'registry', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('--inline-builds', { description: 'Verbosely print the output of the build steps of dependencies' })],
+            [
+              d.Command.Boolean('--inline-builds', {
+                description: 'Verbosely print the output of the build steps of dependencies'
+              })
+            ],
             pe.prototype,
             'inlineBuilds',
             void 0
@@ -1430,7 +1863,10 @@ module.exports = (() => {
             for (const e of u) {
               const r = f.stringifyIdent(e.locator),
                 n = this.relative ? y.y1.relative(t.cwd, e.cwd) : e.cwd;
-              l.manifest.resolutions.push({ pattern: { descriptor: { fullName: r } }, reference: 'portal:' + n });
+              l.manifest.resolutions.push({
+                pattern: { descriptor: { fullName: r } },
+                reference: 'portal:' + n
+              });
             }
             return (
               await p.Pk.start({ configuration: e, stdout: this.context.stdout }, async (e) => {
@@ -1450,19 +1886,31 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.String()], fe.prototype, 'destination', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-A,--all', { description: 'Link all workspaces belonging to the target project to the current one' })],
+            [
+              d.Command.Boolean('-A,--all', {
+                description: 'Link all workspaces belonging to the target project to the current one'
+              })
+            ],
             fe.prototype,
             'all',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('-p,--private', { description: 'Also link private workspaces belonging to the target project to the current one' })],
+            [
+              d.Command.Boolean('-p,--private', {
+                description: 'Also link private workspaces belonging to the target project to the current one'
+              })
+            ],
             fe.prototype,
             'private',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('-r,--relative', { description: 'Link workspaces using relative paths instead of absolute paths' })],
+            [
+              d.Command.Boolean('-r,--relative', {
+                description: 'Link workspaces using relative paths instead of absolute paths'
+              })
+            ],
             fe.prototype,
             'relative',
             void 0
@@ -1555,7 +2003,11 @@ module.exports = (() => {
           ]
         })),
           (0, a.gn)(
-            [d.Command.Boolean('--only-if-needed', { description: "Only lock the Yarn version if it isn't already locked" })],
+            [
+              d.Command.Boolean('--only-if-needed', {
+                description: "Only lock the Yarn version if it isn't already locked"
+              })
+            ],
             we.prototype,
             'onlyIfNeeded',
             void 0
@@ -1604,7 +2056,14 @@ module.exports = (() => {
         async function Se(e, { configuration: t, context: r, target: n }) {
           for (const [i, ...o] of e) {
             const e = '|' === o[o.length - 1];
-            if ((e && o.pop(), e)) await ae.pipevp(i, o, { cwd: n, stdin: r.stdin, stdout: r.stdout, stderr: r.stderr, strict: !0 });
+            if ((e && o.pop(), e))
+              await ae.pipevp(i, o, {
+                cwd: n,
+                stdin: r.stdin,
+                stdout: r.stdout,
+                stderr: r.stderr,
+                strict: !0
+              });
             else {
               r.stdout.write(m.pretty(t, '  $ ' + [i, ...o].join(' '), 'grey') + '\n');
               try {
@@ -1654,23 +2113,62 @@ module.exports = (() => {
             '\n      This command will clone the Yarn repository into a temporary folder, then build it. The resulting bundle will then be copied into the local project.\n    ',
           examples: [['Build Yarn from master', '$0 set version from sources']]
         })),
-          (0, a.gn)([d.Command.String('--path', { description: 'The path where the repository should be cloned to' })], De.prototype, 'installPath', void 0),
-          (0, a.gn)([d.Command.String('--repository', { description: 'The repository that should be cloned' })], De.prototype, 'repository', void 0),
-          (0, a.gn)([d.Command.String('--branch', { description: 'The branch of the repository that should be cloned' })], De.prototype, 'branch', void 0),
           (0, a.gn)(
-            [d.Command.Array('--plugin', { description: 'An array of additional plugins that should be included in the bundle' })],
+            [
+              d.Command.String('--path', {
+                description: 'The path where the repository should be cloned to'
+              })
+            ],
+            De.prototype,
+            'installPath',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.String('--repository', {
+                description: 'The repository that should be cloned'
+              })
+            ],
+            De.prototype,
+            'repository',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.String('--branch', {
+                description: 'The branch of the repository that should be cloned'
+              })
+            ],
+            De.prototype,
+            'branch',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Array('--plugin', {
+                description: 'An array of additional plugins that should be included in the bundle'
+              })
+            ],
             De.prototype,
             'plugins',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('--no-minify', { description: 'Build a bundle for development (debugging) - non-minified and non-mangled' })],
+            [
+              d.Command.Boolean('--no-minify', {
+                description: 'Build a bundle for development (debugging) - non-minified and non-mangled'
+              })
+            ],
             De.prototype,
             'noMinify',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('-f,--force', { description: 'Always clone the repository instead of trying to fetch the latest commits' })],
+            [
+              d.Command.Boolean('-f,--force', {
+                description: 'Always clone the repository instead of trying to fetch the latest commits'
+              })
+            ],
             De.prototype,
             'force',
             void 0
@@ -1833,17 +2331,52 @@ module.exports = (() => {
           ]
         })),
           (0, a.gn)([d.Command.String()], xe.prototype, 'name', void 0),
-          (0, a.gn)([d.Command.String('--path', { description: 'The path where the repository should be cloned to' })], xe.prototype, 'installPath', void 0),
-          (0, a.gn)([d.Command.String('--repository', { description: 'The repository that should be cloned' })], xe.prototype, 'repository', void 0),
-          (0, a.gn)([d.Command.String('--branch', { description: 'The branch of the repository that should be cloned' })], xe.prototype, 'branch', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('--no-minify', { description: 'Build a plugin for development (debugging) - non-minified and non-mangled' })],
+            [
+              d.Command.String('--path', {
+                description: 'The path where the repository should be cloned to'
+              })
+            ],
+            xe.prototype,
+            'installPath',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.String('--repository', {
+                description: 'The repository that should be cloned'
+              })
+            ],
+            xe.prototype,
+            'repository',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.String('--branch', {
+                description: 'The branch of the repository that should be cloned'
+              })
+            ],
+            xe.prototype,
+            'branch',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--no-minify', {
+                description: 'Build a plugin for development (debugging) - non-minified and non-mangled'
+              })
+            ],
             xe.prototype,
             'noMinify',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.Boolean('-f,--force', { description: 'Always clone the repository instead of trying to fetch the latest commits' })],
+            [
+              d.Command.Boolean('-f,--force', {
+                description: 'Always clone the repository instead of trying to fetch the latest commits'
+              })
+            ],
             xe.prototype,
             'force',
             void 0
@@ -2012,7 +2545,16 @@ module.exports = (() => {
             ['Remove all dependencies matching `react-dom` or `react-helmet`', "$0 remove 'react-{dom,helmet}'"]
           ]
         })),
-          (0, a.gn)([d.Command.Boolean('-A,--all', { description: 'Apply the operation to all workspaces from the current project' })], Ue.prototype, 'all', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-A,--all', {
+                description: 'Apply the operation to all workspaces from the current project'
+              })
+            ],
+            Ue.prototype,
+            'all',
+            void 0
+          ),
           (0, a.gn)([d.Command.Rest()], Ue.prototype, 'patterns', void 0),
           (0, a.gn)([d.Command.Path('remove')], Ue.prototype, 'execute', null);
         class je extends c.BaseCommand {
@@ -2106,13 +2648,23 @@ module.exports = (() => {
           ]
         })),
           (0, a.gn)(
-            [d.Command.String('--inspect', { tolerateBoolean: !0, description: 'Forwarded to the underlying Node process when executing a binary' })],
+            [
+              d.Command.String('--inspect', {
+                tolerateBoolean: !0,
+                description: 'Forwarded to the underlying Node process when executing a binary'
+              })
+            ],
             Ye.prototype,
             'inspect',
             void 0
           ),
           (0, a.gn)(
-            [d.Command.String('--inspect-brk', { tolerateBoolean: !0, description: 'Forwarded to the underlying Node process when executing a binary' })],
+            [
+              d.Command.String('--inspect-brk', {
+                tolerateBoolean: !0,
+                description: 'Forwarded to the underlying Node process when executing a binary'
+              })
+            ],
             Ye.prototype,
             'inspectBrk',
             void 0
@@ -2150,7 +2702,16 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.String()], Ge.prototype, 'descriptor', void 0),
           (0, a.gn)([d.Command.String()], Ge.prototype, 'resolution', void 0),
-          (0, a.gn)([d.Command.Boolean('-s,--save', { description: 'Persist the resolution inside the top-level manifest' })], Ge.prototype, 'save', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-s,--save', {
+                description: 'Persist the resolution inside the top-level manifest'
+              })
+            ],
+            Ge.prototype,
+            'save',
+            void 0
+          ),
           (0, a.gn)([d.Command.Path('set', 'resolution')], Ge.prototype, 'execute', null);
         class He extends c.BaseCommand {
           constructor() {
@@ -2178,7 +2739,21 @@ module.exports = (() => {
                       a = e.manifest[A].get(i.identHash);
                     if (void 0 === a) throw new Error('Assertion failed: Expected the descriptor to be registered');
                     const c = f.makeDescriptor(i, n.range);
-                    B.push(Promise.resolve().then(async () => [e, A, a, await F(c, { project: r, workspace: e, cache: o, target: A, modifier: I, strategies: E })])),
+                    B.push(
+                      Promise.resolve().then(async () => [
+                        e,
+                        A,
+                        a,
+                        await F(c, {
+                          project: r,
+                          workspace: e,
+                          cache: o,
+                          target: A,
+                          modifier: I,
+                          strategies: E
+                        })
+                      ])
+                    ),
                       (t = !0);
                   }
                 }
@@ -2265,14 +2840,45 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.Rest()], He.prototype, 'patterns', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-i,--interactive', { description: 'Offer various choices, depending on the detected upgrade paths' })],
+            [
+              d.Command.Boolean('-i,--interactive', {
+                description: 'Offer various choices, depending on the detected upgrade paths'
+              })
+            ],
             He.prototype,
             'interactive',
             void 0
           ),
-          (0, a.gn)([d.Command.Boolean('-E,--exact', { description: "Don't use any semver modifier on the resolved range" })], He.prototype, 'exact', void 0),
-          (0, a.gn)([d.Command.Boolean('-T,--tilde', { description: 'Use the `~` semver modifier on the resolved range' })], He.prototype, 'tilde', void 0),
-          (0, a.gn)([d.Command.Boolean('-C,--caret', { description: 'Use the `^` semver modifier on the resolved range' })], He.prototype, 'caret', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-E,--exact', {
+                description: "Don't use any semver modifier on the resolved range"
+              })
+            ],
+            He.prototype,
+            'exact',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-T,--tilde', {
+                description: 'Use the `~` semver modifier on the resolved range'
+              })
+            ],
+            He.prototype,
+            'tilde',
+            void 0
+          ),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-C,--caret', {
+                description: 'Use the `^` semver modifier on the resolved range'
+              })
+            ],
+            He.prototype,
+            'caret',
+            void 0
+          ),
           (0, a.gn)([d.Command.Path('up')], He.prototype, 'execute', null);
         class Je extends c.BaseCommand {
           constructor() {
@@ -2315,7 +2921,10 @@ module.exports = (() => {
                       l = (t, r, i) => {
                         if (!A.has(t.locatorHash)) return;
                         const o = {},
-                          s = { value: null !== i ? m.tuple(m.Type.DEPENDENT, { locator: t, descriptor: i }) : m.tuple(m.Type.LOCATOR, t), children: o };
+                          s = {
+                            value: null !== i ? m.tuple(m.Type.DEPENDENT, { locator: t, descriptor: i }) : m.tuple(m.Type.LOCATOR, t),
+                            children: o
+                          };
                         if (((r[f.stringifyLocator(t)] = s), !a.has(t.locatorHash) && (a.add(t.locatorHash), null === i || !e.tryWorkspaceByLocator(t))))
                           for (const r of t.dependencies.values()) {
                             if (!n && t.peerDependencies.has(r.identHash)) continue;
@@ -2357,7 +2966,12 @@ module.exports = (() => {
                     }
                     return A;
                   })(t, n, { configuration: e, peers: this.peers });
-            ge.emitTree(i, { configuration: e, stdout: this.context.stdout, json: this.json, separators: 1 });
+            ge.emitTree(i, {
+              configuration: e,
+              stdout: this.context.stdout,
+              json: this.json,
+              separators: 1
+            });
           }
         }
         (Je.usage = d.Command.Usage({
@@ -2368,13 +2982,26 @@ module.exports = (() => {
         })),
           (0, a.gn)([d.Command.String()], Je.prototype, 'package', void 0),
           (0, a.gn)(
-            [d.Command.Boolean('-R,--recursive', { description: 'List, for each workspace, what are all the paths that lead to the dependency' })],
+            [
+              d.Command.Boolean('-R,--recursive', {
+                description: 'List, for each workspace, what are all the paths that lead to the dependency'
+              })
+            ],
             Je.prototype,
             'recursive',
             void 0
           ),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], Je.prototype, 'json', void 0),
-          (0, a.gn)([d.Command.Boolean('--peers', { description: 'Also print the peer dependencies that match the specified name' })], Je.prototype, 'peers', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('--peers', {
+                description: 'Also print the peer dependencies that match the specified name'
+              })
+            ],
+            Je.prototype,
+            'peers',
+            void 0
+          ),
           (0, a.gn)([d.Command.Path('why')], Je.prototype, 'execute', null);
         class _e extends c.BaseCommand {
           constructor() {
@@ -2401,7 +3028,12 @@ module.exports = (() => {
                       mismatchedWorkspaceDependencies: Array.from(r).map((e) => f.stringifyDescriptor(e))
                     };
                   }
-                  e.reportInfo(null, '' + r.relativeCwd), e.reportJson({ location: r.relativeCwd, name: n.name ? f.stringifyIdent(n.name) : null, ...i });
+                  e.reportInfo(null, '' + r.relativeCwd),
+                    e.reportJson({
+                      location: r.relativeCwd,
+                      name: n.name ? f.stringifyIdent(n.name) : null,
+                      ...i
+                    });
                 }
               })
             ).exitCode();
@@ -2413,7 +3045,16 @@ module.exports = (() => {
           details:
             '\n      This command will print the list of all workspaces in the project. If both the `-v,--verbose` and `--json` options are set, Yarn will also return the cross-dependencies between each workspaces (useful when you wish to automatically generate Buck / Bazel rules).\n    '
         })),
-          (0, a.gn)([d.Command.Boolean('-v,--verbose', { description: 'Also return the cross-dependencies between workspaces' })], _e.prototype, 'verbose', void 0),
+          (0, a.gn)(
+            [
+              d.Command.Boolean('-v,--verbose', {
+                description: 'Also return the cross-dependencies between workspaces'
+              })
+            ],
+            _e.prototype,
+            'verbose',
+            void 0
+          ),
           (0, a.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], _e.prototype, 'json', void 0),
           (0, a.gn)([d.Command.Path('workspaces', 'list')], _e.prototype, 'execute', null);
         class qe extends d.Command {
@@ -2454,8 +3095,17 @@ module.exports = (() => {
           (0, a.gn)([d.Command.Path('workspace')], qe.prototype, 'execute', null);
         const ze = {
           configuration: {
-            enableImmutableInstalls: { description: 'If true, prevents the install command from modifying the lockfile', type: s.a2.BOOLEAN, default: !1 },
-            defaultSemverRangePrefix: { description: "The default save prefix: '^', '~' or ''", type: s.a2.STRING, values: ['^', '~', ''], default: o.CARET }
+            enableImmutableInstalls: {
+              description: 'If true, prevents the install command from modifying the lockfile',
+              type: s.a2.BOOLEAN,
+              default: !1
+            },
+            defaultSemverRangePrefix: {
+              description: "The default save prefix: '^', '~' or ''",
+              type: s.a2.STRING,
+              values: ['^', '~', ''],
+              default: o.CARET
+            }
           },
           commands: [x, U, _, Ge, De, we, _e, ne, ie, oe, se, R, L, z, re, ce, le, pe, fe, de, xe, Ke, Pe, Re, Te, Oe, Ue, je, Ye, He, Je, qe]
         };
@@ -2464,7 +3114,14 @@ module.exports = (() => {
         'use strict';
         r.r(t), r.d(t, { default: () => E, fileUtils: () => n });
         var n = {};
-        r.r(n), r.d(n, { makeArchiveFromLocator: () => p, makeBufferFromLocator: () => f, makeLocator: () => h, makeSpec: () => u, parseSpec: () => l });
+        r.r(n),
+          r.d(n, {
+            makeArchiveFromLocator: () => p,
+            makeBufferFromLocator: () => f,
+            makeLocator: () => h,
+            makeSpec: () => u,
+            parseSpec: () => l
+          });
         var i = r(54143),
           o = r(46009);
         const A = /^(?:[a-zA-Z]:[\\/]|\.{0,2}\/)/,
@@ -2475,7 +3132,10 @@ module.exports = (() => {
         function l(e) {
           const { params: t, selector: r } = i.parseRange(e),
             n = o.cS.toPortablePath(r);
-          return { parentLocator: t && 'string' == typeof t.locator ? i.parseLocator(t.locator) : null, path: n };
+          return {
+            parentLocator: t && 'string' == typeof t.locator ? i.parseLocator(t.locator) : null,
+            path: n
+          };
         }
         function u({ parentLocator: e, path: t, folderHash: r, protocol: n }) {
           const o = null !== e ? { locator: i.stringifyLocator(e) } : {},
@@ -2527,12 +3187,24 @@ module.exports = (() => {
                     loader: () => this.fetchFromDisk(e, t),
                     skipIntegrityCheck: t.skipIntegrityCheck
                   });
-                return { packageFs: n, releaseFs: o, prefixPath: i.getIdentVendorPath(e), checksum: A };
+                return {
+                  packageFs: n,
+                  releaseFs: o,
+                  prefixPath: i.getIdentVendorPath(e),
+                  checksum: A
+                };
               }
               async fetchFromDisk(e, t) {
-                const { parentLocator: r, path: n } = i.parseFileStyleRange(e.reference, { protocol: 'file:' }),
+                const { parentLocator: r, path: n } = i.parseFileStyleRange(e.reference, {
+                    protocol: 'file:'
+                  }),
                   A = o.y1.isAbsolute(n) ? { packageFs: new g.M(o.LZ.root), prefixPath: o.LZ.dot, localPath: o.LZ.root } : await t.fetcher.fetch(r, t),
-                  s = A.localPath ? { packageFs: new g.M(o.LZ.root), prefixPath: o.y1.relative(o.LZ.root, A.localPath) } : A;
+                  s = A.localPath
+                    ? {
+                        packageFs: new g.M(o.LZ.root),
+                        prefixPath: o.y1.relative(o.LZ.root, A.localPath)
+                      }
+                    : A;
                 A !== s && A.releaseFs && A.releaseFs();
                 const l = s.packageFs,
                   u = o.y1.join(s.prefixPath, n),
@@ -2553,7 +3225,9 @@ module.exports = (() => {
                 return !!e.reference.startsWith('file:');
               }
               getLocalPath(e, t) {
-                const { parentLocator: r, path: n } = i.parseFileStyleRange(e.reference, { protocol: 'file:' });
+                const { parentLocator: r, path: n } = i.parseFileStyleRange(e.reference, {
+                  protocol: 'file:'
+                });
                 if (o.y1.isAbsolute(n)) return n;
                 const A = t.fetcher.getLocalPath(r, t);
                 return null === A ? null : o.y1.resolve(A, n);
@@ -2567,7 +3241,13 @@ module.exports = (() => {
                     loader: () => this.fetchFromDisk(e, t),
                     skipIntegrityCheck: t.skipIntegrityCheck
                   });
-                return { packageFs: n, releaseFs: o, prefixPath: i.getIdentVendorPath(e), localPath: this.getLocalPath(e, t), checksum: A };
+                return {
+                  packageFs: n,
+                  releaseFs: o,
+                  prefixPath: i.getIdentVendorPath(e),
+                  localPath: this.getLocalPath(e, t),
+                  checksum: A
+                };
               }
               async fetchFromDisk(e, t) {
                 return p(e, { protocol: 'file:', fetchOptions: t });
@@ -2635,11 +3315,29 @@ module.exports = (() => {
                 if (!r.fetchOptions) throw new Error('Assertion failed: This resolver cannot be used unless a fetcher is configured');
                 const { path: n, parentLocator: o } = l(e.range);
                 if (null === o) throw new Error('Assertion failed: The descriptor should have been bound');
-                const A = await f(i.makeLocator(e, i.makeRange({ protocol: 'file:', source: n, selector: n, params: { locator: i.stringifyLocator(o) } })), {
-                  protocol: 'file:',
-                  fetchOptions: r.fetchOptions
-                });
-                return [h(e, { parentLocator: o, path: n, folderHash: d.makeHash('1', A).slice(0, 6), protocol: 'file:' })];
+                const A = await f(
+                  i.makeLocator(
+                    e,
+                    i.makeRange({
+                      protocol: 'file:',
+                      source: n,
+                      selector: n,
+                      params: { locator: i.stringifyLocator(o) }
+                    })
+                  ),
+                  {
+                    protocol: 'file:',
+                    fetchOptions: r.fetchOptions
+                  }
+                );
+                return [
+                  h(e, {
+                    parentLocator: o,
+                    path: n,
+                    folderHash: d.makeHash('1', A).slice(0, 6),
+                    protocol: 'file:'
+                  })
+                ];
               }
               async getSatisfying(e, t, r) {
                 return null;
@@ -2760,7 +3458,11 @@ module.exports = (() => {
           if (!l.getNetworkSettings(r, { configuration: t }).enableNetwork) throw new Error(`Request to '${r}' has been blocked because of your configuration settings`);
           let n;
           try {
-            n = await u.execvp('git', ['ls-remote', '--refs', r], { cwd: t.startingCwd, env: E(), strict: !0 });
+            n = await u.execvp('git', ['ls-remote', '--refs', r], {
+              cwd: t.startingCwd,
+              env: E(),
+              strict: !0
+            });
           } catch (t) {
             throw ((t.message = `Listing the refs for ${e} failed`), t);
           }
@@ -2852,7 +3554,13 @@ module.exports = (() => {
         var k = r(32485),
           M = r(46611);
         const F = {
-          configuration: { cloneConcurrency: { description: 'Maximal number of concurrent clones', type: i.a2.NUMBER, default: 2 } },
+          configuration: {
+            cloneConcurrency: {
+              description: 'Maximal number of concurrent clones',
+              type: i.a2.NUMBER,
+              default: 2
+            }
+          },
           fetchers: [
             class {
               supports(e, t) {
@@ -2879,7 +3587,12 @@ module.exports = (() => {
                   loader: () => this.cloneFromRemote(n, A),
                   skipIntegrityCheck: t.skipIntegrityCheck
                 });
-                return { packageFs: a, releaseFs: c, prefixPath: o.getIdentVendorPath(e), checksum: g };
+                return {
+                  packageFs: a,
+                  releaseFs: c,
+                  prefixPath: o.getIdentVendorPath(e),
+                  checksum: g
+                };
               }
               async downloadHosted(e, t) {
                 return t.project.configuration.reduceHook((e) => e.fetchHostedRepository, null, e, t);
@@ -2888,7 +3601,11 @@ module.exports = (() => {
                 const r = await S(e.reference, t.project.configuration),
                   n = w(e.reference),
                   i = g.y1.join(r, 'package.tgz');
-                await A.prepareExternalProject(r, i, { configuration: t.project.configuration, report: t.report, workspace: n.extra.workspace });
+                await A.prepareExternalProject(r, i, {
+                  configuration: t.project.configuration,
+                  report: t.report,
+                  workspace: n.extra.workspace
+                });
                 const l = await c.xfs.readFilePromise(i);
                 return await s.releaseAfterUseAsync(
                   async () =>
@@ -2981,13 +3698,19 @@ module.exports = (() => {
             return { packageFs: i, releaseFs: o, prefixPath: n.getIdentVendorPath(e), checksum: A };
           }
           async fetchFromNetwork(e, t) {
-            const r = await i.get(this.getLocatorUrl(e, t), { configuration: t.project.configuration });
+            const r = await i.get(this.getLocatorUrl(e, t), {
+              configuration: t.project.configuration
+            });
             return await s.xfs.mktempPromise(async (i) => {
               const l = new a.M(i);
               await o.extractArchiveTo(r, l, { stripComponents: 1 });
               const u = g.gitUtils.splitRepoUrl(e.reference),
                 h = c.y1.join(i, 'package.tgz');
-              await A.prepareExternalProject(i, h, { configuration: t.project.configuration, report: t.report, workspace: u.extra.workspace });
+              await A.prepareExternalProject(i, h, {
+                configuration: t.project.configuration,
+                report: t.report,
+                workspace: u.extra.workspace
+              });
               const p = await s.xfs.readFilePromise(h);
               return await o.convertToZip(p, {
                 compressionLevel: t.project.configuration.get('compressionLevel'),
@@ -3055,7 +3778,12 @@ module.exports = (() => {
                     loader: () => this.fetchFromNetwork(e, t),
                     skipIntegrityCheck: t.skipIntegrityCheck
                   });
-                return { packageFs: i, releaseFs: o, prefixPath: n.getIdentVendorPath(e), checksum: A };
+                return {
+                  packageFs: i,
+                  releaseFs: o,
+                  prefixPath: n.getIdentVendorPath(e),
+                  checksum: A
+                };
               }
               async fetchFromNetwork(e, t) {
                 const r = await i.get(e.reference, { configuration: t.project.configuration });
@@ -3181,7 +3909,10 @@ module.exports = (() => {
               (r.private = this.private || this.workspace),
               (r.license = e.get('initLicense')),
               this.workspace &&
-                (await l.xfs.mkdirPromise(u.y1.join(this.context.cwd, 'packages'), { recursive: !0 }), (r.workspaceDefinitions = [{ pattern: 'packages/*' }]));
+                (await l.xfs.mkdirPromise(u.y1.join(this.context.cwd, 'packages'), {
+                  recursive: !0
+                }),
+                (r.workspaceDefinitions = [{ pattern: 'packages/*' }]));
             const i = {};
             r.exportTo(i), (d.inspect.styles.name = 'cyan'), this.context.stdout.write((0, d.inspect)(i, { depth: 1 / 0, colors: !0, compact: !1 }) + '\n');
             const o = u.y1.join(this.context.cwd, A.G.fileName);
@@ -3208,7 +3939,10 @@ module.exports = (() => {
                   .join(''),
                 o = u.y1.join(this.context.cwd, '.gitignore');
               l.xfs.existsSync(o) || (await l.xfs.writeFilePromise(o, i));
-              const A = { '*': { endOfLine: 'lf', insertFinalNewline: !0 }, '*.{js,json,.yml}': { charset: 'utf-8', indentStyle: 'space', indentSize: 2 } };
+              const A = {
+                '*': { endOfLine: 'lf', insertFinalNewline: !0 },
+                '*.{js,json,.yml}': { charset: 'utf-8', indentStyle: 'space', indentSize: 2 }
+              };
               f()(A, e.get('initEditorConfig'));
               let s = 'root = true\n';
               for (const [e, t] of Object.entries(A)) {
@@ -3238,13 +3972,22 @@ module.exports = (() => {
           (0, i.gn)([h.Command.Boolean('-y,--yes', { hidden: !0 })], C.prototype, 'yes', void 0),
           (0, i.gn)([h.Command.Boolean('-p,--private', { description: 'Initialize a private package' })], C.prototype, 'private', void 0),
           (0, i.gn)(
-            [h.Command.Boolean('-w,--workspace', { description: 'Initialize a private workspace root with a `packages/` directory' })],
+            [
+              h.Command.Boolean('-w,--workspace', {
+                description: 'Initialize a private workspace root with a `packages/` directory'
+              })
+            ],
             C.prototype,
             'workspace',
             void 0
           ),
           (0, i.gn)(
-            [h.Command.String('-i,--install', { tolerateBoolean: !0, description: 'Initialize a package with a specific bundle that will be locked in the project' })],
+            [
+              h.Command.String('-i,--install', {
+                tolerateBoolean: !0,
+                description: 'Initialize a package with a specific bundle that will be locked in the project'
+              })
+            ],
             C.prototype,
             'install',
             void 0
@@ -3252,15 +3995,31 @@ module.exports = (() => {
           (0, i.gn)([h.Command.Path('init')], C.prototype, 'execute', null);
         const I = {
           configuration: {
-            initLicense: { description: 'License used when creating packages via the init command', type: n.a2.STRING, default: null },
-            initScope: { description: 'Scope used when creating packages via the init command', type: n.a2.STRING, default: null },
-            initVersion: { description: 'Version used when creating packages via the init command', type: n.a2.STRING, default: null },
+            initLicense: {
+              description: 'License used when creating packages via the init command',
+              type: n.a2.STRING,
+              default: null
+            },
+            initScope: {
+              description: 'Scope used when creating packages via the init command',
+              type: n.a2.STRING,
+              default: null
+            },
+            initVersion: {
+              description: 'Version used when creating packages via the init command',
+              type: n.a2.STRING,
+              default: null
+            },
             initFields: {
               description: 'Additional fields to set when creating packages via the init command',
               type: n.a2.MAP,
               valueDefinition: { description: '', type: n.a2.ANY }
             },
-            initEditorConfig: { description: 'Extra rules to define in the generator editorconfig', type: n.a2.MAP, valueDefinition: { description: '', type: n.a2.ANY } }
+            initEditorConfig: {
+              description: 'Extra rules to define in the generator editorconfig',
+              type: n.a2.MAP,
+              valueDefinition: { description: '', type: n.a2.ANY }
+            }
           },
           commands: [C]
         };
@@ -3282,21 +4041,41 @@ module.exports = (() => {
                 return !!e.reference.startsWith('link:');
               }
               getLocalPath(e, t) {
-                const { parentLocator: r, path: o } = n.parseFileStyleRange(e.reference, { protocol: 'link:' });
+                const { parentLocator: r, path: o } = n.parseFileStyleRange(e.reference, {
+                  protocol: 'link:'
+                });
                 if (i.y1.isAbsolute(o)) return o;
                 const A = t.fetcher.getLocalPath(r, t);
                 return null === A ? null : i.y1.resolve(A, o);
               }
               async fetch(e, t) {
-                const { parentLocator: r, path: s } = n.parseFileStyleRange(e.reference, { protocol: 'link:' }),
+                const { parentLocator: r, path: s } = n.parseFileStyleRange(e.reference, {
+                    protocol: 'link:'
+                  }),
                   a = i.y1.isAbsolute(s) ? { packageFs: new o.M(i.LZ.root), prefixPath: i.LZ.dot, localPath: i.LZ.root } : await t.fetcher.fetch(r, t),
-                  c = a.localPath ? { packageFs: new o.M(i.LZ.root), prefixPath: i.y1.relative(i.LZ.root, a.localPath) } : a;
+                  c = a.localPath
+                    ? {
+                        packageFs: new o.M(i.LZ.root),
+                        prefixPath: i.y1.relative(i.LZ.root, a.localPath)
+                      }
+                    : a;
                 a !== c && a.releaseFs && a.releaseFs();
                 const g = c.packageFs,
                   l = i.y1.join(c.prefixPath, s);
                 return a.localPath
-                  ? { packageFs: new o.M(l, { baseFs: g }), releaseFs: c.releaseFs, prefixPath: i.LZ.dot, discardFromLookup: !0, localPath: l }
-                  : { packageFs: new A.n(l, { baseFs: g }), releaseFs: c.releaseFs, prefixPath: i.LZ.dot, discardFromLookup: !0 };
+                  ? {
+                      packageFs: new o.M(l, { baseFs: g }),
+                      releaseFs: c.releaseFs,
+                      prefixPath: i.LZ.dot,
+                      discardFromLookup: !0,
+                      localPath: l
+                    }
+                  : {
+                      packageFs: new A.n(l, { baseFs: g }),
+                      releaseFs: c.releaseFs,
+                      prefixPath: i.LZ.dot,
+                      discardFromLookup: !0
+                    };
               }
             },
             class {
@@ -3304,21 +4083,39 @@ module.exports = (() => {
                 return !!e.reference.startsWith('portal:');
               }
               getLocalPath(e, t) {
-                const { parentLocator: r, path: o } = n.parseFileStyleRange(e.reference, { protocol: 'portal:' });
+                const { parentLocator: r, path: o } = n.parseFileStyleRange(e.reference, {
+                  protocol: 'portal:'
+                });
                 if (i.y1.isAbsolute(o)) return o;
                 const A = t.fetcher.getLocalPath(r, t);
                 return null === A ? null : i.y1.resolve(A, o);
               }
               async fetch(e, t) {
-                const { parentLocator: r, path: s } = n.parseFileStyleRange(e.reference, { protocol: 'portal:' }),
+                const { parentLocator: r, path: s } = n.parseFileStyleRange(e.reference, {
+                    protocol: 'portal:'
+                  }),
                   a = i.y1.isAbsolute(s) ? { packageFs: new o.M(i.LZ.root), prefixPath: i.LZ.dot, localPath: i.LZ.root } : await t.fetcher.fetch(r, t),
-                  c = a.localPath ? { packageFs: new o.M(i.LZ.root), prefixPath: i.y1.relative(i.LZ.root, a.localPath) } : a;
+                  c = a.localPath
+                    ? {
+                        packageFs: new o.M(i.LZ.root),
+                        prefixPath: i.y1.relative(i.LZ.root, a.localPath)
+                      }
+                    : a;
                 a !== c && a.releaseFs && a.releaseFs();
                 const g = c.packageFs,
                   l = i.y1.join(c.prefixPath, s);
                 return a.localPath
-                  ? { packageFs: new o.M(l, { baseFs: g }), releaseFs: c.releaseFs, prefixPath: i.LZ.dot, localPath: l }
-                  : { packageFs: new A.n(l, { baseFs: g }), releaseFs: c.releaseFs, prefixPath: i.LZ.dot };
+                  ? {
+                      packageFs: new o.M(l, { baseFs: g }),
+                      releaseFs: c.releaseFs,
+                      prefixPath: i.LZ.dot,
+                      localPath: l
+                    }
+                  : {
+                      packageFs: new A.n(l, { baseFs: g }),
+                      releaseFs: c.releaseFs,
+                      prefixPath: i.LZ.dot
+                    };
               }
             }
           ],
@@ -3577,7 +4374,14 @@ module.exports = (() => {
                   Q = new Map();
                 for (const e of l(I)) {
                   let g = null;
-                  if ((g || (g = h(r, [a, ...t, I], e, i, o, A, { outputReason: s.debugLevel >= c.REASONS })), Q.set(e, g), g.isHoistable === n.DEPENDS))
+                  if (
+                    (g ||
+                      (g = h(r, [a, ...t, I], e, i, o, A, {
+                        outputReason: s.debugLevel >= c.REASONS
+                      })),
+                    Q.set(e, g),
+                    g.isHoistable === n.DEPENDS)
+                  )
                     for (const t of g.dependsOn) {
                       const r = w.get(t.name) || new Set();
                       r.add(e.name), w.set(t.name, r);
@@ -3715,7 +4519,12 @@ module.exports = (() => {
           },
           C = (e) => e.substring(0, e.indexOf('@', 1)),
           I = (e) => {
-            const t = { name: e.name, identName: C(e.locator), references: new Set(e.references), dependencies: new Set() },
+            const t = {
+                name: e.name,
+                identName: C(e.locator),
+                references: new Set(e.references),
+                dependencies: new Set()
+              },
               r = new Set([e]),
               n = (e, t, i) => {
                 const o = r.has(e);
@@ -3798,7 +4607,11 @@ module.exports = (() => {
             const { packageTree: r, hoistingLimits: n } = b(e, t),
               i = ((e, t = {}) => {
                 const r = t.debugLevel || Number(process.env.NM_DEBUG_LEVEL || c.NONE),
-                  n = { check: t.check || r >= c.INTENSIVE_CHECK, debugLevel: r, hoistingLimits: t.hoistingLimits || new Map() };
+                  n = {
+                    check: t.check || r >= c.INTENSIVE_CHECK,
+                    debugLevel: r,
+                    hoistingLimits: t.hoistingLimits || new Map()
+                  };
                 n.debugLevel >= c.PERF && console.time('hoist');
                 const i = d(e, n);
                 if ((u(i, [i], new Set([i.locator]), n), n.debugLevel >= c.PERF && console.timeEnd('hoist'), n.debugLevel >= c.CHECK)) {
@@ -3830,7 +4643,10 @@ module.exports = (() => {
                 let t = s.children.get(e);
                 t || ((t = { children: new Map() }), s.children.set(e, t)), (s = t);
               }
-              s.workspaceLocator = { name: A.stringifyIdent(i.anchoredLocator), reference: i.anchoredLocator.reference };
+              s.workspaceLocator = {
+                name: A.stringifyIdent(i.anchoredLocator),
+                reference: i.anchoredLocator.reference
+              };
             }
             const n = (e, t) => {
               if (e.workspaceLocator) {
@@ -3847,7 +4663,13 @@ module.exports = (() => {
                 let t = i.get(g);
                 t || ((t = new Set()), i.set(g, t)), t.add(e);
               }
-          const l = { name: a.name, identName: a.name, reference: a.reference, peerNames: s.packagePeers, dependencies: new Set() },
+          const l = {
+              name: a.name,
+              identName: a.name,
+              reference: a.reference,
+              peerNames: s.packagePeers,
+              dependencies: new Set()
+            },
             u = new Map(),
             h = (r, s, g, p, f, d, C) => {
               var I, E;
@@ -3856,7 +4678,15 @@ module.exports = (() => {
               const y = !!B;
               if (
                 (y || g.name !== a.name || g.reference !== a.reference || ((B = l), u.set(m, l)),
-                B || ((B = { name: r, identName: g.name, reference: g.reference, dependencies: new Set(), peerNames: s.packagePeers }), u.set(m, B)),
+                B ||
+                  ((B = {
+                    name: r,
+                    identName: g.name,
+                    reference: g.reference,
+                    dependencies: new Set(),
+                    peerNames: s.packagePeers
+                  }),
+                  u.set(m, B)),
                 C)
               ) {
                 const e = v({ name: p.identName, reference: p.reference }),
@@ -4003,7 +4833,13 @@ module.exports = (() => {
           }
           async finalizeInstallWithPnp(e) {
             if ('node-modules' !== this.opts.project.configuration.get('nodeLinker')) return;
-            const t = new L.p({ baseFs: new x.A({ libzip: await (0, P.getLibzipPromise)(), maxOpenFiles: 80, readOnlyArchives: !0 }) });
+            const t = new L.p({
+              baseFs: new x.A({
+                libzip: await (0, P.getLibzipPromise)(),
+                maxOpenFiles: 80,
+                readOnlyArchives: !0
+              })
+            });
             let r = await z(this.opts.project);
             if (null === r) {
               const e = this.opts.project.configuration.get('bstatePath');
@@ -4033,7 +4869,15 @@ module.exports = (() => {
                 for (const [r, n] of e.entries())
                   if (!n.dirList) {
                     let e = t.get(n.locator);
-                    e || ((e = { target: n.target, linkType: n.linkType, locations: [], aliases: n.aliases }), t.set(n.locator, e)), e.locations.push(r);
+                    e ||
+                      ((e = {
+                        target: n.target,
+                        linkType: n.linkType,
+                        locations: [],
+                        aliases: n.aliases
+                      }),
+                      t.set(n.locator, e)),
+                      e.locations.push(r);
                   }
                 for (const e of t.values())
                   e.locations = e.locations.sort((e, t) => {
@@ -4234,7 +5078,9 @@ module.exports = (() => {
                         A = o.y1.join(t, e);
                       n !== r &&
                         ('win32' === process.platform
-                          ? await Y()(o.cS.fromPortablePath(r), o.cS.fromPortablePath(A), { createPwshFile: !1 })
+                          ? await Y()(o.cS.fromPortablePath(r), o.cS.fromPortablePath(A), {
+                              createPwshFile: !1
+                            })
                           : (await K.xfs.removePromise(A), await Z(r, A), await K.xfs.chmodPromise(r, 493)));
                     }
                   }
@@ -4280,7 +5126,12 @@ module.exports = (() => {
               } finally {
                 E.stop();
               }
-            })(r, a, { baseFs: t, project: this.opts.project, report: this.opts.report, loadManifest: this.cachedManifestLoad.bind(this, i, t) });
+            })(r, a, {
+              baseFs: t,
+              project: this.opts.project,
+              report: this.opts.report,
+              loadManifest: this.cachedManifestLoad.bind(this, i, t)
+            });
             const c = [];
             for (const [e, r] of a.entries()) {
               if (ee(e)) continue;
@@ -4316,7 +5167,12 @@ module.exports = (() => {
                   A.prettyLocator(this.opts.project.configuration, n) + ' lists build scripts, but its build has been explicitly disabled through configuration.'
                 ),
                 (l.length = 0)),
-                l.length > 0 && c.push({ buildLocations: r.locations, locatorHash: n.locatorHash, buildDirective: l });
+                l.length > 0 &&
+                  c.push({
+                    buildLocations: r.locations,
+                    locatorHash: n.locatorHash,
+                    buildDirective: l
+                  });
             }
             return c;
           }
@@ -4361,7 +5217,15 @@ module.exports = (() => {
                   i = F.getMapWithDefault(a, n);
                 for (const [e, r] of Object.entries(t)) i.set((0, o.Zu)(e), o.cS.toPortablePath([n, _, r].join(o.y1.delimiter)));
               }
-            if ((s.set(e, { target: o.LZ.dot, linkType: k.U.HARD, locations: i, aliases: n.aliases || [] }), t && n.aliases))
+            if (
+              (s.set(e, {
+                target: o.LZ.dot,
+                linkType: k.U.HARD,
+                locations: i,
+                aliases: n.aliases || []
+              }),
+              t && n.aliases)
+            )
               for (const t of n.aliases) {
                 const { scope: r, name: n } = A.parseLocator(e),
                   a = A.makeLocator(A.makeIdent(r, n), t),
@@ -4476,7 +5340,13 @@ module.exports = (() => {
           }
           async finalizeInstallWithPnp(e) {
             if (this.opts.project.configuration.get('pnpMode') !== this.mode) return;
-            const t = new L.p({ baseFs: new x.A({ libzip: await (0, P.getLibzipPromise)(), maxOpenFiles: 80, readOnlyArchives: !0 }) }),
+            const t = new L.p({
+                baseFs: new x.A({
+                  libzip: await (0, P.getLibzipPromise)(),
+                  maxOpenFiles: 80,
+                  readOnlyArchives: !0
+                })
+              }),
               r = (0, U.oC)(e, this.opts.project.cwd, t),
               n = Q(r, { pnpifyFs: !1, project: this.opts.project }),
               i = new Map();
@@ -4539,7 +5409,9 @@ module.exports = (() => {
                 async findPackageLocator(e, t) {
                   const r = await z(t.project, { unrollAliases: !0 });
                   if (null === r) return null;
-                  const { locationRoot: n, segments: i } = V(o.y1.resolve(e), { skipPrefix: t.project.cwd });
+                  const { locationRoot: n, segments: i } = V(o.y1.resolve(e), {
+                    skipPrefix: t.project.cwd
+                  });
                   let s = r.locationTree.get(n);
                   if (!s) return null;
                   let a = s.locator;
@@ -4704,9 +5576,18 @@ module.exports = (() => {
                         children: {
                           Issue: { label: 'Issue', value: I.tuple(I.Type.NO_HINT, e.title) },
                           URL: { label: 'URL', value: I.tuple(I.Type.URL, e.url) },
-                          Severity: { label: 'Severity', value: I.tuple(I.Type.NO_HINT, e.severity) },
-                          'Vulnerable Versions': { label: 'Vulnerable Versions', value: I.tuple(I.Type.RANGE, e.vulnerable_versions) },
-                          'Patched Versions': { label: 'Patched Versions', value: I.tuple(I.Type.RANGE, e.patched_versions) },
+                          Severity: {
+                            label: 'Severity',
+                            value: I.tuple(I.Type.NO_HINT, e.severity)
+                          },
+                          'Vulnerable Versions': {
+                            label: 'Vulnerable Versions',
+                            value: I.tuple(I.Type.RANGE, e.vulnerable_versions)
+                          },
+                          'Patched Versions': {
+                            label: 'Patched Versions',
+                            value: I.tuple(I.Type.RANGE, e.patched_versions)
+                          },
                           Via: {
                             label: 'Via',
                             value: I.tuple(
@@ -4721,7 +5602,10 @@ module.exports = (() => {
                               ).join(', ')
                             )
                           },
-                          Recommendation: { label: 'Recommendation', value: I.tuple(I.Type.NO_HINT, e.recommendation.replace(/\n/g, ' ')) }
+                          Recommendation: {
+                            label: 'Recommendation',
+                            value: I.tuple(I.Type.NO_HINT, e.recommendation.replace(/\n/g, ' '))
+                          }
                         }
                       };
                     return n;
@@ -4731,9 +5615,17 @@ module.exports = (() => {
                 1
               );
             return (
-              await h.Pk.start({ configuration: e, includeFooter: !1, json: this.json, stdout: this.context.stdout }, async (e) => {
-                e.reportJson(m), b || e.reportInfo(l.b.EXCEPTION, 'No audit suggestions');
-              })
+              await h.Pk.start(
+                {
+                  configuration: e,
+                  includeFooter: !1,
+                  json: this.json,
+                  stdout: this.context.stdout
+                },
+                async (e) => {
+                  e.reportJson(m), b || e.reportInfo(l.b.EXCEPTION, 'No audit suggestions');
+                }
+              )
             ).exitCode();
           }
         }
@@ -4849,7 +5741,11 @@ module.exports = (() => {
         })),
           (0, A.gn)([f.Command.Rest()], F.prototype, 'packages', void 0),
           (0, A.gn)(
-            [f.Command.String('-f,--fields', { description: 'A comma-separated list of manifest fields that should be displayed' })],
+            [
+              f.Command.String('-f,--fields', {
+                description: 'A comma-separated list of manifest fields that should be displayed'
+              })
+            ],
             F.prototype,
             'fields',
             void 0
@@ -4863,11 +5759,20 @@ module.exports = (() => {
           }
           async execute() {
             const e = await o.VK.find(this.context.cwd, this.context.plugins),
-              t = await L({ configuration: e, cwd: this.context.cwd, publish: this.publish, scope: this.scope });
+              t = await L({
+                configuration: e,
+                cwd: this.context.cwd,
+                publish: this.publish,
+                scope: this.scope
+              });
             return (
               await h.Pk.start({ configuration: e, stdout: this.context.stdout }, async (r) => {
                 const n = await (async function ({ registry: e, report: t, stdin: r, stdout: n }) {
-                    if (process.env.TEST_ENV) return { name: process.env.TEST_NPM_USER || '', password: process.env.TEST_NPM_PASSWORD || '' };
+                    if (process.env.TEST_ENV)
+                      return {
+                        name: process.env.TEST_NPM_USER || '',
+                        password: process.env.TEST_NPM_PASSWORD || ''
+                      };
                     t.reportInfo(l.b.UNNAMED, 'Logging in to ' + e);
                     let i = !1;
                     e.match(/^https:\/\/npm\.pkg\.github\.com(\/|$)/) &&
@@ -4878,13 +5783,40 @@ module.exports = (() => {
                       (i = !0));
                     t.reportSeparator();
                     const { username: o, password: A } = await (0, R.prompt)([
-                      { type: 'input', name: 'username', message: 'Username:', required: !0, onCancel: () => process.exit(130), stdin: r, stdout: n },
-                      { type: 'password', name: 'password', message: i ? 'Token:' : 'Password:', required: !0, onCancel: () => process.exit(130), stdin: r, stdout: n }
+                      {
+                        type: 'input',
+                        name: 'username',
+                        message: 'Username:',
+                        required: !0,
+                        onCancel: () => process.exit(130),
+                        stdin: r,
+                        stdout: n
+                      },
+                      {
+                        type: 'password',
+                        name: 'password',
+                        message: i ? 'Token:' : 'Password:',
+                        required: !0,
+                        onCancel: () => process.exit(130),
+                        stdin: r,
+                        stdout: n
+                      }
                     ]);
                     return t.reportSeparator(), { name: o, password: A };
-                  })({ registry: t, report: r, stdin: this.context.stdin, stdout: this.context.stdout }),
+                  })({
+                    registry: t,
+                    report: r,
+                    stdin: this.context.stdin,
+                    stdout: this.context.stdout
+                  }),
                   i = '/-/user/org.couchdb.user:' + encodeURIComponent(n.name),
-                  A = await p.npmHttpUtils.put(i, n, { attemptedAs: n.name, configuration: e, registry: t, jsonResponse: !0, authType: p.npmHttpUtils.AuthType.NO_AUTH });
+                  A = await p.npmHttpUtils.put(i, n, {
+                    attemptedAs: n.name,
+                    configuration: e,
+                    registry: t,
+                    jsonResponse: !0,
+                    authType: p.npmHttpUtils.AuthType.NO_AUTH
+                  });
                 return (
                   await (async function (e, t, { configuration: r, scope: n }) {
                     const i = (e) => (r) => {
@@ -4904,11 +5836,16 @@ module.exports = (() => {
         }
         async function L({ scope: e, publish: t, configuration: r, cwd: n }) {
           return e && t
-            ? p.npmConfigUtils.getScopeRegistry(e, { configuration: r, type: p.npmConfigUtils.RegistryType.PUBLISH_REGISTRY })
+            ? p.npmConfigUtils.getScopeRegistry(e, {
+                configuration: r,
+                type: p.npmConfigUtils.RegistryType.PUBLISH_REGISTRY
+              })
             : e
             ? p.npmConfigUtils.getScopeRegistry(e, { configuration: r })
             : t
-            ? p.npmConfigUtils.getPublishRegistry((await (0, s.openWorkspace)(r, n)).manifest, { configuration: r })
+            ? p.npmConfigUtils.getPublishRegistry((await (0, s.openWorkspace)(r, n)).manifest, {
+                configuration: r
+              })
             : p.npmConfigUtils.getDefaultRegistry({ configuration: r });
         }
         (K.usage = f.Command.Usage({
@@ -4922,7 +5859,16 @@ module.exports = (() => {
             ['Login to the publish registry for the current package', 'yarn npm login --publish']
           ]
         })),
-          (0, A.gn)([f.Command.String('-s,--scope', { description: 'Login to the registry configured for a given scope' })], K.prototype, 'scope', void 0),
+          (0, A.gn)(
+            [
+              f.Command.String('-s,--scope', {
+                description: 'Login to the registry configured for a given scope'
+              })
+            ],
+            K.prototype,
+            'scope',
+            void 0
+          ),
           (0, A.gn)([f.Command.Boolean('--publish', { description: 'Login to the publish registry' })], K.prototype, 'publish', void 0),
           (0, A.gn)([f.Command.Path('npm', 'login')], K.prototype, 'execute', null);
         const x = new Set(['npmAuthIdent', 'npmAuthToken']);
@@ -4934,7 +5880,12 @@ module.exports = (() => {
             const e = await o.VK.find(this.context.cwd, this.context.plugins),
               t = async () => {
                 var t;
-                const r = await L({ configuration: e, cwd: this.context.cwd, publish: this.publish, scope: this.scope }),
+                const r = await L({
+                    configuration: e,
+                    cwd: this.context.cwd,
+                    publish: this.publish,
+                    scope: this.scope
+                  }),
                   n = await o.VK.find(this.context.cwd, this.context.plugins),
                   i = d.makeIdent(null !== (t = this.scope) && void 0 !== t ? t : null, 'pkg');
                 return !p.npmConfigUtils.getAuthConfiguration(r, { configuration: n, ident: i }).get('npmAuthToken');
@@ -4962,7 +5913,11 @@ module.exports = (() => {
                       ? r.reportInfo(l.b.UNNAMED, 'Successfully logged out from ' + this.scope)
                       : r.reportWarning(l.b.UNNAMED, 'Scope authentication settings removed, but some other ones settings still apply to it'))
                   );
-                const n = await L({ configuration: e, cwd: this.context.cwd, publish: this.publish });
+                const n = await L({
+                  configuration: e,
+                  cwd: this.context.cwd,
+                  publish: this.publish
+                });
                 await O('npmRegistries', n),
                   (await t())
                     ? r.reportInfo(l.b.UNNAMED, 'Successfully logged out from ' + n)
@@ -5014,7 +5969,16 @@ module.exports = (() => {
             ['Logout of all registries', 'yarn npm logout --all']
           ]
         })),
-          (0, A.gn)([f.Command.String('-s,--scope', { description: 'Logout of the registry configured for a given scope' })], P.prototype, 'scope', void 0),
+          (0, A.gn)(
+            [
+              f.Command.String('-s,--scope', {
+                description: 'Logout of the registry configured for a given scope'
+              })
+            ],
+            P.prototype,
+            'scope',
+            void 0
+          ),
           (0, A.gn)([f.Command.Boolean('--publish', { description: 'Logout of the publish registry' })], P.prototype, 'publish', void 0),
           (0, A.gn)([f.Command.Boolean('-A,--all', { description: 'Logout of all registries' })], P.prototype, 'all', void 0),
           (0, A.gn)([f.Command.Path('npm', 'logout')], P.prototype, 'execute', null);
@@ -5039,7 +6003,12 @@ module.exports = (() => {
               await h.Pk.start({ configuration: e, stdout: this.context.stdout }, async (t) => {
                 if (this.tolerateRepublish)
                   try {
-                    const r = await p.npmHttpUtils.get(p.npmHttpUtils.getIdentUrl(n), { configuration: e, registry: A, ident: n, jsonResponse: !0 });
+                    const r = await p.npmHttpUtils.get(p.npmHttpUtils.getIdentUrl(n), {
+                      configuration: e,
+                      registry: A,
+                      ident: n,
+                      jsonResponse: !0
+                    });
                     if (!Object.prototype.hasOwnProperty.call(r, 'versions'))
                       throw new g.lk(l.b.REMOTE_INVALID, 'Registry returned invalid data for - missing "versions" field');
                     if (Object.prototype.hasOwnProperty.call(r.versions, i))
@@ -5055,9 +6024,18 @@ module.exports = (() => {
                     for (const e of i) t.reportInfo(null, e);
                     const o = await j.packUtils.genPackStream(r, i),
                       s = await C.bufferStream(o),
-                      a = await p.npmPublishUtils.makePublishBody(r, s, { access: this.access, tag: this.tag, registry: A });
+                      a = await p.npmPublishUtils.makePublishBody(r, s, {
+                        access: this.access,
+                        tag: this.tag,
+                        registry: A
+                      });
                     try {
-                      await p.npmHttpUtils.put(p.npmHttpUtils.getIdentUrl(n), a, { configuration: e, registry: A, ident: n, jsonResponse: !0 });
+                      await p.npmHttpUtils.put(p.npmHttpUtils.getIdentUrl(n), a, {
+                        configuration: e,
+                        registry: A,
+                        ident: n,
+                        jsonResponse: !0
+                      });
                     } catch (e) {
                       if ('HTTPError' !== e.name) throw e;
                       {
@@ -5081,10 +6059,32 @@ module.exports = (() => {
             '\n      This command will pack the active workspace into a fresh archive and upload it to the npm registry.\n\n      The package will by default be attached to the `latest` tag on the registry, but this behavior can be overriden by using the `--tag` option.\n\n      Note that for legacy reasons scoped packages are by default published with an access set to `restricted` (aka "private packages"). This requires you to register for a paid npm plan. In case you simply wish to publish a public scoped package to the registry (for free), just add the `--access public` flag. This behavior can be enabled by default through the `npmPublishAccess` settings.\n    ',
           examples: [['Publish the active workspace', 'yarn npm publish']]
         })),
-          (0, A.gn)([f.Command.String('--access', { description: 'The access for the published package (public or restricted)' })], Y.prototype, 'access', void 0),
-          (0, A.gn)([f.Command.String('--tag', { description: 'The tag on the registry that the package should be attached to' })], Y.prototype, 'tag', void 0),
           (0, A.gn)(
-            [f.Command.Boolean('--tolerate-republish', { description: 'Warn and exit when republishing an already existing version of a package' })],
+            [
+              f.Command.String('--access', {
+                description: 'The access for the published package (public or restricted)'
+              })
+            ],
+            Y.prototype,
+            'access',
+            void 0
+          ),
+          (0, A.gn)(
+            [
+              f.Command.String('--tag', {
+                description: 'The tag on the registry that the package should be attached to'
+              })
+            ],
+            Y.prototype,
+            'tag',
+            void 0
+          ),
+          (0, A.gn)(
+            [
+              f.Command.Boolean('--tolerate-republish', {
+                description: 'Warn and exit when republishing an already existing version of a package'
+              })
+            ],
             Y.prototype,
             'tolerateRepublish',
             void 0
@@ -5108,10 +6108,17 @@ module.exports = (() => {
             const i = await J(n, e),
               A = {
                 children: C.sortMap(Object.entries(i), ([e]) => e).map(([e, t]) => ({
-                  value: I.tuple(I.Type.RESOLUTION, { descriptor: d.makeDescriptor(n, e), locator: d.makeLocator(n, t) })
+                  value: I.tuple(I.Type.RESOLUTION, {
+                    descriptor: d.makeDescriptor(n, e),
+                    locator: d.makeLocator(n, t)
+                  })
                 }))
               };
-            return u.emitTree(A, { configuration: e, json: this.json, stdout: this.context.stdout });
+            return u.emitTree(A, {
+              configuration: e,
+              json: this.json,
+              stdout: this.context.stdout
+            });
           }
         }
         async function J(e, t) {
@@ -5148,7 +6155,13 @@ module.exports = (() => {
                 Object.prototype.hasOwnProperty.call(r, this.tag) && r[this.tag] === i && t.reportWarning(l.b.UNNAMED, `Tag ${u} is already set to version ${g}`);
                 try {
                   const t = `/-/package${p.npmHttpUtils.getIdentUrl(n)}/dist-tags/${encodeURIComponent(this.tag)}`;
-                  await p.npmHttpUtils.put(t, i, { configuration: e, registry: A, ident: n, jsonRequest: !0, jsonResponse: !0 });
+                  await p.npmHttpUtils.put(t, i, {
+                    configuration: e,
+                    registry: A,
+                    ident: n,
+                    jsonRequest: !0,
+                    jsonResponse: !0
+                  });
                 } catch (e) {
                   if ('HTTPError' !== e.name) throw e;
                   {
@@ -5190,7 +6203,12 @@ module.exports = (() => {
               await h.Pk.start({ configuration: e, stdout: this.context.stdout }, async (t) => {
                 try {
                   const t = `/-/package${p.npmHttpUtils.getIdentUrl(n)}/dist-tags/${encodeURIComponent(this.tag)}`;
-                  await p.npmHttpUtils.del(t, { configuration: e, registry: i, ident: n, jsonResponse: !0 });
+                  await p.npmHttpUtils.del(t, {
+                    configuration: e,
+                    registry: i,
+                    ident: n,
+                    jsonResponse: !0
+                  });
                 } catch (e) {
                   if ('HTTPError' !== e.name) throw e;
                   {
@@ -5225,7 +6243,10 @@ module.exports = (() => {
             let t;
             t =
               this.scope && this.publish
-                ? p.npmConfigUtils.getScopeRegistry(this.scope, { configuration: e, type: p.npmConfigUtils.RegistryType.PUBLISH_REGISTRY })
+                ? p.npmConfigUtils.getScopeRegistry(this.scope, {
+                    configuration: e,
+                    type: p.npmConfigUtils.RegistryType.PUBLISH_REGISTRY
+                  })
                 : this.scope
                 ? p.npmConfigUtils.getScopeRegistry(this.scope, { configuration: e })
                 : this.publish
@@ -5262,17 +6283,47 @@ module.exports = (() => {
             ['Print username for the registry on a given scope', 'yarn npm whoami --scope company']
           ]
         })),
-          (0, A.gn)([f.Command.String('-s,--scope', { description: 'Print username for the registry configured for a given scope' })], W.prototype, 'scope', void 0),
-          (0, A.gn)([f.Command.Boolean('--publish', { description: 'Print username for the publish registry' })], W.prototype, 'publish', void 0),
+          (0, A.gn)(
+            [
+              f.Command.String('-s,--scope', {
+                description: 'Print username for the registry configured for a given scope'
+              })
+            ],
+            W.prototype,
+            'scope',
+            void 0
+          ),
+          (0, A.gn)(
+            [
+              f.Command.Boolean('--publish', {
+                description: 'Print username for the publish registry'
+              })
+            ],
+            W.prototype,
+            'publish',
+            void 0
+          ),
           (0, A.gn)([f.Command.Path('npm', 'whoami')], W.prototype, 'execute', null);
         const V = {
-          configuration: { npmPublishAccess: { description: 'Default access of the published packages', type: o.a2.STRING, default: null } },
+          configuration: {
+            npmPublishAccess: {
+              description: 'Default access of the published packages',
+              type: o.a2.STRING,
+              default: null
+            }
+          },
           commands: [v, F, K, P, Y, _, H, z, W]
         };
       },
       14224: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { default: () => z, npmConfigUtils: () => n, npmHttpUtils: () => i, npmPublishUtils: () => o });
+        r.r(t),
+          r.d(t, {
+            default: () => z,
+            npmConfigUtils: () => n,
+            npmHttpUtils: () => i,
+            npmPublishUtils: () => o
+          });
         var n = {};
         r.r(n),
           r.d(n, {
@@ -5286,7 +6337,16 @@ module.exports = (() => {
             normalizeRegistry: () => I
           });
         var i = {};
-        r.r(i), r.d(i, { AuthType: () => u, del: () => M, get: () => D, getIdentUrl: () => b, handleInvalidAuthenticationError: () => v, post: () => S, put: () => k });
+        r.r(i),
+          r.d(i, {
+            AuthType: () => u,
+            del: () => M,
+            get: () => D,
+            getIdentUrl: () => b,
+            handleInvalidAuthenticationError: () => v,
+            post: () => S,
+            put: () => k
+          });
         var o = {};
         r.r(o), r.d(o, { makePublishBody: () => J });
         var A = r(39922),
@@ -5349,7 +6409,11 @@ module.exports = (() => {
                       var n;
                       if (void 0 === t || void 0 === t.authorization) return 'an anonymous user';
                       try {
-                        const i = await h.get(new C.URL(e + '/-/whoami').href, { configuration: r, headers: t, jsonResponse: !0 });
+                        const i = await h.get(new C.URL(e + '/-/whoami').href, {
+                          configuration: r,
+                          headers: t,
+                          jsonResponse: !0
+                        });
                         return null !== (n = i.username) && void 0 !== n ? n : 'an unknown user';
                       } catch (e) {
                         return 'an unknown user';
@@ -5453,7 +6517,13 @@ module.exports = (() => {
         }
         async function N() {
           if (process.env.TEST_ENV) return process.env.TEST_NPM_2FA_TOKEN || '';
-          const { otp: e } = await (0, d.prompt)({ type: 'password', name: 'otp', message: 'One-time password:', required: !0, onCancel: () => process.exit(130) });
+          const { otp: e } = await (0, d.prompt)({
+            type: 'password',
+            name: 'otp',
+            message: 'One-time password:',
+            required: !0,
+            onCancel: () => process.exit(130)
+          });
           return e;
         }
         function R(e) {
@@ -5504,7 +6574,10 @@ module.exports = (() => {
             try {
               r = await D(L.getLocatorUrl(e), { configuration: t.project.configuration, ident: e });
             } catch (n) {
-              r = await D(L.getLocatorUrl(e).replace(/%2f/g, '/'), { configuration: t.project.configuration, ident: e });
+              r = await D(L.getLocatorUrl(e).replace(/%2f/g, '/'), {
+                configuration: t.project.configuration,
+                ident: e
+              });
             }
             return await a.convertToZip(r, {
               compressionLevel: t.project.configuration.get('compressionLevel'),
@@ -5557,20 +6630,50 @@ module.exports = (() => {
             p = new C.URL(`${c}/-/${h}`, i);
           return {
             _id: c,
-            _attachments: { [h]: { content_type: 'application/octet-stream', data: t.toString('base64'), length: t.length } },
+            _attachments: {
+              [h]: {
+                content_type: 'application/octet-stream',
+                data: t.toString('base64'),
+                length: t.length
+              }
+            },
             name: c,
             access: r,
             'dist-tags': { [n]: a },
-            versions: { [a]: { ...u, _id: `${c}@${a}`, name: c, version: a, dist: { shasum: g, integrity: l, tarball: p.toString() } } }
+            versions: {
+              [a]: {
+                ...u,
+                _id: `${c}@${a}`,
+                name: c,
+                version: a,
+                dist: { shasum: g, integrity: l, tarball: p.toString() }
+              }
+            }
           };
         }
         const _ = {
-            npmAlwaysAuth: { description: "URL of the selected npm registry (note: npm enterprise isn't supported)", type: A.a2.BOOLEAN, default: !1 },
-            npmAuthIdent: { description: 'Authentication identity for the npm registry (_auth in npm and yarn v1)', type: A.a2.SECRET, default: null },
-            npmAuthToken: { description: 'Authentication token for the npm registry (_authToken in npm and yarn v1)', type: A.a2.SECRET, default: null }
+            npmAlwaysAuth: {
+              description: "URL of the selected npm registry (note: npm enterprise isn't supported)",
+              type: A.a2.BOOLEAN,
+              default: !1
+            },
+            npmAuthIdent: {
+              description: 'Authentication identity for the npm registry (_auth in npm and yarn v1)',
+              type: A.a2.SECRET,
+              default: null
+            },
+            npmAuthToken: {
+              description: 'Authentication token for the npm registry (_authToken in npm and yarn v1)',
+              type: A.a2.SECRET,
+              default: null
+            }
           },
           q = {
-            npmPublishRegistry: { description: 'Registry to push packages to', type: A.a2.STRING, default: null },
+            npmPublishRegistry: {
+              description: 'Registry to push packages to',
+              type: A.a2.STRING,
+              default: null
+            },
             npmRegistryServer: {
               description: "URL of the selected npm registry (note: npm enterprise isn't supported)",
               type: A.a2.STRING,
@@ -5615,13 +6718,21 @@ module.exports = (() => {
                       loader: () => this.fetchFromNetwork(e, t),
                       skipIntegrityCheck: t.skipIntegrityCheck
                     });
-                  return { packageFs: n, releaseFs: i, prefixPath: s.getIdentVendorPath(e), checksum: o };
+                  return {
+                    packageFs: n,
+                    releaseFs: i,
+                    prefixPath: s.getIdentVendorPath(e),
+                    checksum: o
+                  };
                 }
                 async fetchFromNetwork(e, t) {
                   const { params: r } = s.parseRange(e.reference);
                   if (null === r || 'string' != typeof r.__archiveUrl)
                     throw new Error('Assertion failed: The archiveUrl querystring parameter should have been available');
-                  const n = await D(r.__archiveUrl, { configuration: t.project.configuration, ident: e });
+                  const n = await D(r.__archiveUrl, {
+                    configuration: t.project.configuration,
+                    ident: e
+                  });
                   return await a.convertToZip(n, {
                     compressionLevel: t.project.configuration.get('compressionLevel'),
                     prefixPath: s.getIdentVendorPath(e),
@@ -5682,7 +6793,11 @@ module.exports = (() => {
                 async getCandidates(e, t, r) {
                   const n = P.validRange(e.range.slice('npm:'.length));
                   if (null === n) throw new Error('Expected a valid range, got ' + e.range.slice('npm:'.length));
-                  const i = await D(b(e), { configuration: r.project.configuration, ident: e, jsonResponse: !0 }),
+                  const i = await D(b(e), {
+                      configuration: r.project.configuration,
+                      ident: e,
+                      jsonResponse: !0
+                    }),
                     o = Object.keys(i.versions)
                       .map((e) => new (g().SemVer)(e))
                       .filter((e) => n.test(e)),
@@ -5693,7 +6808,11 @@ module.exports = (() => {
                     a.map((t) => {
                       const n = s.makeLocator(e, 'npm:' + t.raw),
                         o = i.versions[t.raw].dist.tarball;
-                      return L.isConventionalTarballUrl(n, o, { configuration: r.project.configuration }) ? n : s.bindLocator(n, { __archiveUrl: o });
+                      return L.isConventionalTarballUrl(n, o, {
+                        configuration: r.project.configuration
+                      })
+                        ? n
+                        : s.bindLocator(n, { __archiveUrl: o });
                     })
                   );
                 }
@@ -5717,7 +6836,11 @@ module.exports = (() => {
                   const { selector: r } = s.parseRange(e.reference),
                     n = g().clean(r);
                   if (null === n) throw new p.lk(f.b.RESOLVER_NOT_FOUND, "The npm semver resolver got selected, but the version isn't semver");
-                  const i = await D(b(e), { configuration: t.project.configuration, ident: e, jsonResponse: !0 });
+                  const i = await D(b(e), {
+                    configuration: t.project.configuration,
+                    ident: e,
+                    jsonResponse: !0
+                  });
                   if (!Object.prototype.hasOwnProperty.call(i, 'versions'))
                     throw new p.lk(f.b.REMOTE_INVALID, 'Registry returned invalid data for - missing "versions" field');
                   if (!Object.prototype.hasOwnProperty.call(i.versions, n)) throw new p.lk(f.b.REMOTE_NOT_FOUND, `Registry failed to return reference "${n}"`);
@@ -5767,7 +6890,11 @@ module.exports = (() => {
                 }
                 async getCandidates(e, t, r) {
                   const n = e.range.slice('npm:'.length),
-                    i = await D(b(e), { configuration: r.project.configuration, ident: e, jsonResponse: !0 });
+                    i = await D(b(e), {
+                      configuration: r.project.configuration,
+                      ident: e,
+                      jsonResponse: !0
+                    });
                   if (!Object.prototype.hasOwnProperty.call(i, 'dist-tags'))
                     throw new p.lk(f.b.REMOTE_INVALID, 'Registry returned invalid data - missing "dist-tags" field');
                   const o = i['dist-tags'];
@@ -5775,7 +6902,11 @@ module.exports = (() => {
                   const A = o[n],
                     a = s.makeLocator(e, 'npm:' + A),
                     c = i.versions[A].dist.tarball;
-                  return L.isConventionalTarballUrl(a, c, { configuration: r.project.configuration }) ? [a] : [s.bindLocator(a, { __archiveUrl: c })];
+                  return L.isConventionalTarballUrl(a, c, {
+                    configuration: r.project.configuration
+                  })
+                    ? [a]
+                    : [s.bindLocator(a, { __archiveUrl: c })];
                 }
                 async getSatisfying(e, t, r) {
                   return null;
@@ -5791,7 +6922,14 @@ module.exports = (() => {
         'use strict';
         r.r(t), r.d(t, { default: () => U, packUtils: () => n });
         var n = {};
-        r.r(n), r.d(n, { genPackList: () => N, genPackStream: () => M, genPackageManifest: () => F, hasPackScripts: () => S, prepareForPack: () => k });
+        r.r(n),
+          r.d(n, {
+            genPackList: () => N,
+            genPackStream: () => M,
+            genPackageManifest: () => F,
+            hasPackScripts: () => S,
+            prepareForPack: () => k
+          });
         var i = r(54143),
           o = r(35691),
           A = r(92659),
@@ -6096,13 +7234,21 @@ module.exports = (() => {
           ]
         })),
           (0, s.gn)(
-            [a.Command.Boolean('--install-if-needed', { description: 'Run a preliminary `yarn install` if the package contains build scripts' })],
+            [
+              a.Command.Boolean('--install-if-needed', {
+                description: 'Run a preliminary `yarn install` if the package contains build scripts'
+              })
+            ],
             T.prototype,
             'installIfNeeded',
             void 0
           ),
           (0, s.gn)(
-            [a.Command.Boolean('-n,--dry-run', { description: 'Print the file paths without actually generating the package archive' })],
+            [
+              a.Command.Boolean('-n,--dry-run', {
+                description: 'Print the file paths without actually generating the package archive'
+              })
+            ],
             T.prototype,
             'dryRun',
             void 0
@@ -6110,8 +7256,13 @@ module.exports = (() => {
           (0, s.gn)([a.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], T.prototype, 'json', void 0),
           (0, s.gn)(
             [
-              a.Command.String('--filename', { hidden: !1, description: 'Create the archive at the specified path' }),
-              a.Command.String('-o,--out', { description: 'Create the archive at the specified path' })
+              a.Command.String('--filename', {
+                hidden: !1,
+                description: 'Create the archive at the specified path'
+              }),
+              a.Command.String('-o,--out', {
+                description: 'Create the archive at the specified path'
+              })
             ],
             T.prototype,
             'out',
@@ -6190,13 +7341,23 @@ module.exports = (() => {
         function B(e) {
           const t = e.trim().match(E);
           if (!t) throw new Error(`Bad header line: '${e}'`);
-          return { original: { start: Math.max(Number(t[1]), 1), length: Number(t[3] || 1) }, patched: { start: Math.max(Number(t[4]), 1), length: Number(t[6] || 1) } };
+          return {
+            original: { start: Math.max(Number(t[1]), 1), length: Number(t[3] || 1) },
+            patched: { start: Math.max(Number(t[4]), 1), length: Number(t[6] || 1) }
+          };
         }
         var y;
         !(function (e) {
           (e.Context = 'context'), (e.Insertion = 'insertion'), (e.Deletion = 'deletion');
         })(y || (y = {}));
-        const w = { '@': 'header', '-': y.Deletion, '+': y.Insertion, ' ': y.Context, '\\': 'pragma', undefined: y.Context };
+        const w = {
+          '@': 'header',
+          '-': y.Deletion,
+          '+': y.Insertion,
+          ' ': y.Context,
+          '\\': 'pragma',
+          undefined: y.Context
+        };
         function Q(e) {
           const t = 511 & parseInt(e, 8);
           if (420 !== t && 493 !== t) throw new Error('Unexpected file mode string: ' + e);
@@ -6236,14 +7397,28 @@ module.exports = (() => {
                     {
                       const r = n || p;
                       if (!r) throw new Error('Bad parse state: no path given for file deletion');
-                      t.push({ type: 'file deletion', semverExclusivity: e, hunk: (d && d[0]) || null, path: m(r), mode: Q(s), hash: u });
+                      t.push({
+                        type: 'file deletion',
+                        semverExclusivity: e,
+                        hunk: (d && d[0]) || null,
+                        path: m(r),
+                        mode: Q(s),
+                        hash: u
+                      });
                     }
                     break;
                   case 'file creation':
                     {
                       const r = i || f;
                       if (!r) throw new Error('Bad parse state: no path given for file creation');
-                      t.push({ type: 'file creation', semverExclusivity: e, hunk: (d && d[0]) || null, path: m(r), mode: Q(c), hash: h });
+                      t.push({
+                        type: 'file creation',
+                        semverExclusivity: e,
+                        hunk: (d && d[0]) || null,
+                        path: m(r),
+                        mode: Q(c),
+                        hash: h
+                      });
                     }
                     break;
                   case 'patch':
@@ -6253,8 +7428,28 @@ module.exports = (() => {
                   default:
                     a.assertNever(C);
                 }
-                I && o && A && o !== A && t.push({ type: 'mode change', semverExclusivity: e, path: m(I), oldMode: Q(o), newMode: Q(A) }),
-                  I && d && d.length && t.push({ type: 'patch', semverExclusivity: e, path: m(I), hunks: d, beforeHash: u, afterHash: h });
+                I &&
+                  o &&
+                  A &&
+                  o !== A &&
+                  t.push({
+                    type: 'mode change',
+                    semverExclusivity: e,
+                    path: m(I),
+                    oldMode: Q(o),
+                    newMode: Q(A)
+                  }),
+                  I &&
+                    d &&
+                    d.length &&
+                    t.push({
+                      type: 'patch',
+                      semverExclusivity: e,
+                      path: m(I),
+                      hunks: d,
+                      beforeHash: u,
+                      afterHash: h
+                    });
               }
               return t;
             })(
@@ -6419,7 +7614,10 @@ module.exports = (() => {
                     if (t.existsSync(i.path)) throw new Error('Trying to create a file that already exists: ' + i.path);
                   } else {
                     const e = i.hunk ? i.hunk.parts[0].lines.join('\n') + (i.hunk.parts[0].noNewlineAtEndOfFile ? '' : '\n') : '';
-                    await t.mkdirpPromise(g.y1.dirname(i.path), { chmod: 493, utimes: [315532800, 315532800] }),
+                    await t.mkdirpPromise(g.y1.dirname(i.path), {
+                      chmod: 493,
+                      utimes: [315532800, 315532800]
+                    }),
                       await t.writeFilePromise(i.path, e, { mode: i.mode }),
                       await t.utimesPromise(i.path, 315532800, 315532800);
                   }
@@ -6507,7 +7705,12 @@ module.exports = (() => {
                   r += 1;
                 }
                 o.type === y.Deletion &&
-                  (n.push({ type: 'splice', index: r - o.lines.length, numToDelete: o.lines.length, linesToInsert: [] }),
+                  (n.push({
+                    type: 'splice',
+                    index: r - o.lines.length,
+                    numToDelete: o.lines.length,
+                    linesToInsert: []
+                  }),
                   o.noNewlineAtEndOfFile && n.push({ type: 'push', line: '' }));
                 break;
               case y.Insertion:
@@ -6540,13 +7743,30 @@ module.exports = (() => {
           const A = null !== e ? { locator: s.stringifyLocator(e) } : {},
             a = void 0 !== n ? { version: n } : {},
             c = void 0 !== i ? { hash: i } : {};
-          return s.makeRange({ protocol: 'patch:', source: o(t), selector: r.join('&'), params: { ...a, ...c, ...A } });
+          return s.makeRange({
+            protocol: 'patch:',
+            source: o(t),
+            selector: r.join('&'),
+            params: { ...a, ...c, ...A }
+          });
         }
         function T(e, { parentLocator: t, sourceDescriptor: r, patchPaths: n }) {
           return s.makeLocator(e, P({ parentLocator: t, sourceItem: r, patchPaths: n }, s.stringifyDescriptor));
         }
         function O(e, { parentLocator: t, sourcePackage: r, patchPaths: n, patchHash: i }) {
-          return s.makeLocator(e, P({ parentLocator: t, sourceItem: r, sourceVersion: r.version, patchPaths: n, patchHash: i }, s.stringifyLocator));
+          return s.makeLocator(
+            e,
+            P(
+              {
+                parentLocator: t,
+                sourceItem: r,
+                sourceVersion: r.version,
+                patchPaths: n,
+                patchHash: i
+              },
+              s.stringifyLocator
+            )
+          );
         }
         function U({ onAbsolute: e, onRelative: t, onBuiltin: r }, n) {
           const i = n.match(R);
@@ -6557,7 +7777,13 @@ module.exports = (() => {
         }
         async function Y(e, t, r) {
           const n = null !== e ? await r.fetcher.fetch(e, r) : null,
-            i = n && n.localPath ? { packageFs: new u.M(g.LZ.root), prefixPath: g.y1.relative(g.LZ.root, n.localPath) } : n;
+            i =
+              n && n.localPath
+                ? {
+                    packageFs: new u.M(g.LZ.root),
+                    prefixPath: g.y1.relative(g.LZ.root, n.localPath)
+                  }
+                : n;
           n && n !== i && n.releaseFs && n.releaseFs();
           return (
             await a.releaseAfterUseAsync(
@@ -6588,7 +7814,9 @@ module.exports = (() => {
             a = await c.xfs.mktempPromise();
           return (
             await c.xfs.copyPromise(a, A.prefixPath, { baseFs: A.packageFs }),
-            await c.xfs.writeJsonPromise(g.y1.join(a, '.yarn-patch.json'), { locator: s.stringifyLocator(e) }),
+            await c.xfs.writeJsonPromise(g.y1.join(a, '.yarn-patch.json'), {
+              locator: s.stringifyLocator(e)
+            }),
             c.xfs.detachTemp(a),
             a
           );
@@ -6691,7 +7919,13 @@ module.exports = (() => {
           (0, z.gn)([Z.Command.String()], te.prototype, 'package', void 0),
           (0, z.gn)([Z.Command.Path('patch')], te.prototype, 'execute', null);
         const re = {
-          configuration: { enableInlineHunks: { description: 'If true, the installs will print unmatched patch hunks', type: i.a2.BOOLEAN, default: !1 } },
+          configuration: {
+            enableInlineHunks: {
+              description: 'If true, the installs will print unmatched patch hunks',
+              type: i.a2.BOOLEAN,
+              default: !1
+            }
+          },
           commands: [$, te],
           fetchers: [
             class {
@@ -6710,7 +7944,13 @@ module.exports = (() => {
                     loader: () => this.patchPackage(e, t),
                     skipIntegrityCheck: t.skipIntegrityCheck
                   });
-                return { packageFs: n, releaseFs: i, prefixPath: s.getIdentVendorPath(e), localPath: this.getLocalPath(e, t), checksum: o };
+                return {
+                  packageFs: n,
+                  releaseFs: i,
+                  prefixPath: s.getIdentVendorPath(e),
+                  localPath: this.getLocalPath(e, t),
+                  checksum: o
+                };
               }
               async patchPackage(e, t) {
                 const { parentLocator: r, sourceLocator: n, sourceVersion: i, patchPaths: p } = x(e),
@@ -6720,7 +7960,11 @@ module.exports = (() => {
                   E = await t.fetcher.fetch(n, t),
                   m = s.getIdentVendorPath(e),
                   B = await (0, h.getLibzipPromise)(),
-                  y = new l.d(C, { libzip: B, create: !0, level: t.project.configuration.get('compressionLevel') });
+                  y = new l.d(C, {
+                    libzip: B,
+                    create: !0,
+                    level: t.project.configuration.get('compressionLevel')
+                  });
                 await y.mkdirpPromise(m),
                   await a.releaseAfterUseAsync(async () => {
                     await y.copyPromise(m, E.prefixPath, { baseFs: E.packageFs, stableSort: !0 });
@@ -6767,7 +8011,14 @@ module.exports = (() => {
                   A = await Y(n, o, r.fetchOptions),
                   s = t.get(i.descriptorHash);
                 if (void 0 === s) throw new Error('Assertion failed: The dependency should have been resolved');
-                return [O(e, { parentLocator: n, sourcePackage: s, patchPaths: o, patchHash: q.makeHash('2', ...A).slice(0, 6) })];
+                return [
+                  O(e, {
+                    parentLocator: n,
+                    sourcePackage: s,
+                    patchPaths: o,
+                    patchHash: q.makeHash('2', ...A).slice(0, 6)
+                  })
+                ];
               }
               async getSatisfying(e, t, r) {
                 return null;
@@ -6873,9 +8124,13 @@ module.exports = (() => {
               E = new Set();
             if (l.isVirtualLocator(e)) for (const t of e.peerDependencies.values()) d.set(l.requirableIdent(t), null), E.add(l.stringifyIdent(t));
             return (
-              h
-                .getMapWithDefault(this.packageRegistry, r)
-                .set(n, { packageLocation: f, packageDependencies: d, packagePeers: E, linkType: e.linkType, discardFromLookup: t.discardFromLookup || !1 }),
+              h.getMapWithDefault(this.packageRegistry, r).set(n, {
+                packageLocation: f,
+                packageDependencies: d,
+                packagePeers: E,
+                linkType: e.linkType,
+                discardFromLookup: t.discardFromLookup || !1
+              }),
               i && this.blacklistedPaths.add(f),
               { packageLocation: p, buildDirective: a.length > 0 && s ? a : null }
             );
@@ -6897,7 +8152,10 @@ module.exports = (() => {
               this.packageRegistry.set(null, new Map([[null, this.getPackageInformation(this.opts.project.topLevelWorkspace.anchoredLocator)]]));
             const e = this.opts.project.configuration.get('pnpFallbackMode'),
               t = this.blacklistedPaths,
-              r = this.opts.project.workspaces.map(({ anchoredLocator: e }) => ({ name: l.requirableIdent(e), reference: e.reference })),
+              r = this.opts.project.workspaces.map(({ anchoredLocator: e }) => ({
+                name: l.requirableIdent(e),
+                reference: e.reference
+              })),
               n = 'none' !== e,
               i = [],
               o = new Map(),
@@ -7162,8 +8420,26 @@ module.exports = (() => {
           ]
         })),
           (0, v.gn)([d.Command.Rest()], R.prototype, 'patterns', void 0),
-          (0, v.gn)([d.Command.Boolean('-A,--all', { description: 'Unplug direct dependencies from the entire project' })], R.prototype, 'all', void 0),
-          (0, v.gn)([d.Command.Boolean('-R,--recursive', { description: 'Unplug both direct and transitive dependencies' })], R.prototype, 'recursive', void 0),
+          (0, v.gn)(
+            [
+              d.Command.Boolean('-A,--all', {
+                description: 'Unplug direct dependencies from the entire project'
+              })
+            ],
+            R.prototype,
+            'all',
+            void 0
+          ),
+          (0, v.gn)(
+            [
+              d.Command.Boolean('-R,--recursive', {
+                description: 'Unplug both direct and transitive dependencies'
+              })
+            ],
+            R.prototype,
+            'recursive',
+            void 0
+          ),
           (0, v.gn)([d.Command.Boolean('--json', { description: 'Format the output as an NDJSON stream' })], R.prototype, 'json', void 0),
           (0, v.gn)([d.Command.Path('unplug')], R.prototype, 'execute', null);
         const K = (e) => {
@@ -7192,22 +8468,42 @@ module.exports = (() => {
             }
           },
           configuration: {
-            nodeLinker: { description: 'The linker used for installing Node packages, one of: "pnp", "node-modules"', type: i.a2.STRING, default: 'pnp' },
-            pnpMode: { description: "If 'strict', generates standard PnP maps. If 'loose', merges them with the n_m resolution.", type: i.a2.STRING, default: 'strict' },
-            pnpShebang: { description: 'String to prepend to the generated PnP script', type: i.a2.STRING, default: '#!/usr/bin/env node' },
+            nodeLinker: {
+              description: 'The linker used for installing Node packages, one of: "pnp", "node-modules"',
+              type: i.a2.STRING,
+              default: 'pnp'
+            },
+            pnpMode: {
+              description: "If 'strict', generates standard PnP maps. If 'loose', merges them with the n_m resolution.",
+              type: i.a2.STRING,
+              default: 'strict'
+            },
+            pnpShebang: {
+              description: 'String to prepend to the generated PnP script',
+              type: i.a2.STRING,
+              default: '#!/usr/bin/env node'
+            },
             pnpIgnorePatterns: {
               description: 'Array of glob patterns; files matching them will use the classic resolution',
               type: i.a2.STRING,
               default: [],
               isArray: !0
             },
-            pnpEnableInlining: { description: 'If true, the PnP data will be inlined along with the generated loader', type: i.a2.BOOLEAN, default: !0 },
+            pnpEnableInlining: {
+              description: 'If true, the PnP data will be inlined along with the generated loader',
+              type: i.a2.BOOLEAN,
+              default: !0
+            },
             pnpFallbackMode: {
               description: 'If true, the generated PnP loader will follow the top-level fallback rule',
               type: i.a2.STRING,
               default: 'dependencies-only'
             },
-            pnpUnpluggedFolder: { description: 'Folder where the unplugged packages must be stored', type: i.a2.ABSOLUTE_PATH, default: './.yarn/unplugged' },
+            pnpUnpluggedFolder: {
+              description: 'Folder where the unplugged packages must be stored',
+              type: i.a2.ABSOLUTE_PATH,
+              default: './.yarn/unplugged'
+            },
             pnpDataPath: {
               description: 'Path of the file where the PnP data (used by the loader) must be written',
               type: i.a2.ABSOLUTE_PATH,
@@ -7313,7 +8609,11 @@ module.exports = (() => {
         }
         async function C({ binaryVersion: e, pluginConfiguration: t }) {
           async function r() {
-            const h = new g.Cli({ binaryLabel: 'Yarn Package Manager', binaryName: 'yarn', binaryVersion: e });
+            const h = new g.Cli({
+              binaryLabel: 'Yarn Package Manager',
+              binaryName: 'yarn',
+              binaryVersion: e
+            });
             h.register(d);
             try {
               await (async function h(p) {
@@ -7323,7 +8623,10 @@ module.exports = (() => {
                   throw new g.UsageError(
                     `This tool requires a Node version compatible with >=10.17 (got ${m}). Upgrade Node, or set \`YARN_IGNORE_NODE=1\` in your environment.`
                   );
-                const B = await i.VK.find(s.cS.toPortablePath(process.cwd()), t, { usePath: !0, strict: !1 }),
+                const B = await i.VK.find(s.cS.toPortablePath(process.cwd()), t, {
+                    usePath: !0,
+                    strict: !1
+                  }),
                   y = B.get('yarnPath'),
                   w = B.get('ignorePath'),
                   Q = B.get('ignoreCwd');
@@ -7364,7 +8667,10 @@ module.exports = (() => {
                               stdio: 'inherit',
                               env: { ...process.env, YARN_IGNORE_PATH: '1', YARN_IGNORE_CWD: '1' }
                             })
-                          : (0, a.execFileSync)(t, process.argv.slice(2), { stdio: 'inherit', env: { ...process.env, YARN_IGNORE_PATH: '1', YARN_IGNORE_CWD: '1' } });
+                          : (0, a.execFileSync)(t, process.argv.slice(2), {
+                              stdio: 'inherit',
+                              env: { ...process.env, YARN_IGNORE_PATH: '1', YARN_IGNORE_CWD: '1' }
+                            });
                     })(y);
                   } catch (e) {
                     process.exitCode = e.code || 1;
@@ -7734,13 +9040,41 @@ module.exports = (() => {
         })(O || (O = {}));
         const U = M.Type,
           j = {
-            lastUpdateCheck: { description: 'Last timestamp we checked whether new Yarn versions were available', type: O.STRING, default: null },
-            yarnPath: { description: 'Path to the local executable that must be used over the global one', type: O.ABSOLUTE_PATH, default: null },
-            ignorePath: { description: 'If true, the local executable will be ignored when using the global one', type: O.BOOLEAN, default: !1 },
-            ignoreCwd: { description: 'If true, the `--cwd` flag will be ignored', type: O.BOOLEAN, default: !1 },
-            cacheKeyOverride: { description: 'A global cache key override; used only for test purposes', type: O.STRING, default: null },
-            globalFolder: { description: 'Folder where are stored the system-wide settings', type: O.ABSOLUTE_PATH, default: k.getDefaultGlobalFolder() },
-            cacheFolder: { description: 'Folder where the cache files must be written', type: O.ABSOLUTE_PATH, default: './.yarn/cache' },
+            lastUpdateCheck: {
+              description: 'Last timestamp we checked whether new Yarn versions were available',
+              type: O.STRING,
+              default: null
+            },
+            yarnPath: {
+              description: 'Path to the local executable that must be used over the global one',
+              type: O.ABSOLUTE_PATH,
+              default: null
+            },
+            ignorePath: {
+              description: 'If true, the local executable will be ignored when using the global one',
+              type: O.BOOLEAN,
+              default: !1
+            },
+            ignoreCwd: {
+              description: 'If true, the `--cwd` flag will be ignored',
+              type: O.BOOLEAN,
+              default: !1
+            },
+            cacheKeyOverride: {
+              description: 'A global cache key override; used only for test purposes',
+              type: O.STRING,
+              default: null
+            },
+            globalFolder: {
+              description: 'Folder where are stored the system-wide settings',
+              type: O.ABSOLUTE_PATH,
+              default: k.getDefaultGlobalFolder()
+            },
+            cacheFolder: {
+              description: 'Folder where the cache files must be written',
+              type: O.ABSOLUTE_PATH,
+              default: './.yarn/cache'
+            },
             compressionLevel: {
               description:
                 "Zip files compression level, from 0 to 9 or mixed (a variant of 9, which stores some files uncompressed, when compression doesn't yield good results)",
@@ -7758,18 +9092,43 @@ module.exports = (() => {
               type: O.ABSOLUTE_PATH,
               default: './.yarn/build-state.yml'
             },
-            lockfileFilename: { description: 'Name of the files where the Yarn dependency tree entries must be stored', type: O.STRING, default: T },
-            installStatePath: { description: 'Path of the file where the install state will be persisted', type: O.ABSOLUTE_PATH, default: './.yarn/install-state.gz' },
+            lockfileFilename: {
+              description: 'Name of the files where the Yarn dependency tree entries must be stored',
+              type: O.STRING,
+              default: T
+            },
+            installStatePath: {
+              description: 'Path of the file where the install state will be persisted',
+              type: O.ABSOLUTE_PATH,
+              default: './.yarn/install-state.gz'
+            },
             immutablePatterns: {
               description: "Array of glob patterns; files matching them won't be allowed to change during immutable installs",
               type: O.STRING,
               default: [],
               isArray: !0
             },
-            rcFilename: { description: 'Name of the files where the configuration can be found', type: O.STRING, default: J() },
-            enableGlobalCache: { description: 'If true, the system-wide cache folder will be used regardless of `cache-folder`', type: O.BOOLEAN, default: !1 },
-            enableAbsoluteVirtuals: { description: 'If true, the virtual symlinks will use absolute paths if required [non portable!!]', type: O.BOOLEAN, default: !1 },
-            enableColors: { description: 'If true, the CLI is allowed to use colors in its output', type: O.BOOLEAN, default: M.supportsColor, defaultText: '<dynamic>' },
+            rcFilename: {
+              description: 'Name of the files where the configuration can be found',
+              type: O.STRING,
+              default: J()
+            },
+            enableGlobalCache: {
+              description: 'If true, the system-wide cache folder will be used regardless of `cache-folder`',
+              type: O.BOOLEAN,
+              default: !1
+            },
+            enableAbsoluteVirtuals: {
+              description: 'If true, the virtual symlinks will use absolute paths if required [non portable!!]',
+              type: O.BOOLEAN,
+              default: !1
+            },
+            enableColors: {
+              description: 'If true, the CLI is allowed to use colors in its output',
+              type: O.BOOLEAN,
+              default: M.supportsColor,
+              defaultText: '<dynamic>'
+            },
             enableHyperlinks: {
               description: 'If true, the CLI is allowed to use hyperlinks in its output',
               type: O.BOOLEAN,
@@ -7788,18 +9147,42 @@ module.exports = (() => {
               default: !c.isCI && process.stdout.isTTY && process.stdout.columns > 22,
               defaultText: '<dynamic>'
             },
-            enableTimers: { description: 'If true, the CLI is allowed to print the time spent executing commands', type: O.BOOLEAN, default: !0 },
-            preferAggregateCacheInfo: { description: 'If true, the CLI will only print a one-line report of any cache changes', type: O.BOOLEAN, default: c.isCI },
-            preferInteractive: { description: 'If true, the CLI will automatically use the interactive mode when called from a TTY', type: O.BOOLEAN, default: !1 },
-            preferTruncatedLines: { description: 'If true, the CLI will truncate lines that would go beyond the size of the terminal', type: O.BOOLEAN, default: !1 },
+            enableTimers: {
+              description: 'If true, the CLI is allowed to print the time spent executing commands',
+              type: O.BOOLEAN,
+              default: !0
+            },
+            preferAggregateCacheInfo: {
+              description: 'If true, the CLI will only print a one-line report of any cache changes',
+              type: O.BOOLEAN,
+              default: c.isCI
+            },
+            preferInteractive: {
+              description: 'If true, the CLI will automatically use the interactive mode when called from a TTY',
+              type: O.BOOLEAN,
+              default: !1
+            },
+            preferTruncatedLines: {
+              description: 'If true, the CLI will truncate lines that would go beyond the size of the terminal',
+              type: O.BOOLEAN,
+              default: !1
+            },
             progressBarStyle: {
               description: 'Which style of progress bar should be used (only when progress bars are enabled)',
               type: O.STRING,
               default: void 0,
               defaultText: '<dynamic>'
             },
-            defaultLanguageName: { description: "Default language mode that should be used when a package doesn't offer any insight", type: O.STRING, default: 'node' },
-            defaultProtocol: { description: 'Default resolution protocol used when resolving pure semver and tag ranges', type: O.STRING, default: 'npm:' },
+            defaultLanguageName: {
+              description: "Default language mode that should be used when a package doesn't offer any insight",
+              type: O.STRING,
+              default: 'node'
+            },
+            defaultProtocol: {
+              description: 'Default resolution protocol used when resolving pure semver and tag ranges',
+              type: O.STRING,
+              default: 'npm:'
+            },
             enableTransparentWorkspaces: {
               description: "If false, Yarn won't automatically resolve workspace dependencies unless they use the `workspace:` protocol",
               type: O.BOOLEAN,
@@ -7810,18 +9193,38 @@ module.exports = (() => {
               type: O.BOOLEAN,
               default: !0
             },
-            enableNetwork: { description: 'If false, the package manager will refuse to use the network if required to', type: O.BOOLEAN, default: !0 },
-            httpProxy: { description: 'URL of the http proxy that must be used for outgoing http requests', type: O.STRING, default: null },
-            httpsProxy: { description: 'URL of the http proxy that must be used for outgoing https requests', type: O.STRING, default: null },
+            enableNetwork: {
+              description: 'If false, the package manager will refuse to use the network if required to',
+              type: O.BOOLEAN,
+              default: !0
+            },
+            httpProxy: {
+              description: 'URL of the http proxy that must be used for outgoing http requests',
+              type: O.STRING,
+              default: null
+            },
+            httpsProxy: {
+              description: 'URL of the http proxy that must be used for outgoing https requests',
+              type: O.STRING,
+              default: null
+            },
             unsafeHttpWhitelist: {
               description: 'List of the hostnames for which http queries are allowed (glob patterns are supported)',
               type: O.STRING,
               default: [],
               isArray: !0
             },
-            httpTimeout: { description: 'Timeout of each http request in milliseconds', type: O.NUMBER, default: 6e4 },
+            httpTimeout: {
+              description: 'Timeout of each http request in milliseconds',
+              type: O.NUMBER,
+              default: 6e4
+            },
             httpRetry: { description: 'Retry times on http failure', type: O.NUMBER, default: 3 },
-            networkConcurrency: { description: 'Maximal number of concurrent requests', type: O.NUMBER, default: 1 / 0 },
+            networkConcurrency: {
+              description: 'Maximal number of concurrent requests',
+              type: O.NUMBER,
+              default: 1 / 0
+            },
             networkSettings: {
               description: 'Network settings per hostname (glob patterns are supported)',
               type: O.MAP,
@@ -7829,21 +9232,45 @@ module.exports = (() => {
                 description: '',
                 type: O.SHAPE,
                 properties: {
-                  caFilePath: { description: 'Path to file containing one or multiple Certificate Authority signing certificates', type: O.ABSOLUTE_PATH, default: null },
-                  enableNetwork: { description: 'If false, the package manager will refuse to use the network if required to', type: O.BOOLEAN, default: null }
+                  caFilePath: {
+                    description: 'Path to file containing one or multiple Certificate Authority signing certificates',
+                    type: O.ABSOLUTE_PATH,
+                    default: null
+                  },
+                  enableNetwork: {
+                    description: 'If false, the package manager will refuse to use the network if required to',
+                    type: O.BOOLEAN,
+                    default: null
+                  }
                 }
               }
             },
-            caFilePath: { description: 'A path to a file containing one or multiple Certificate Authority signing certificates', type: O.ABSOLUTE_PATH, default: null },
-            enableStrictSsl: { description: 'If false, SSL certificate errors will be ignored', type: O.BOOLEAN, default: !0 },
+            caFilePath: {
+              description: 'A path to a file containing one or multiple Certificate Authority signing certificates',
+              type: O.ABSOLUTE_PATH,
+              default: null
+            },
+            enableStrictSsl: {
+              description: 'If false, SSL certificate errors will be ignored',
+              type: O.BOOLEAN,
+              default: !0
+            },
             logFilters: {
               description: 'Overrides for log levels',
               type: O.SHAPE,
               isArray: !0,
               concatenateValues: !0,
               properties: {
-                code: { description: 'Code of the messages covered by this override', type: O.STRING, default: void 0 },
-                text: { description: 'Code of the texts covered by this override', type: O.STRING, default: void 0 },
+                code: {
+                  description: 'Code of the messages covered by this override',
+                  type: O.STRING,
+                  default: void 0
+                },
+                text: {
+                  description: 'Code of the texts covered by this override',
+                  type: O.STRING,
+                  default: void 0
+                },
                 level: {
                   description: 'Log level override, set to null to remove override',
                   type: O.STRING,
@@ -7858,15 +9285,31 @@ module.exports = (() => {
               type: O.BOOLEAN,
               default: !0
             },
-            telemetryInterval: { description: 'Minimal amount of time between two telemetry uploads, in days', type: O.NUMBER, default: 7 },
+            telemetryInterval: {
+              description: 'Minimal amount of time between two telemetry uploads, in days',
+              type: O.NUMBER,
+              default: 7
+            },
             telemetryUserId: {
               description: 'If you desire to tell us which project you are, you can set this field. Completely optional and opt-in.',
               type: O.STRING,
               default: null
             },
-            enableScripts: { description: 'If true, packages are allowed to have install scripts by default', type: O.BOOLEAN, default: !0 },
-            enableImmutableCache: { description: 'If true, the cache is reputed immutable and actions that would modify it will throw', type: O.BOOLEAN, default: !1 },
-            checksumBehavior: { description: "Enumeration defining what to do when a checksum doesn't match expectations", type: O.STRING, default: 'throw' },
+            enableScripts: {
+              description: 'If true, packages are allowed to have install scripts by default',
+              type: O.BOOLEAN,
+              default: !0
+            },
+            enableImmutableCache: {
+              description: 'If true, the cache is reputed immutable and actions that would modify it will throw',
+              type: O.BOOLEAN,
+              default: !1
+            },
+            checksumBehavior: {
+              description: "Enumeration defining what to do when a checksum doesn't match expectations",
+              type: O.STRING,
+              default: 'throw'
+            },
             packageExtensions: {
               description: 'Map of package corrections to apply on the dependency tree',
               type: O.MAP,
@@ -8018,7 +9461,12 @@ module.exports = (() => {
             delete c.rcFilename;
             const l = await z.findRcFiles(e),
               u = await z.findHomeRcFile(),
-              h = ({ ignoreCwd: e, yarnPath: t, ignorePath: r, lockfileFilename: n }) => ({ ignoreCwd: e, yarnPath: t, ignorePath: r, lockfileFilename: n }),
+              h = ({ ignoreCwd: e, yarnPath: t, ignorePath: r, lockfileFilename: n }) => ({
+                ignoreCwd: e,
+                yarnPath: t,
+                ignorePath: r,
+                lockfileFilename: n
+              }),
               p = ({ ignoreCwd: e, yarnPath: t, ignorePath: r, lockfileFilename: n, ...i }) => i,
               f = new z(e);
             f.importSettings(h(j)), f.useWithSource('<environment>', h(c), e, { strict: !1 });
@@ -8287,12 +9735,29 @@ module.exports = (() => {
                 const i = [];
                 F.getArrayWithDefault(e, t.identHash).push([t.range, i]);
                 for (const e of n.dependencies.values())
-                  i.push({ type: q.Dependency, descriptor: e, active: !1, description: `${C.stringifyIdent(t)} > ${C.stringifyIdent(e)}` });
+                  i.push({
+                    type: q.Dependency,
+                    descriptor: e,
+                    active: !1,
+                    description: `${C.stringifyIdent(t)} > ${C.stringifyIdent(e)}`
+                  });
                 for (const e of n.peerDependencies.values())
-                  i.push({ type: q.PeerDependency, descriptor: e, active: !1, description: `${C.stringifyIdent(t)} >> ${C.stringifyIdent(e)}` });
+                  i.push({
+                    type: q.PeerDependency,
+                    descriptor: e,
+                    active: !1,
+                    description: `${C.stringifyIdent(t)} >> ${C.stringifyIdent(e)}`
+                  });
                 for (const [e, r] of n.peerDependenciesMeta)
                   for (const [n, o] of Object.entries(r))
-                    i.push({ type: q.PeerDependencyMeta, selector: e, key: n, value: o, active: !1, description: `${C.stringifyIdent(t)} >> ${e} / ${n}` });
+                    i.push({
+                      type: q.PeerDependencyMeta,
+                      selector: e,
+                      key: n,
+                      value: o,
+                      active: !1,
+                      description: `${C.stringifyIdent(t)} >> ${e} / ${n}`
+                    });
               };
             for (const [e, r] of this.get('packageExtensions')) t(C.parseDescriptor(e, !0), r);
             await this.triggerHook((e) => e.registerPackageExtensions, this, t);
@@ -8808,7 +10273,10 @@ module.exports = (() => {
               : delete e.bin,
               this.workspaceDefinitions.length > 0
                 ? this.raw.workspaces && !Array.isArray(this.raw.workspaces)
-                  ? (e.workspaces = { ...this.raw.workspaces, packages: this.workspaceDefinitions.map(({ pattern: e }) => e) })
+                  ? (e.workspaces = {
+                      ...this.raw.workspaces,
+                      packages: this.workspaceDefinitions.map(({ pattern: e }) => e)
+                    })
                   : (e.workspaces = this.workspaceDefinitions.map(({ pattern: e }) => e))
                 : this.raw.workspaces && !Array.isArray(this.raw.workspaces) && Object.keys(this.raw.workspaces).length > 0
                 ? (e.workspaces = this.raw.workspaces)
@@ -8847,7 +10315,12 @@ module.exports = (() => {
                 ? (e.peerDependenciesMeta = Object.assign({}, ...a.sortMap(this.peerDependenciesMeta.entries(), ([e, t]) => e).map(([e, t]) => ({ [e]: t }))))
                 : delete e.peerDependenciesMeta,
               this.resolutions.length > 0
-                ? (e.resolutions = Object.assign({}, ...this.resolutions.map(({ pattern: e, reference: t }) => ({ [(0, o.stringifyResolution)(e)]: t }))))
+                ? (e.resolutions = Object.assign(
+                    {},
+                    ...this.resolutions.map(({ pattern: e, reference: t }) => ({
+                      [(0, o.stringifyResolution)(e)]: t
+                    }))
+                  ))
                 : delete e.resolutions,
               null !== this.files ? (e.files = Array.from(this.files)) : delete e.files,
               null !== this.preferUnplugged ? (e.preferUnplugged = this.preferUnplugged) : delete e.preferUnplugged,
@@ -9275,7 +10748,13 @@ module.exports = (() => {
                       var C,
                         I = Math.min(i.length, A.context);
                       (C = u).push.apply(C, E(a(i.slice(0, I))));
-                      var m = { oldStart: g, oldLines: h - g + I, newStart: l, newLines: p - l + I, lines: u };
+                      var m = {
+                        oldStart: g,
+                        oldLines: h - g + I,
+                        newStart: l,
+                        newLines: p - l + I,
+                        lines: u
+                      };
                       if (e >= s.length - 2 && i.length <= A.context) {
                         var B = /\n$/.test(r),
                           y = /\n$/.test(n),
@@ -9750,7 +11229,13 @@ module.exports = (() => {
                     project: this,
                     report: e.report,
                     resolver: o,
-                    fetchOptions: { project: this, cache: e.cache, checksums: this.storedChecksums, report: e.report, fetcher: A }
+                    fetchOptions: {
+                      project: this,
+                      cache: e.cache,
+                      checksums: this.storedChecksums,
+                      report: e.report,
+                      fetcher: A
+                    }
                   },
               a = new Map(),
               c = new Map(),
@@ -10095,7 +11580,13 @@ module.exports = (() => {
           }
           async fetchEverything({ cache: e, report: t, fetcher: r }) {
             const n = r || this.configuration.makeFetcher(),
-              i = { checksums: this.storedChecksums, project: this, cache: e, fetcher: n, report: t },
+              i = {
+                checksums: this.storedChecksums,
+                project: this,
+                cache: e,
+                fetcher: n,
+                report: t
+              },
               o = Array.from(
                 new Set(
                   X.sortMap(this.storedResolutions.values(), [
@@ -10138,7 +11629,14 @@ module.exports = (() => {
           }
           async linkEverything({ cache: e, report: t, fetcher: r, skipBuild: o }) {
             const s = r || this.configuration.makeFetcher(),
-              c = { checksums: this.storedChecksums, project: this, cache: e, fetcher: s, report: t, skipIntegrityCheck: !0 },
+              c = {
+                checksums: this.storedChecksums,
+                project: this,
+                cache: e,
+                fetcher: s,
+                report: t,
+                skipIntegrityCheck: !0
+              },
               g = this.configuration.getLinkers(),
               l = { project: this, report: t },
               u = new Map(g.map((e) => [e, e.makeInstaller(l)])),
@@ -10173,7 +11671,12 @@ module.exports = (() => {
                 }
                 h.set(t.locatorHash, e),
                   p.set(t.locatorHash, i.packageLocation),
-                  i.buildDirective && i.packageLocation && f.set(t.locatorHash, { directives: i.buildDirective, buildLocations: [i.packageLocation] });
+                  i.buildDirective &&
+                    i.packageLocation &&
+                    f.set(t.locatorHash, {
+                      directives: i.buildDirective,
+                      buildLocations: [i.packageLocation]
+                    });
               }
             }
             const d = new Map();
@@ -10228,7 +11731,13 @@ module.exports = (() => {
             }
             for (const e of u.values()) {
               const t = await e.finalizeInstall();
-              if (t) for (const e of t) e.buildDirective && f.set(e.locatorHash, { directives: e.buildDirective, buildLocations: e.buildLocations });
+              if (t)
+                for (const e of t)
+                  e.buildDirective &&
+                    f.set(e.locatorHash, {
+                      directives: e.buildDirective,
+                      buildLocations: e.buildLocations
+                    });
             }
             if (o) return;
             const C = new Set(this.storedPackages.keys()),
@@ -10320,10 +11829,22 @@ module.exports = (() => {
                             try {
                               switch (r) {
                                 case x.k.SCRIPT:
-                                  p = await Z.executePackageScript(o, A, [], { cwd: e, project: this, stdin: c, stdout: u, stderr: h });
+                                  p = await Z.executePackageScript(o, A, [], {
+                                    cwd: e,
+                                    project: this,
+                                    stdin: c,
+                                    stdout: u,
+                                    stderr: h
+                                  });
                                   break;
                                 case x.k.SHELLCODE:
-                                  p = await Z.executePackageShellcode(o, A, [], { cwd: e, project: this, stdin: c, stdout: u, stderr: h });
+                                  p = await Z.executePackageShellcode(o, A, [], {
+                                    cwd: e,
+                                    project: this,
+                                    stdin: c,
+                                    stdout: u,
+                                    stderr: h
+                                  });
                               }
                             } catch (e) {
                               h.write(e.stack), (p = 1);
@@ -10379,7 +11900,11 @@ module.exports = (() => {
             });
             s.length + a.length > 0 &&
               (await e.report.startTimerPromise('Validation step', async () => {
-                await this.validateEverything({ validationWarnings: s, validationErrors: a, report: e.report });
+                await this.validateEverything({
+                  validationWarnings: s,
+                  validationErrors: a,
+                  report: e.report
+                });
               }));
             for (const e of this.configuration.packageExtensions.values()) for (const [, t] of e) for (const e of t) e.active = !1;
             await e.report.startTimerPromise('Resolution step', async () => {
@@ -10468,7 +11993,12 @@ module.exports = (() => {
                   n = a.slice(e + 1);
                 void 0 === t.__metadata.cacheKey && (t.__metadata.cacheKey = r), (s = r === t.__metadata.cacheKey ? n : a);
               }
-              t[o] = { ...A.exportTo({}, { compatibilityMode: !1 }), linkType: e.linkType.toLowerCase(), resolution: T.stringifyLocator(e), checksum: s };
+              t[o] = {
+                ...A.exportTo({}, { compatibilityMode: !1 }),
+                linkType: e.linkType.toLowerCase(),
+                resolution: T.stringifyLocator(e),
+                checksum: s
+              };
             }
             return (
               ['# This file is generated by running "yarn install" inside your project.\n', '# Manual changes might be lost - proceed with caution!\n'].join('') +
@@ -10483,7 +12013,14 @@ module.exports = (() => {
           }
           async persistInstallStateFile() {
             const { accessibleLocators: e, optionalBuilds: t, storedDescriptors: r, storedResolutions: o, storedPackages: A, lockFileChecksum: s } = this,
-              a = { accessibleLocators: e, optionalBuilds: t, storedDescriptors: r, storedResolutions: o, storedPackages: A, lockFileChecksum: s },
+              a = {
+                accessibleLocators: e,
+                optionalBuilds: t,
+                storedDescriptors: r,
+                storedResolutions: o,
+                storedPackages: A,
+                lockFileChecksum: s
+              },
               c = await ne(N().serialize(a)),
               g = this.configuration.get('installStatePath');
             await n.xfs.mkdirPromise(i.y1.dirname(g), { recursive: !0 }), await n.xfs.writeFilePromise(g, c);
@@ -10623,7 +12160,10 @@ module.exports = (() => {
               return void 0 !== e.reportCode;
             })(e)
               ? this.reportErrorOnce(o.b.EXCEPTION, e.stack || e.message, { key: e })
-              : this.reportErrorOnce(e.reportCode, e.message, { key: e, reportExtra: e.reportExtra });
+              : this.reportErrorOnce(e.reportCode, e.message, {
+                  key: e,
+                  reportExtra: e.reportExtra
+                });
           }
           createStreamReporter(e = null) {
             const t = new n.PassThrough(),
@@ -10818,7 +12358,14 @@ module.exports = (() => {
           reportInfo(e, t) {
             if (!this.includeInfos) return;
             const r = `${s.pretty(this.configuration, '➤', 'blueBright')} ${this.formatNameWithHyperlink(e)}: ${this.formatIndent()}${t}`;
-            if (this.json) this.reportJson({ type: 'info', name: e, displayName: this.formatName(e), indent: this.formatIndent(), data: t });
+            if (this.json)
+              this.reportJson({
+                type: 'info',
+                name: e,
+                displayName: this.formatName(e),
+                indent: this.formatIndent(),
+                data: t
+              });
             else if (this.forgettableNames.has(e))
               if ((this.forgettableLines.push(r), this.forgettableLines.length > this.forgettableBufferSize)) {
                 for (; this.forgettableLines.length > this.forgettableBufferSize; ) this.forgettableLines.shift();
@@ -10830,7 +12377,13 @@ module.exports = (() => {
             (this.warningCount += 1),
               this.includeWarnings &&
                 (this.json
-                  ? this.reportJson({ type: 'warning', name: e, displayName: this.formatName(e), indent: this.formatIndent(), data: t })
+                  ? this.reportJson({
+                      type: 'warning',
+                      name: e,
+                      displayName: this.formatName(e),
+                      indent: this.formatIndent(),
+                      data: t
+                    })
                   : this.writeLineWithForgettableReset(
                       `${s.pretty(this.configuration, '➤', 'yellowBright')} ${this.formatNameWithHyperlink(e)}: ${this.formatIndent()}${t}`
                     ));
@@ -10838,7 +12391,13 @@ module.exports = (() => {
           reportError(e, t) {
             (this.errorCount += 1),
               this.json
-                ? this.reportJson({ type: 'error', name: e, displayName: this.formatName(e), indent: this.formatIndent(), data: t })
+                ? this.reportJson({
+                    type: 'error',
+                    name: e,
+                    displayName: this.formatName(e),
+                    indent: this.formatIndent(),
+                    data: t
+                  })
                 : this.writeLineWithForgettableReset(`${s.pretty(this.configuration, '➤', 'redBright')} ${this.formatNameWithHyperlink(e)}: ${this.formatIndent()}${t}`, {
                     truncate: !1
                   });
@@ -11279,7 +12838,11 @@ module.exports = (() => {
         async function g(e, t, { cwd: r, env: o = process.env, strict: g = !1, stdin: l = null, stdout: u, stderr: p, end: f = n.Always }) {
           const d = ['pipe', 'pipe', 'pipe'];
           null === l ? (d[0] = 'ignore') : s(l) && (d[0] = l), s(u) && (d[1] = u), s(p) && (d[2] = p), 0 == c++ && process.on('SIGINT', a);
-          const C = A()(e, t, { cwd: i.cS.fromPortablePath(r), env: { ...o, PWD: i.cS.fromPortablePath(r) }, stdio: d });
+          const C = A()(e, t, {
+            cwd: i.cS.fromPortablePath(r),
+            env: { ...o, PWD: i.cS.fromPortablePath(r) },
+            stdio: d
+          });
           s(l) || null === l || l.pipe(C.stdin), s(u) || C.stdout.pipe(u, { end: !1 }), s(p) || C.stderr.pipe(p, { end: !1 });
           const I = () => {
             for (const e of new Set([u, p])) s(e) || e.end();
@@ -11336,7 +12899,12 @@ module.exports = (() => {
       },
       81111: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { getDefaultGlobalFolder: () => o, getHomeFolder: () => A, isFolderInside: () => s });
+        r.r(t),
+          r.d(t, {
+            getDefaultGlobalFolder: () => o,
+            getHomeFolder: () => A,
+            isFolderInside: () => s
+          });
         var n = r(46009),
           i = r(12087);
         function o() {
@@ -11429,15 +12997,27 @@ module.exports = (() => {
           d = {
             [n.NUMBER]: { pretty: (e, t) => '' + t, json: (e) => e },
             [n.IDENT]: { pretty: (e, t) => g.prettyIdent(e, t), json: (e) => g.stringifyIdent(e) },
-            [n.LOCATOR]: { pretty: (e, t) => g.prettyLocator(e, t), json: (e) => g.stringifyLocator(e) },
-            [n.DESCRIPTOR]: { pretty: (e, t) => g.prettyDescriptor(e, t), json: (e) => g.stringifyDescriptor(e) },
+            [n.LOCATOR]: {
+              pretty: (e, t) => g.prettyLocator(e, t),
+              json: (e) => g.stringifyLocator(e)
+            },
+            [n.DESCRIPTOR]: {
+              pretty: (e, t) => g.prettyDescriptor(e, t),
+              json: (e) => g.stringifyDescriptor(e)
+            },
             [n.RESOLUTION]: {
               pretty: (e, { descriptor: t, locator: r }) => g.prettyResolution(e, t, r),
-              json: ({ descriptor: e, locator: t }) => ({ descriptor: g.stringifyDescriptor(e), locator: null !== t ? g.stringifyLocator(t) : null })
+              json: ({ descriptor: e, locator: t }) => ({
+                descriptor: g.stringifyDescriptor(e),
+                locator: null !== t ? g.stringifyLocator(t) : null
+              })
             },
             [n.DEPENDENT]: {
               pretty: (e, { locator: t, descriptor: r }) => g.prettyDependent(e, t, r),
-              json: ({ locator: e, descriptor: t }) => ({ locator: g.stringifyLocator(e), descriptor: g.stringifyDescriptor(t) })
+              json: ({ locator: e, descriptor: t }) => ({
+                locator: g.stringifyLocator(e),
+                descriptor: g.stringifyDescriptor(t)
+              })
             },
             [n.DURATION]: {
               pretty: (e, t) => {
@@ -11464,7 +13044,10 @@ module.exports = (() => {
               },
               json: (e) => e
             },
-            [n.PATH]: { pretty: (e, t) => E(e, o.cS.fromPortablePath(t), n.PATH), json: (e) => o.cS.fromPortablePath(e) }
+            [n.PATH]: {
+              pretty: (e, t) => E(e, o.cS.fromPortablePath(t), n.PATH),
+              json: (e) => o.cS.fromPortablePath(e)
+            }
           };
         function C(e, t) {
           return [t, e];
@@ -11582,8 +13165,20 @@ module.exports = (() => {
           });
         }
         async function g(e, { cwd: t }) {
-          const r = (await s()(e, { cwd: i.cS.fromPortablePath(t), expandDirectories: !1, onlyDirectories: !0, unique: !0 })).map((e) => e + '/**/*'),
-            A = await s()([e, ...r], { cwd: i.cS.fromPortablePath(t), expandDirectories: !1, onlyFiles: !1, unique: !0 });
+          const r = (
+              await s()(e, {
+                cwd: i.cS.fromPortablePath(t),
+                expandDirectories: !1,
+                onlyDirectories: !0,
+                unique: !0
+              })
+            ).map((e) => e + '/**/*'),
+            A = await s()([e, ...r], {
+              cwd: i.cS.fromPortablePath(t),
+              expandDirectories: !1,
+              onlyFiles: !1,
+              unique: !0
+            });
           A.sort();
           const a = await Promise.all(
               A.map(async (e) => {
@@ -11600,7 +13195,16 @@ module.exports = (() => {
       },
       79669: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { getNetworkSettings: () => f, Method: () => d, request: () => C, get: () => I, put: () => E, post: () => m, del: () => B });
+        r.r(t),
+          r.d(t, {
+            getNetworkSettings: () => f,
+            Method: () => d,
+            request: () => C,
+            get: () => I,
+            put: () => E,
+            post: () => m,
+            del: () => B
+          });
         var n = r(43896),
           i = r(57211),
           o = r(98605),
@@ -11643,7 +13247,11 @@ module.exports = (() => {
             throw new Error(`Unsafe http requests must be explicitly whitelisted in your configuration (${m.hostname})`);
           const B = i.get('httpProxy'),
             y = i.get('httpsProxy'),
-            w = { agent: { http: B ? a.httpOverHttp(p(B)) : u, https: y ? a.httpsOverHttp(p(y)) : h }, headers: o, method: I };
+            w = {
+              agent: { http: B ? a.httpOverHttp(p(B)) : u, https: y ? a.httpsOverHttp(p(y)) : h },
+              headers: o,
+              method: I
+            };
           (w.responseType = C ? 'json' : 'buffer'), null !== t && (Buffer.isBuffer(t) || (!g && 'string' == typeof t) ? (w.body = t) : (w.json = t));
           const Q = i.get('httpTimeout'),
             v = i.get('httpRetry'),
@@ -11656,7 +13264,12 @@ module.exports = (() => {
                   return t || ((t = n.xfs.readFilePromise(e).then((t) => (l.set(e, t), t))), l.set(e, t)), t;
                 })(D)
               : void 0,
-            M = S.extend({ timeout: { socket: Q }, retry: v, https: { rejectUnauthorized: b, certificateAuthority: k }, ...w });
+            M = S.extend({
+              timeout: { socket: Q },
+              retry: v,
+              https: { rejectUnauthorized: b, certificateAuthority: k },
+              ...w
+            });
           return i.getLimit('networkConcurrency')(() => M(e));
         }
         async function I(e, { configuration: t, json: r, jsonResponse: n = r, ...i }) {
@@ -12062,7 +13675,14 @@ module.exports = (() => {
                             });
                           if (0 !== n.code) return n.code;
                           await s.xfs.appendFilePromise(i.y1.join(e, '.npmignore'), '/.yarn\n'), g.write('\n');
-                          const a = await B.pipevp('yarn', ['install'], { cwd: e, env: o, stdin: null, stdout: g, stderr: l, end: B.EndStrategy.ErrorCode });
+                          const a = await B.pipevp('yarn', ['install'], {
+                            cwd: e,
+                            env: o,
+                            stdin: null,
+                            stdout: g,
+                            stderr: l,
+                            end: B.EndStrategy.ErrorCode
+                          });
                           if (0 !== a.code) return a.code;
                           g.write('\n');
                           const c = await B.pipevp('yarn', [...r, 'pack', '--filename', i.cS.fromPortablePath(t)], { cwd: e, env: o, stdin: null, stdout: g, stderr: l });
@@ -12091,12 +13711,25 @@ module.exports = (() => {
                         async () => {
                           if (null !== A) throw new Error("Workspaces aren't supported by npm, which has been detected as the primary package manager for " + e);
                           delete o.npm_config_user_agent;
-                          const r = await B.pipevp('npm', ['install'], { cwd: e, env: o, stdin: null, stdout: g, stderr: l, end: B.EndStrategy.ErrorCode });
+                          const r = await B.pipevp('npm', ['install'], {
+                            cwd: e,
+                            env: o,
+                            stdin: null,
+                            stdout: g,
+                            stderr: l,
+                            end: B.EndStrategy.ErrorCode
+                          });
                           if (0 !== r.code) return r.code;
                           const n = new f.PassThrough(),
                             a = w.bufferStream(n);
                           n.pipe(g);
-                          const c = await B.pipevp('npm', ['pack', '--silent'], { cwd: e, env: o, stdin: null, stdout: n, stderr: l });
+                          const c = await B.pipevp('npm', ['pack', '--silent'], {
+                            cwd: e,
+                            env: o,
+                            stdin: null,
+                            stdout: n,
+                            stderr: l
+                          });
                           if (0 !== c.code) return c.code;
                           const u = (await a).toString().trim(),
                             h = i.y1.resolve(e, i.cS.toPortablePath(u));
@@ -12119,7 +13752,10 @@ module.exports = (() => {
             async (e) => {
               const o = r.configuration,
                 s = r.configuration.getLinkers(),
-                a = { project: r, report: new E.Pk({ stdout: new f.PassThrough(), configuration: o }) },
+                a = {
+                  project: r,
+                  report: new E.Pk({ stdout: new f.PassThrough(), configuration: o })
+                },
                 c = s.find((e) => e.supportsPackage(n, a));
               if (!c) throw new Error(`The package ${Q.prettyLocator(r.configuration, n)} isn't supported by any of the available linkers`);
               const g = await c.findPackageLocation(n, a),
@@ -12131,7 +13767,12 @@ module.exports = (() => {
         }
         async function M(e, t, r, { cwd: n, project: i, stdin: o, stdout: A, stderr: a }) {
           return await s.xfs.mktempPromise(async (s) => {
-            const { manifest: g, env: l, cwd: u } = await N(e, { project: i, binFolder: s, cwd: n, lifecycleScript: t }),
+            const { manifest: g, env: l, cwd: u } = await N(e, {
+                project: i,
+                binFolder: s,
+                cwd: n,
+                lifecycleScript: t
+              }),
               h = g.scripts.get(t);
             if (void 0 === h) return 1;
             const p = await i.configuration.reduceHook(
@@ -12158,7 +13799,10 @@ module.exports = (() => {
             async (o) => {
               const a = t.configuration,
                 g = t.configuration.getLinkers(),
-                l = { project: t, report: new E.Pk({ stdout: new f.PassThrough(), configuration: a }) },
+                l = {
+                  project: t,
+                  report: new E.Pk({ stdout: new f.PassThrough(), configuration: a })
+                },
                 u = g.find((e) => e.supportsPackage(c, l));
               if (!u) throw new Error(`The package ${Q.prettyLocator(t.configuration, c)} isn't supported by any of the available linkers`);
               const h = await b({ project: t, binFolder: r, lifecycleScript: s });
@@ -12172,7 +13816,13 @@ module.exports = (() => {
           );
         }
         async function R(e, t, r, { cwd: n, stdin: i, stdout: o, stderr: A }) {
-          return await M(e.anchoredLocator, t, r, { cwd: n, project: e.project, stdin: i, stdout: o, stderr: A });
+          return await M(e.anchoredLocator, t, r, {
+            cwd: n,
+            project: e.project,
+            stdin: i,
+            stdout: o,
+            stderr: A
+          });
         }
         function K(e, t) {
           return e.manifest.scripts.has(t);
@@ -12182,7 +13832,11 @@ module.exports = (() => {
           await s.xfs.mktempPromise(async (A) => {
             const a = i.y1.join(A, t + '.log'),
               c = `# This file contains the result of Yarn calling the "${t}" lifecycle script inside a workspace ("${e.cwd}")\n`,
-              { stdout: g, stderr: l } = o.getSubprocessStreams(a, { report: n, prefix: Q.prettyLocator(o, e.anchoredLocator), header: c });
+              { stdout: g, stderr: l } = o.getSubprocessStreams(a, {
+                report: n,
+                prefix: Q.prettyLocator(o, e.anchoredLocator),
+                header: c
+              });
             n.reportInfo(C.b.LIFECYCLE_SCRIPT, `Calling the "${t}" lifecycle script`);
             const h = await R(e, t, [], { cwd: r, stdin: null, stdout: g, stderr: l });
             if ((g.end(), l.end(), 0 !== h))
@@ -12246,7 +13900,13 @@ module.exports = (() => {
             for (const [e, [, t]] of l) await v(h.BERRY_BIN_FOLDER, (0, i.Zu)(e), process.execPath, [t]);
             let p;
             try {
-              p = await B.pipevp(process.execPath, [...g, t, ...r], { cwd: n, env: h, stdin: A, stdout: a, stderr: c });
+              p = await B.pipevp(process.execPath, [...g, t, ...r], {
+                cwd: n,
+                env: h,
+                stdin: A,
+                stdout: a,
+                stderr: c
+              });
             } finally {
               await s.xfs.removePromise(h.BERRY_BIN_FOLDER);
             }
@@ -12254,7 +13914,13 @@ module.exports = (() => {
           });
         }
         async function U(e, t, r, { cwd: n, stdin: i, stdout: o, stderr: A }) {
-          return await O(e.anchoredLocator, t, r, { project: e.project, cwd: n, stdin: i, stdout: o, stderr: A });
+          return await O(e.anchoredLocator, t, r, {
+            project: e.project,
+            cwd: n,
+            stdin: i,
+            stdout: o,
+            stderr: A
+          });
         }
       },
       36545: (e, t, r) => {
@@ -12360,22 +14026,52 @@ module.exports = (() => {
           return { identHash: c.makeHash(e, t), scope: e, name: t };
         }
         function h(e, t) {
-          return { identHash: e.identHash, scope: e.scope, name: e.name, descriptorHash: c.makeHash(e.identHash, t), range: t };
+          return {
+            identHash: e.identHash,
+            scope: e.scope,
+            name: e.name,
+            descriptorHash: c.makeHash(e.identHash, t),
+            range: t
+          };
         }
         function p(e, t) {
-          return { identHash: e.identHash, scope: e.scope, name: e.name, locatorHash: c.makeHash(e.identHash, t), reference: t };
+          return {
+            identHash: e.identHash,
+            scope: e.scope,
+            name: e.name,
+            locatorHash: c.makeHash(e.identHash, t),
+            reference: t
+          };
         }
         function f(e) {
           return { identHash: e.identHash, scope: e.scope, name: e.name };
         }
         function d(e) {
-          return { identHash: e.identHash, scope: e.scope, name: e.name, locatorHash: e.descriptorHash, reference: e.range };
+          return {
+            identHash: e.identHash,
+            scope: e.scope,
+            name: e.name,
+            locatorHash: e.descriptorHash,
+            reference: e.range
+          };
         }
         function C(e) {
-          return { identHash: e.identHash, scope: e.scope, name: e.name, descriptorHash: e.locatorHash, range: e.reference };
+          return {
+            identHash: e.identHash,
+            scope: e.scope,
+            name: e.name,
+            descriptorHash: e.locatorHash,
+            range: e.reference
+          };
         }
         function I(e) {
-          return { identHash: e.identHash, scope: e.scope, name: e.name, locatorHash: e.locatorHash, reference: e.reference };
+          return {
+            identHash: e.identHash,
+            scope: e.scope,
+            name: e.name,
+            locatorHash: e.locatorHash,
+            reference: e.reference
+          };
         }
         function E(e, t) {
           return {
@@ -12492,7 +14188,12 @@ module.exports = (() => {
           const i = void 0 !== r[3] ? decodeURIComponent(r[2]) : null;
           if ((null == t ? void 0 : t.requireSource) && null === i) throw new Error(`Missing source (${e})`);
           const A = void 0 !== r[3] ? decodeURIComponent(r[3]) : decodeURIComponent(r[2]);
-          return { protocol: n, source: i, selector: (null == t ? void 0 : t.parseSelector) ? o().parse(A) : A, params: void 0 !== r[4] ? o().parse(r[4]) : null };
+          return {
+            protocol: n,
+            source: i,
+            selector: (null == t ? void 0 : t.parseSelector) ? o().parse(A) : A,
+            params: void 0 !== r[4] ? o().parse(r[4]) : null
+          };
         }
         function U(e, { protocol: t }) {
           const { selector: r, params: n } = O(e, { requireProtocol: t, requireBindings: !0 });
@@ -12589,7 +14290,12 @@ module.exports = (() => {
       },
       72785: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { makeArchiveFromDirectory: () => h, convertToZip: () => p, extractArchiveTo: () => f });
+        r.r(t),
+          r.d(t, {
+            makeArchiveFromDirectory: () => h,
+            convertToZip: () => p,
+            extractArchiveTo: () => f
+          });
         var n = r(78420),
           i = r(46009),
           o = r(90739),
@@ -12677,7 +14383,13 @@ module.exports = (() => {
       },
       85875: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { treeNodeToTreeify: () => o, treeNodeToJson: () => A, emitList: () => s, emitTree: () => a });
+        r.r(t),
+          r.d(t, {
+            treeNodeToTreeify: () => o,
+            treeNodeToJson: () => A,
+            emitList: () => s,
+            emitTree: () => a
+          });
         var n = r(94682),
           i = r(71643);
         function o(e, { configuration: t }) {
@@ -12974,7 +14686,11 @@ module.exports = (() => {
             if (i.isDirectory()) {
               this.mkdirpSync(e);
               const i = r.readdirSync(t);
-              for (const o of i) this.copySync(this.pathUtils.join(e, o), r.pathUtils.join(t, o), { baseFs: r, overwrite: n });
+              for (const o of i)
+                this.copySync(this.pathUtils.join(e, o), r.pathUtils.join(t, o), {
+                  baseFs: r,
+                  overwrite: n
+                });
             } else if (i.isFile()) {
               if (!o || n) {
                 o && this.removeSync(e);
@@ -13489,7 +15205,9 @@ module.exports = (() => {
             return this.baseFs.openSync(this.mapToBase(e), t, r);
           }
           async opendirPromise(e, t) {
-            return Object.assign(await this.baseFs.opendirPromise(this.mapToBase(e), t), { path: e });
+            return Object.assign(await this.baseFs.opendirPromise(this.mapToBase(e), t), {
+              path: e
+            });
           }
           opendirSync(e, t) {
             return Object.assign(this.baseFs.opendirSync(this.mapToBase(e), t), { path: e });
@@ -14622,21 +16340,30 @@ module.exports = (() => {
           async writePromise(e, t, r, n, i) {
             if (0 == (e & c)) return 'string' == typeof t ? await this.baseFs.writePromise(e, t, r) : await this.baseFs.writePromise(e, t, r, n, i);
             const o = this.fdMap.get(e);
-            if (void 0 === o) throw Object.assign(new Error('EBADF: bad file descriptor, write'), { code: 'EBADF' });
+            if (void 0 === o)
+              throw Object.assign(new Error('EBADF: bad file descriptor, write'), {
+                code: 'EBADF'
+              });
             const [A, s] = o;
             return 'string' == typeof t ? await A.writePromise(s, t, r) : await A.writePromise(s, t, r, n, i);
           }
           writeSync(e, t, r, n, i) {
             if (0 == (e & c)) return 'string' == typeof t ? this.baseFs.writeSync(e, t, r) : this.baseFs.writeSync(e, t, r, n, i);
             const o = this.fdMap.get(e);
-            if (void 0 === o) throw Object.assign(new Error('EBADF: bad file descriptor, write'), { code: 'EBADF' });
+            if (void 0 === o)
+              throw Object.assign(new Error('EBADF: bad file descriptor, write'), {
+                code: 'EBADF'
+              });
             const [A, s] = o;
             return 'string' == typeof t ? A.writeSync(s, t, r) : A.writeSync(s, t, r, n, i);
           }
           async closePromise(e) {
             if (0 == (e & c)) return await this.baseFs.closePromise(e);
             const t = this.fdMap.get(e);
-            if (void 0 === t) throw Object.assign(new Error('EBADF: bad file descriptor, close'), { code: 'EBADF' });
+            if (void 0 === t)
+              throw Object.assign(new Error('EBADF: bad file descriptor, close'), {
+                code: 'EBADF'
+              });
             this.fdMap.delete(e);
             const [r, n] = t;
             return await r.closePromise(n);
@@ -14644,7 +16371,10 @@ module.exports = (() => {
           closeSync(e) {
             if (0 == (e & c)) return this.baseFs.closeSync(e);
             const t = this.fdMap.get(e);
-            if (void 0 === t) throw Object.assign(new Error('EBADF: bad file descriptor, close'), { code: 'EBADF' });
+            if (void 0 === t)
+              throw Object.assign(new Error('EBADF: bad file descriptor, close'), {
+                code: 'EBADF'
+              });
             this.fdMap.delete(e);
             const [r, n] = t;
             return r.closeSync(n);
@@ -14785,17 +16515,24 @@ module.exports = (() => {
                   t,
                   async () => await this.baseFs.renamePromise(e, t),
                   async () => {
-                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), { code: 'EEXDEV' });
+                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), {
+                      code: 'EEXDEV'
+                    });
                   }
                 ),
               async (e, { subPath: r }) =>
                 await this.makeCallPromise(
                   t,
                   async () => {
-                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), { code: 'EEXDEV' });
+                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), {
+                      code: 'EEXDEV'
+                    });
                   },
                   async (t, { subPath: n }) => {
-                    if (e !== t) throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), { code: 'EEXDEV' });
+                    if (e !== t)
+                      throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), {
+                        code: 'EEXDEV'
+                      });
                     return await e.renamePromise(r, n);
                   }
                 )
@@ -14809,17 +16546,24 @@ module.exports = (() => {
                   t,
                   () => this.baseFs.renameSync(e, t),
                   async () => {
-                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), { code: 'EEXDEV' });
+                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), {
+                      code: 'EEXDEV'
+                    });
                   }
                 ),
               (e, { subPath: r }) =>
                 this.makeCallSync(
                   t,
                   () => {
-                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), { code: 'EEXDEV' });
+                    throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), {
+                      code: 'EEXDEV'
+                    });
                   },
                   (t, { subPath: n }) => {
-                    if (e !== t) throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), { code: 'EEXDEV' });
+                    if (e !== t)
+                      throw Object.assign(new Error('EEXDEV: cross-device link not permitted'), {
+                        code: 'EEXDEV'
+                      });
                     return e.renameSync(r, n);
                   }
                 )
@@ -15118,7 +16862,10 @@ module.exports = (() => {
                 }
                 this.isZip.add(t);
               }
-              return { archivePath: t, subPath: this.pathUtils.join(a.LZ.root, e.substr(t.length)) };
+              return {
+                archivePath: t,
+                subPath: this.pathUtils.join(a.LZ.root, e.substr(t.length))
+              };
             }
           }
           limitOpenFiles(e) {
@@ -15143,7 +16890,12 @@ module.exports = (() => {
               }, r - t).unref());
           }
           async getZipPromise(e, t) {
-            const r = async () => ({ baseFs: this.baseFs, libzip: this.libzip, readOnly: this.readOnlyArchives, stats: await this.baseFs.statPromise(e) });
+            const r = async () => ({
+              baseFs: this.baseFs,
+              libzip: this.libzip,
+              readOnly: this.readOnlyArchives,
+              stats: await this.baseFs.statPromise(e)
+            });
             if (this.zipInstances) {
               let n = this.zipInstances.get(e);
               if (!n) {
@@ -15170,7 +16922,12 @@ module.exports = (() => {
             }
           }
           getZipSync(e, t) {
-            const r = () => ({ baseFs: this.baseFs, libzip: this.libzip, readOnly: this.readOnlyArchives, stats: this.baseFs.statSync(e) });
+            const r = () => ({
+              baseFs: this.baseFs,
+              libzip: this.libzip,
+              readOnly: this.readOnlyArchives,
+              stats: this.baseFs.statSync(e)
+            });
             if (this.zipInstances) {
               let n = this.zipInstances.get(e);
               return (
@@ -15922,7 +17679,13 @@ module.exports = (() => {
           (e[(e.File = 0)] = 'File'), (e[(e.Portable = 1)] = 'Portable'), (e[(e.Native = 2)] = 'Native');
         })(n || (n = {}));
         const A = { root: '/', dot: '.' },
-          s = { nodeModules: 'node_modules', manifest: 'package.json', lockfile: 'yarn.lock', pnpJs: '.pnp.js', rc: '.yarnrc.yml' },
+          s = {
+            nodeModules: 'node_modules',
+            manifest: 'package.json',
+            lockfile: 'yarn.lock',
+            pnpJs: '.pnp.js',
+            rc: '.yarnrc.yml'
+          },
           a = Object.create(o()),
           c = Object.create(o().posix);
         (a.cwd = () => process.cwd()),
@@ -15960,7 +17723,14 @@ module.exports = (() => {
       },
       65760: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { DirEntry: () => i, StatEntry: () => o, makeDefaultStats: () => A, makeEmptyStats: () => s, areStatsEqual: () => a });
+        r.r(t),
+          r.d(t, {
+            DirEntry: () => i,
+            StatEntry: () => o,
+            makeDefaultStats: () => A,
+            makeEmptyStats: () => s,
+            areStatsEqual: () => a
+          });
         var n = r(22004);
         class i {
           constructor() {
@@ -16177,8 +17947,13 @@ module.exports = (() => {
                   setCompression: e.cwrap('zip_set_file_compression', 'number', ['number', ...n, 'number', 'number'])
                 },
                 ext: { countSymlinks: e.cwrap('zip_ext_count_symlinks', 'number', ['number']) },
-                error: { initWithCode: e.cwrap('zip_error_init_with_code', null, ['number', 'number']), strerror: e.cwrap('zip_error_strerror', 'string', ['number']) },
-                name: { locate: e.cwrap('zip_name_locate', 'number', ['number', 'string', 'number']) },
+                error: {
+                  initWithCode: e.cwrap('zip_error_init_with_code', null, ['number', 'number']),
+                  strerror: e.cwrap('zip_error_strerror', 'string', ['number'])
+                },
+                name: {
+                  locate: e.cwrap('zip_name_locate', 'number', ['number', 'string', 'number'])
+                },
                 source: {
                   fromUnattachedBuffer: e.cwrap('zip_source_buffer_create', 'number', ['number', 'number', 'number', 'number']),
                   fromBuffer: e.cwrap('zip_source_buffer', 'number', ['number', 'number', ...n, 'number']),
@@ -16215,7 +17990,14 @@ module.exports = (() => {
       },
       11640: (e, t, r) => {
         'use strict';
-        r.r(t), r.d(t, { parseResolution: () => A, parseShell: () => i, parseSyml: () => I, stringifyResolution: () => s, stringifySyml: () => f });
+        r.r(t),
+          r.d(t, {
+            parseResolution: () => A,
+            parseShell: () => i,
+            parseSyml: () => I,
+            stringifyResolution: () => s,
+            stringifySyml: () => f
+          });
         var n = r(92962);
         function i(e, t = { isGlobPattern: () => !1 }) {
           try {
@@ -16345,15 +18127,31 @@ module.exports = (() => {
           })(i || (i = {}));
         const o = {
           [i.DEFAULT]: { collapsed: !1, next: { '*': i.DEFAULT } },
-          [i.TOP_LEVEL]: { collapsed: !1, next: { fallbackExclusionList: i.FALLBACK_EXCLUSION_LIST, packageRegistryData: i.PACKAGE_REGISTRY_DATA, '*': i.DEFAULT } },
-          [i.FALLBACK_EXCLUSION_LIST]: { collapsed: !1, next: { '*': i.FALLBACK_EXCLUSION_ENTRIES } },
-          [i.FALLBACK_EXCLUSION_ENTRIES]: { collapsed: !0, next: { '*': i.FALLBACK_EXCLUSION_DATA } },
+          [i.TOP_LEVEL]: {
+            collapsed: !1,
+            next: {
+              fallbackExclusionList: i.FALLBACK_EXCLUSION_LIST,
+              packageRegistryData: i.PACKAGE_REGISTRY_DATA,
+              '*': i.DEFAULT
+            }
+          },
+          [i.FALLBACK_EXCLUSION_LIST]: {
+            collapsed: !1,
+            next: { '*': i.FALLBACK_EXCLUSION_ENTRIES }
+          },
+          [i.FALLBACK_EXCLUSION_ENTRIES]: {
+            collapsed: !0,
+            next: { '*': i.FALLBACK_EXCLUSION_DATA }
+          },
           [i.FALLBACK_EXCLUSION_DATA]: { collapsed: !0, next: { '*': i.DEFAULT } },
           [i.PACKAGE_REGISTRY_DATA]: { collapsed: !1, next: { '*': i.PACKAGE_REGISTRY_ENTRIES } },
           [i.PACKAGE_REGISTRY_ENTRIES]: { collapsed: !0, next: { '*': i.PACKAGE_STORE_DATA } },
           [i.PACKAGE_STORE_DATA]: { collapsed: !1, next: { '*': i.PACKAGE_STORE_ENTRIES } },
           [i.PACKAGE_STORE_ENTRIES]: { collapsed: !0, next: { '*': i.PACKAGE_INFORMATION_DATA } },
-          [i.PACKAGE_INFORMATION_DATA]: { collapsed: !1, next: { packageDependencies: i.PACKAGE_DEPENDENCIES, '*': i.DEFAULT } },
+          [i.PACKAGE_INFORMATION_DATA]: {
+            collapsed: !1,
+            next: { packageDependencies: i.PACKAGE_DEPENDENCIES, '*': i.DEFAULT }
+          },
           [i.PACKAGE_DEPENDENCIES]: { collapsed: !1, next: { '*': i.PACKAGE_DEPENDENCY } },
           [i.PACKAGE_DEPENDENCY]: { collapsed: !0, next: { '*': i.DEFAULT } }
         };
@@ -16450,7 +18248,16 @@ module.exports = (() => {
               for (const [e, t] of c(o.entries(), ([e]) => e)) n.push([e, t]);
               const g = A && A.size > 0 ? Array.from(A) : void 0,
                 l = a || void 0;
-              e.push([t, { packageLocation: i, packageDependencies: n, packagePeers: g, linkType: s, discardFromLookup: l }]);
+              e.push([
+                t,
+                {
+                  packageLocation: i,
+                  packageDependencies: n,
+                  packagePeers: g,
+                  linkType: s,
+                  discardFromLookup: l
+                }
+              ]);
             }
           }
           return t;
@@ -16546,7 +18353,11 @@ module.exports = (() => {
         function S(e, t, r = {}) {
           const n = D.has(e) ? 'MODULE_NOT_FOUND' : e,
             i = { configurable: !0, writable: !0, enumerable: !1 };
-          return Object.defineProperties(new Error(t), { code: { ...i, value: n }, pnpCode: { ...i, value: e }, data: { ...i, value: r } });
+          return Object.defineProperties(new Error(t), {
+            code: { ...i, value: n },
+            pnpCode: { ...i, value: e },
+            data: { ...i, value: r }
+          });
         }
         function k(e) {
           return w.cS.normalize(w.cS.fromPortablePath(e));
@@ -16760,7 +18571,13 @@ module.exports = (() => {
                         } tried to access ${t} (a peer dependency) but it isn't provided by your application; this makes the require call ambiguous and unsound.\n\nRequired package: ${t} (via "${l}")\nRequired by: ${
                           s.name
                         }@${s.reference} (via ${u})\n${e.map((e) => `Ancestor breaking the chain: ${e.name}@${e.reference}\n`).join('')}\n`,
-                        { request: l, issuer: u, issuerLocator: Object.assign({}, s), dependencyName: t, brokenAncestors: e }
+                        {
+                          request: l,
+                          issuer: u,
+                          issuerLocator: Object.assign({}, s),
+                          dependencyName: t,
+                          brokenAncestors: e
+                        }
                       )
                     : S(
                         Q.MISSING_PEER_DEPENDENCY,
@@ -16769,7 +18586,13 @@ module.exports = (() => {
                         } tried to access ${t} (a peer dependency) but it isn't provided by its ancestors; this makes the require call ambiguous and unsound.\n\nRequired package: ${t} (via "${l}")\nRequired by: ${
                           s.name
                         }@${s.reference} (via ${u})\n${e.map((e) => `Ancestor breaking the chain: ${e.name}@${e.reference}\n`).join('')}\n`,
-                        { request: l, issuer: u, issuerLocator: Object.assign({}, s), dependencyName: t, brokenAncestors: e }
+                        {
+                          request: l,
+                          issuer: u,
+                          issuerLocator: Object.assign({}, s),
+                          dependencyName: t,
+                          brokenAncestors: e
+                        }
                       );
                 }
               else
@@ -16785,7 +18608,12 @@ module.exports = (() => {
                         : S(
                             Q.UNDECLARED_DEPENDENCY,
                             `${s.name} tried to access ${t}. While this module is usually interpreted as a Node builtin, your resolver is running inside a non-Node resolution context where such builtins are ignored. Since ${t} isn't otherwise declared in ${s.name}'s dependencies, this makes the require call ambiguous and unsound.\n\nRequired package: ${t} (via "${l}")\nRequired by: ${u}\n`,
-                            { request: l, issuer: u, issuerLocator: Object.assign({}, s), dependencyName: t }
+                            {
+                              request: l,
+                              issuer: u,
+                              issuerLocator: Object.assign({}, s),
+                              dependencyName: t
+                            }
                           )
                       : I(s)
                       ? S(
@@ -16796,7 +18624,12 @@ module.exports = (() => {
                       : S(
                           Q.UNDECLARED_DEPENDENCY,
                           `${s.name} tried to access ${t}, but it isn't declared in its dependencies; this makes the require call ambiguous and unsound.\n\nRequired package: ${t} (via "${l}")\nRequired by: ${s.name}@${s.reference} (via ${u})\n`,
-                          { request: l, issuer: u, issuerLocator: Object.assign({}, s), dependencyName: t }
+                          {
+                            request: l,
+                            issuer: u,
+                            issuerLocator: Object.assign({}, s),
+                            dependencyName: t
+                          }
                         ));
               if (null == f) {
                 if (null === d || null === m) throw m || new Error('Assertion failed: Expected an error to have been set');
@@ -16971,7 +18804,14 @@ module.exports = (() => {
         'use strict';
         r.r(t), r.d(t, { ShellError: () => c, execute: () => Z, globUtils: () => n });
         var n = {};
-        r.r(n), r.d(n, { fastGlobOptions: () => E, isBraceExpansion: () => y, isGlobPattern: () => m, match: () => B, micromatchOptions: () => I });
+        r.r(n),
+          r.d(n, {
+            fastGlobOptions: () => E,
+            isBraceExpansion: () => y,
+            isGlobPattern: () => m,
+            match: () => B,
+            micromatchOptions: () => I
+          });
         var i = r(46009),
           o = r(78420),
           A = r(11640),
@@ -17002,7 +18842,11 @@ module.exports = (() => {
           return !0;
         }
         function B(e, { cwd: t, baseFs: r }) {
-          return h()(e, { ...E, cwd: i.cS.fromPortablePath(t), fs: (0, g.extendFs)(f(), new l.i(r)) });
+          return h()(e, {
+            ...E,
+            cwd: i.cS.fromPortablePath(t),
+            fs: (0, g.extendFs)(f(), new l.i(r))
+          });
         }
         function y(e) {
           return C().scan(e, I).isBrace;
@@ -17127,7 +18971,11 @@ module.exports = (() => {
             '__ysh_run_procedure',
             async (e, t, r) => {
               const n = r.procedures[e[0]];
-              return await F(n, { stdin: new S(r.stdin), stdout: new S(r.stdout), stderr: new S(r.stderr) }).run();
+              return await F(n, {
+                stdin: new S(r.stdin),
+                stdout: new S(r.stdout),
+                stderr: new S(r.stderr)
+              }).run();
             }
           ],
           [
@@ -17166,7 +19014,11 @@ module.exports = (() => {
                       c.push(t.baseFs.createWriteStream(i.y1.resolve(r.cwd, i.cS.toPortablePath(e[o]))));
                       break;
                     case '>>':
-                      c.push(t.baseFs.createWriteStream(i.y1.resolve(r.cwd, i.cS.toPortablePath(e[o])), { flags: 'a' }));
+                      c.push(
+                        t.baseFs.createWriteStream(i.y1.resolve(r.cwd, i.cS.toPortablePath(e[o])), {
+                          flags: 'a'
+                        })
+                      );
                       break;
                     case '>&':
                       c.push(R(Number(e[o]), N.Writable, r));
@@ -17195,7 +19047,11 @@ module.exports = (() => {
                 o = e;
                 for (const t of c) e.pipe(t);
               }
-              const l = await F(G(e.slice(g + 1), t, r), { stdin: new S(n), stdout: new S(o), stderr: new S(A) }).run();
+              const l = await F(G(e.slice(g + 1), t, r), {
+                stdin: new S(n),
+                stdout: new S(o),
+                stderr: new S(A)
+              }).run();
               return (
                 await Promise.all(
                   c.map(
@@ -17281,7 +19137,12 @@ module.exports = (() => {
             }
           }
         }
-        const U = { addition: (e, t) => e + t, subtraction: (e, t) => e - t, multiplication: (e, t) => e * t, division: (e, t) => Math.trunc(e / t) };
+        const U = {
+          addition: (e, t) => e + t,
+          subtraction: (e, t) => e - t,
+          multiplication: (e, t) => e * t,
+          division: (e, t) => Math.trunc(e / t)
+        };
         async function j(e, t, r) {
           if ('number' === e.type) {
             if (Number.isInteger(e.value)) return e.value;
@@ -17414,7 +19275,10 @@ module.exports = (() => {
           return (function (e) {
             return (t) => {
               const r = 'pipe' === t[0] ? new a.PassThrough() : t[0];
-              return { stdin: r, promise: Promise.resolve().then(() => e({ stdin: r, stdout: t[1], stderr: t[2] })) };
+              return {
+                stdin: r,
+                promise: Promise.resolve().then(() => e({ stdin: r, stdout: t[1], stderr: t[2] }))
+              };
             };
           })(async ({ stdin: e, stdout: n, stderr: i }) => ((r.stdin = e), (r.stdout = n), (r.stderr = i), await c(s, t, r)));
         }
@@ -17477,7 +19341,12 @@ module.exports = (() => {
                       }
                     }
                     if (void 0 === A) throw new Error('Assertion failed: An action should have been generated');
-                    if (null === i) o = F(A, { stdin: new S(e.stdin), stdout: new S(e.stdout), stderr: new S(e.stderr) });
+                    if (null === i)
+                      o = F(A, {
+                        stdin: new S(e.stdin),
+                        stdout: new S(e.stdout),
+                        stderr: new S(e.stderr)
+                      });
                     else {
                       if (null === o) throw new Error('Assertion failed: The execution pipeline should have been setup');
                       switch (i) {
@@ -17612,8 +19481,25 @@ module.exports = (() => {
           }
           return await z(
             I,
-            { args: t, baseFs: r, builtins: C, initialStdin: l, initialStdout: u, initialStderr: h, glob: f },
-            { cwd: c, environment: d, exitCode: null, procedures: {}, stdin: l, stdout: u, stderr: h, variables: Object.assign({}, p, { '?': 0 }) }
+            {
+              args: t,
+              baseFs: r,
+              builtins: C,
+              initialStdin: l,
+              initialStdout: u,
+              initialStderr: h,
+              glob: f
+            },
+            {
+              cwd: c,
+              environment: d,
+              exitCode: null,
+              procedures: {},
+              stdin: l,
+              stdout: u,
+              stderr: h,
+              variables: Object.assign({}, p, { '?': 0 })
+            }
           );
         }
       },
@@ -17769,7 +19655,14 @@ module.exports = (() => {
         'use strict';
         Object.defineProperty(t, '__esModule', { value: !0 });
         const n = r(35747);
-        (t.FILE_SYSTEM_ADAPTER = { lstat: n.lstat, stat: n.stat, lstatSync: n.lstatSync, statSync: n.statSync, readdir: n.readdir, readdirSync: n.readdirSync }),
+        (t.FILE_SYSTEM_ADAPTER = {
+          lstat: n.lstat,
+          stat: n.stat,
+          lstatSync: n.lstatSync,
+          statSync: n.statSync,
+          readdir: n.readdir,
+          readdirSync: n.readdirSync
+        }),
           (t.createFileSystemAdapter = function (e) {
             return void 0 === e ? t.FILE_SYSTEM_ADAPTER : Object.assign(Object.assign({}, t.FILE_SYSTEM_ADAPTER), e);
           });
@@ -17813,7 +19706,11 @@ module.exports = (() => {
         function s(e, t, r) {
           t.fs.readdir(e, { withFileTypes: !0 }, (n, o) => {
             if (null !== n) return c(r, n);
-            const s = o.map((r) => ({ dirent: r, name: r.name, path: `${e}${t.pathSegmentSeparator}${r.name}` }));
+            const s = o.map((r) => ({
+              dirent: r,
+              name: r.name,
+              path: `${e}${t.pathSegmentSeparator}${r.name}`
+            }));
             if (!t.followSymbolicLinks) return g(r, s);
             const a = s.map((e) =>
               (function (e, t) {
@@ -17947,7 +19844,12 @@ module.exports = (() => {
         'use strict';
         Object.defineProperty(t, '__esModule', { value: !0 });
         const n = r(35747);
-        (t.FILE_SYSTEM_ADAPTER = { lstat: n.lstat, stat: n.stat, lstatSync: n.lstatSync, statSync: n.statSync }),
+        (t.FILE_SYSTEM_ADAPTER = {
+          lstat: n.lstat,
+          stat: n.stat,
+          lstatSync: n.lstatSync,
+          statSync: n.statSync
+        }),
           (t.createFileSystemAdapter = function (e) {
             return void 0 === e ? t.FILE_SYSTEM_ADAPTER : Object.assign(Object.assign({}, t.FILE_SYSTEM_ADAPTER), e);
           });
@@ -18085,7 +19987,11 @@ module.exports = (() => {
             (this._root = e),
               (this._settings = t),
               (this._reader = new i.default(this._root, this._settings)),
-              (this._stream = new n.Readable({ objectMode: !0, read: () => {}, destroy: this._reader.destroy.bind(this._reader) }));
+              (this._stream = new n.Readable({
+                objectMode: !0,
+                read: () => {},
+                destroy: this._reader.destroy.bind(this._reader)
+              }));
           }
           read() {
             return (
@@ -18581,8 +20487,16 @@ module.exports = (() => {
           any: (e, ...t) => p(c.any(e, ...t), 'predicate returns truthy for any value', t),
           all: (e, ...t) => p(c.all(e, ...t), 'predicate returns truthy for all values', t)
         }),
-          Object.defineProperties(c, { class: { value: c.class_ }, function: { value: c.function_ }, null: { value: c.null_ } }),
-          Object.defineProperties(t.assert, { class: { value: t.assert.class_ }, function: { value: t.assert.function_ }, null: { value: t.assert.null_ } }),
+          Object.defineProperties(c, {
+            class: { value: c.class_ },
+            function: { value: c.function_ },
+            null: { value: c.null_ }
+          }),
+          Object.defineProperties(t.assert, {
+            class: { value: t.assert.class_ },
+            function: { value: t.assert.function_ },
+            null: { value: t.assert.null_ }
+          }),
           (t.default = c),
           (e.exports = c),
           (e.exports.default = c),
@@ -18605,7 +20519,16 @@ module.exports = (() => {
               end: void 0,
               error: void 0,
               abort: void 0,
-              phases: { wait: void 0, dns: void 0, tcp: void 0, tls: void 0, request: void 0, firstByte: void 0, download: void 0, total: void 0 }
+              phases: {
+                wait: void 0,
+                dns: void 0,
+                tcp: void 0,
+                tls: void 0,
+                request: void 0,
+                firstByte: void 0,
+                download: void 0,
+                total: void 0
+              }
             };
             e.timings = t;
             const r = (e) => {
@@ -19059,7 +20982,16 @@ module.exports = (() => {
           get: function () {
             const e = new Map(),
               t = {
-                modifier: { reset: [0, 0], bold: [1, 22], dim: [2, 22], italic: [3, 23], underline: [4, 24], inverse: [7, 27], hidden: [8, 28], strikethrough: [9, 29] },
+                modifier: {
+                  reset: [0, 0],
+                  bold: [1, 22],
+                  dim: [2, 22],
+                  italic: [3, 23],
+                  underline: [4, 24],
+                  inverse: [7, 27],
+                  hidden: [8, 28],
+                  strikethrough: [9, 29]
+                },
                 color: {
                   black: [30, 39],
                   red: [31, 39],
@@ -19592,7 +21524,16 @@ module.exports = (() => {
                           else {
                             S++;
                             let e = (Q.value && '$' === Q.value.slice(-1)) || !0 === w.dollar;
-                            (w = M({ type: 'brace', open: !0, close: !1, dollar: e, depth: S, commas: 0, ranges: 0, nodes: [] })),
+                            (w = M({
+                              type: 'brace',
+                              open: !0,
+                              close: !1,
+                              dollar: e,
+                              depth: S,
+                              commas: 0,
+                              ranges: 0,
+                              nodes: []
+                            })),
                               y.push(w),
                               M({ type: 'open', value: m });
                           }
@@ -19891,7 +21832,12 @@ module.exports = (() => {
           constructor(e, t) {
             if ('function' != typeof e) throw new TypeError('Parameter `request` must be a function');
             return (
-              (this.cache = new l({ uri: 'string' == typeof t && t, store: 'string' != typeof t && t, namespace: 'cacheable-request' })), this.createCacheableRequest(e)
+              (this.cache = new l({
+                uri: 'string' == typeof t && t,
+                store: 'string' != typeof t && t,
+                namespace: 'cacheable-request'
+              })),
+              this.createCacheableRequest(e)
             );
           }
           createCacheableRequest(e) {
@@ -19904,9 +21850,21 @@ module.exports = (() => {
                   n = r.length > 0 ? '?' + r.join('?') : '';
                 l = p({ ...t, pathname: e, search: n });
               }
-              (t = { headers: {}, method: 'GET', cache: !0, strictTtl: !1, automaticFailover: !1, ...t, ...h(l) }).headers = c(t.headers);
+              (t = {
+                headers: {},
+                method: 'GET',
+                cache: !0,
+                strictTtl: !1,
+                automaticFailover: !1,
+                ...t,
+                ...h(l)
+              }).headers = c(t.headers);
               const f = new n(),
-                d = o(i.format(l), { stripWWW: !1, removeTrailingSlash: !1, stripAuthentication: !1 }),
+                d = o(i.format(l), {
+                  stripWWW: !1,
+                  removeTrailingSlash: !1,
+                  stripAuthentication: !1
+                }),
                 C = `${t.method}:${d}`;
               let I = !1,
                 E = !1;
@@ -19937,7 +21895,12 @@ module.exports = (() => {
                               const r = A.buffer(e);
                               if ((await Promise.race([o, new Promise((t) => e.once('end', t))]), i)) return;
                               const n = await r,
-                                s = { cachePolicy: e.cachePolicy.toObject(), url: e.url, statusCode: e.fromCache ? I.statusCode : e.statusCode, body: n };
+                                s = {
+                                  cachePolicy: e.cachePolicy.toObject(),
+                                  url: e.url,
+                                  statusCode: e.fromCache ? I.statusCode : e.statusCode,
+                                  body: n
+                                };
                               let a = t.strictTtl ? e.cachePolicy.timeToLive() : void 0;
                               t.maxTtl && (a = a ? Math.min(a, t.maxTtl) : t.maxTtl), await this.cache.set(C, s, a);
                             } catch (e) {
@@ -19994,7 +21957,14 @@ module.exports = (() => {
           return (t.path = `${e.pathname || '/'}${e.search || ''}`), delete t.pathname, delete t.search, t;
         }
         function p(e) {
-          return { protocol: e.protocol, auth: e.auth, hostname: e.hostname || e.host || 'localhost', port: e.port, pathname: e.pathname, search: e.search };
+          return {
+            protocol: e.protocol,
+            auth: e.auth,
+            hostname: e.hostname || e.host || 'localhost',
+            port: e.port,
+            pathname: e.pathname,
+            search: e.search
+          };
         }
         (u.RequestError = class extends Error {
           constructor(e) {
@@ -20163,7 +22133,16 @@ module.exports = (() => {
         (m.supportsColor = i),
           (m.stderr = u({ level: o ? o.level : 0 })),
           (m.stderr.supportsColor = o),
-          (m.Level = { None: 0, Basic: 1, Ansi256: 2, TrueColor: 3, 0: 'None', 1: 'Basic', 2: 'Ansi256', 3: 'TrueColor' }),
+          (m.Level = {
+            None: 0,
+            Basic: 1,
+            Ansi256: 2,
+            TrueColor: 3,
+            0: 'None',
+            1: 'Basic',
+            2: 'Ansi256',
+            3: 'TrueColor'
+          }),
           (e.exports = m);
       },
       80690: (e) => {
@@ -20380,7 +22359,16 @@ module.exports = (() => {
         function u(e) {
           s && console.log(e);
         }
-        const h = { candidateUsage: null, errorMessage: null, ignoreOptions: !1, path: [], positionals: [], options: [], remainder: null, selectedIndex: -1 };
+        const h = {
+          candidateUsage: null,
+          errorMessage: null,
+          ignoreOptions: !1,
+          path: [],
+          positionals: [],
+          options: [],
+          remainder: null,
+          selectedIndex: -1
+        };
         function p(e, t) {
           return e.nodes.push(t), e.nodes.length - 1;
         }
@@ -20389,7 +22377,16 @@ module.exports = (() => {
           let n = [
             {
               node: 0,
-              state: { candidateUsage: null, errorMessage: null, ignoreOptions: !1, options: [], path: [], positionals: [], remainder: null, selectedIndex: null }
+              state: {
+                candidateUsage: null,
+                errorMessage: null,
+                ignoreOptions: !1,
+                options: [],
+                path: [],
+                positionals: [],
+                remainder: null,
+                selectedIndex: null
+              }
             }
           ];
           !(function (e, { prefix: t = '' } = {}) {
@@ -20424,7 +22421,12 @@ module.exports = (() => {
                         s.push({ node: e, state: void 0 !== r ? b(k, r, a, A) : a }), u(`      Static transition to ${e} found`);
                     else
                       for (const { to: e, reducer: r } of n.statics[t])
-                        s.push({ node: e, state: Object.assign(Object.assign({}, a), { remainder: t.slice(A.length) }) }),
+                        s.push({
+                          node: e,
+                          state: Object.assign(Object.assign({}, a), {
+                            remainder: t.slice(A.length)
+                          })
+                        }),
                           u(`      Static transition to ${e} found (partial match)`);
                     e = !0;
                   }
@@ -20473,7 +22475,13 @@ module.exports = (() => {
               const t = [],
                 r = [];
               for (const n of e) -1 === n.selectedIndex ? r.push(n) : t.push(n);
-              r.length > 0 && t.push(Object.assign(Object.assign({}, h), { path: E(...r.map((e) => e.path)), options: r.reduce((e, t) => e.concat(t.options), []) }));
+              r.length > 0 &&
+                t.push(
+                  Object.assign(Object.assign({}, h), {
+                    path: E(...r.map((e) => e.path)),
+                    options: r.reduce((e, t) => e.concat(t.options), [])
+                  })
+                );
               return t;
             })(A.filter(({ positionalCount: e }) => e === s).map(({ state: e }) => e));
             if (a.length > 1)
@@ -20554,18 +22562,41 @@ module.exports = (() => {
         const k = {
             setCandidateUsage: (e, t, r) => Object.assign(Object.assign({}, e), { candidateUsage: r }),
             setSelectedIndex: (e, t, r) => Object.assign(Object.assign({}, e), { selectedIndex: r }),
-            pushBatch: (e, t) => Object.assign(Object.assign({}, e), { options: e.options.concat([...t.slice(1)].map((e) => ({ name: '-' + e, value: !0 }))) }),
+            pushBatch: (e, t) =>
+              Object.assign(Object.assign({}, e), {
+                options: e.options.concat([...t.slice(1)].map((e) => ({ name: '-' + e, value: !0 })))
+              }),
             pushBound: (e, t) => {
               const [, r, n] = t.match(A);
-              return Object.assign(Object.assign({}, e), { options: e.options.concat({ name: r, value: n }) });
+              return Object.assign(Object.assign({}, e), {
+                options: e.options.concat({ name: r, value: n })
+              });
             },
             pushPath: (e, t) => Object.assign(Object.assign({}, e), { path: e.path.concat(t) }),
-            pushPositional: (e, t) => Object.assign(Object.assign({}, e), { positionals: e.positionals.concat({ value: t, extra: !1 }) }),
-            pushExtra: (e, t) => Object.assign(Object.assign({}, e), { positionals: e.positionals.concat({ value: t, extra: !0 }) }),
-            pushExtraNoLimits: (e, t) => Object.assign(Object.assign({}, e), { positionals: e.positionals.concat({ value: t, extra: M }) }),
-            pushTrue: (e, t, r = t) => Object.assign(Object.assign({}, e), { options: e.options.concat({ name: t, value: !0 }) }),
-            pushFalse: (e, t, r = t) => Object.assign(Object.assign({}, e), { options: e.options.concat({ name: r, value: !1 }) }),
-            pushUndefined: (e, t) => Object.assign(Object.assign({}, e), { options: e.options.concat({ name: t, value: void 0 }) }),
+            pushPositional: (e, t) =>
+              Object.assign(Object.assign({}, e), {
+                positionals: e.positionals.concat({ value: t, extra: !1 })
+              }),
+            pushExtra: (e, t) =>
+              Object.assign(Object.assign({}, e), {
+                positionals: e.positionals.concat({ value: t, extra: !0 })
+              }),
+            pushExtraNoLimits: (e, t) =>
+              Object.assign(Object.assign({}, e), {
+                positionals: e.positionals.concat({ value: t, extra: M })
+              }),
+            pushTrue: (e, t, r = t) =>
+              Object.assign(Object.assign({}, e), {
+                options: e.options.concat({ name: t, value: !0 })
+              }),
+            pushFalse: (e, t, r = t) =>
+              Object.assign(Object.assign({}, e), {
+                options: e.options.concat({ name: r, value: !1 })
+              }),
+            pushUndefined: (e, t) =>
+              Object.assign(Object.assign({}, e), {
+                options: e.options.concat({ name: t, value: void 0 })
+              }),
             pushStringValue: (e, t) => {
               var r;
               const n = Object.assign(Object.assign({}, e), { options: [...e.options] }),
@@ -20586,13 +22617,17 @@ module.exports = (() => {
                       { name: '-i', value: o }
                     ]
                   })
-                : Object.assign(Object.assign({}, e), { options: [{ name: '-c', value: String(r) }] });
+                : Object.assign(Object.assign({}, e), {
+                    options: [{ name: '-c', value: String(r) }]
+                  });
             },
             setError: (e, t, r) =>
               '\0' === t ? Object.assign(Object.assign({}, e), { errorMessage: r + '.' }) : Object.assign(Object.assign({}, e), { errorMessage: `${r} ("${t}").` }),
             setOptionArityError: (e, t) => {
               const r = e.options[e.options.length - 1];
-              return Object.assign(Object.assign({}, e), { errorMessage: `Not enough arguments to option ${r.name}.` });
+              return Object.assign(Object.assign({}, e), {
+                errorMessage: `Not enough arguments to option ${r.name}.`
+              });
             }
           },
           M = Symbol();
@@ -21104,7 +23139,12 @@ PERFORMANCE OF THIS SOFTWARE.
             else if (e.length > 1) {
               this.context.stdout.write('Multiple commands match your selection:\n'), this.context.stdout.write('\n');
               let e = 0;
-              for (const t of this.commands) this.context.stdout.write(this.cli.usage(this.contexts[t].commandClass, { prefix: (e++ + '. ').padStart(5) }));
+              for (const t of this.commands)
+                this.context.stdout.write(
+                  this.cli.usage(this.contexts[t].commandClass, {
+                    prefix: (e++ + '. ').padStart(5)
+                  })
+                );
               this.context.stdout.write('\n'), this.context.stdout.write('Run again with -h=<index> to see the longer details of any of those commands.\n');
             }
           }
@@ -21193,7 +23233,10 @@ PERFORMANCE OF THIS SOFTWARE.
             for (const [r, n] of this.registrations) {
               if (void 0 === r.usage) continue;
               const { usage: i } = this.getUsageByIndex(n, { detailed: !1 }),
-                { usage: o, options: A } = this.getUsageByIndex(n, { detailed: !0, inlineOptions: !1 }),
+                { usage: o, options: A } = this.getUsageByIndex(n, {
+                  detailed: !0,
+                  inlineOptions: !1
+                }),
                 s = void 0 !== r.usage.category ? O(r.usage.category, { format: this.format(e), paragraphs: !1 }) : void 0,
                 a = void 0 !== r.usage.description ? O(r.usage.description, { format: this.format(e), paragraphs: !1 }) : void 0,
                 c = void 0 !== r.usage.details ? O(r.usage.details, { format: this.format(e), paragraphs: !0 }) : void 0,
@@ -21201,7 +23244,15 @@ PERFORMANCE OF THIS SOFTWARE.
                   void 0 !== r.usage.examples
                     ? r.usage.examples.map(([t, r]) => [O(t, { format: this.format(e), paragraphs: !1 }), r.replace(/\$0/g, this.binaryName)])
                     : void 0;
-              t.push({ path: i, usage: o, category: s, description: a, details: c, examples: g, options: A });
+              t.push({
+                path: i,
+                usage: o,
+                category: s,
+                description: a,
+                details: c,
+                examples: g,
+                options: A
+              });
             }
             return t;
           }
@@ -21213,7 +23264,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 const { description: e = '', details: r = '', examples: A = [] } = i.usage || {};
                 '' !== e && ((o += O(e, { format: this.format(t), paragraphs: !1 }).replace(/^./, (e) => e.toUpperCase())), (o += '\n')),
                   ('' !== r || A.length > 0) && ((o += this.format(t).bold('Usage:') + '\n'), (o += '\n'));
-                const { usage: s, options: a } = this.getUsageByRegistration(i, { inlineOptions: !1 });
+                const { usage: s, options: a } = this.getUsageByRegistration(i, {
+                  inlineOptions: !1
+                });
                 if (((o += `${this.format(t).bold(n)}${s}\n`), a.length > 0)) {
                   (o += '\n'), (o += P.bold('Options:') + '\n');
                   const e = a.reduce((e, t) => Math.max(e, t.definition.length), 0);
@@ -21296,7 +23349,13 @@ PERFORMANCE OF THIS SOFTWARE.
             return e ? P : T;
           }
         }
-        (Y.defaultContext = { stdin: process.stdin, stdout: process.stdout, stderr: process.stderr }), (R.Entries.Help = L), (R.Entries.Version = x);
+        (Y.defaultContext = {
+          stdin: process.stdin,
+          stdout: process.stdout,
+          stderr: process.stderr
+        }),
+          (R.Entries.Help = L),
+          (R.Entries.Version = x);
       },
       15751: (e, t, r) => {
         'use strict';
@@ -22061,7 +24120,13 @@ PERFORMANCE OF THIS SOFTWARE.
         }
         e.exports = function (e, t, r) {
           t && !Array.isArray(t) && ((r = t), (t = null));
-          const n = { command: e, args: (t = t ? t.slice(0) : []), options: (r = Object.assign({}, r)), file: void 0, original: { command: e, args: t } };
+          const n = {
+            command: e,
+            args: (t = t ? t.slice(0) : []),
+            options: (r = Object.assign({}, r)),
+            file: void 0,
+            original: { command: e, args: t }
+          };
           return r.shell ? n : g(n);
         };
       },
@@ -22528,9 +24593,28 @@ PERFORMANCE OF THIS SOFTWARE.
           x: 'toggleCursor',
           v: 'paste'
         }),
-          (t.shift = { up: 'shiftUp', down: 'shiftDown', left: 'shiftLeft', right: 'shiftRight', tab: 'prev' }),
-          (t.fn = { up: 'pageUp', down: 'pageDown', left: 'pageLeft', right: 'pageRight', delete: 'deleteForward' }),
-          (t.option = { b: 'backward', f: 'forward', d: 'cutRight', left: 'cutLeft', up: 'altUp', down: 'altDown' }),
+          (t.shift = {
+            up: 'shiftUp',
+            down: 'shiftDown',
+            left: 'shiftLeft',
+            right: 'shiftRight',
+            tab: 'prev'
+          }),
+          (t.fn = {
+            up: 'pageUp',
+            down: 'pageDown',
+            left: 'pageLeft',
+            right: 'pageRight',
+            delete: 'deleteForward'
+          }),
+          (t.option = {
+            b: 'backward',
+            f: 'forward',
+            d: 'cutRight',
+            left: 'cutLeft',
+            up: 'altUp',
+            down: 'altDown'
+          }),
           (t.keys = {
             pageup: 'pageUp',
             pagedown: 'pageDown',
@@ -22787,7 +24871,16 @@ PERFORMANCE OF THIS SOFTWARE.
           };
         const a = (e = '', t = {}) => {
           let r,
-            n = { name: t.name, ctrl: !1, meta: !1, shift: !1, option: !1, sequence: e, raw: e, ...t };
+            n = {
+              name: t.name,
+              ctrl: !1,
+              meta: !1,
+              shift: !1,
+              option: !1,
+              sequence: e,
+              raw: e,
+              ...t
+            };
           if (
             (Buffer.isBuffer(e)
               ? e[0] > 127 && void 0 === e[1]
@@ -22954,7 +25047,15 @@ PERFORMANCE OF THIS SOFTWARE.
             if (this.state.closed || !1 === this.options.show) return;
             let { prompt: e, after: t, rest: r } = this.sections(),
               { cursor: n, initial: i = '', input: o = '', value: A = '' } = this,
-              s = { after: t, cursor: n, initial: i, input: o, prompt: e, size: (this.state.size = r.length), value: A },
+              s = {
+                after: t,
+                cursor: n,
+                initial: i,
+                input: o,
+                prompt: e,
+                size: (this.state.size = r.length),
+                value: A
+              },
               a = g.cursor.restore(s);
             a && this.stdout.write(a);
           }
@@ -23624,7 +25725,11 @@ PERFORMANCE OF THIS SOFTWARE.
             return e.index === this.options.correctChoice;
           }
           async result(e) {
-            return { selectedAnswer: e, correctAnswer: this.options.choices[this.options.correctChoice].value, correct: await this.check(this.state) };
+            return {
+              selectedAnswer: e,
+              correctAnswer: this.options.choices[this.options.correctChoice].value,
+              correct: await this.check(this.state)
+            };
           }
         };
       },
@@ -24409,8 +26514,16 @@ PERFORMANCE OF THIS SOFTWARE.
             ballot: { on: '☑', off: '☐', disabled: '☒' },
             stars: { on: '★', off: '☆', disabled: '☆' },
             folder: { on: '▼', off: '▶', disabled: '▶' },
-            prefix: { pending: i.symbols.question, submitted: i.symbols.check, cancelled: i.symbols.cross },
-            separator: { pending: i.symbols.pointerSmall, submitted: i.symbols.middot, cancelled: i.symbols.middot },
+            prefix: {
+              pending: i.symbols.question,
+              submitted: i.symbols.check,
+              cancelled: i.symbols.cross
+            },
+            separator: {
+              pending: i.symbols.pointerSmall,
+              submitted: i.symbols.middot,
+              cancelled: i.symbols.middot
+            },
             radio: { off: n ? '( )' : '◯', on: n ? '(*)' : '◉', disabled: n ? '(|)' : 'Ⓘ' },
             numbers: [
               '⓪',
@@ -24971,7 +27084,13 @@ PERFORMANCE OF THIS SOFTWARE.
         };
       },
       13235: (e, t, r) => {
-        e.exports = { ArrayPrompt: r(14723), AuthPrompt: r(46614), BooleanPrompt: r(82710), NumberPrompt: r(64987), StringPrompt: r(45853) };
+        e.exports = {
+          ArrayPrompt: r(14723),
+          AuthPrompt: r(46614),
+          BooleanPrompt: r(82710),
+          NumberPrompt: r(64987),
+          StringPrompt: r(45853)
+        };
       },
       64987: (e, t, r) => {
         'use strict';
@@ -25157,7 +27276,16 @@ PERFORMANCE OF THIS SOFTWARE.
           i = r(97991);
         let o = !1,
           A = [];
-        const s = { yellow: 'blue', cyan: 'red', green: 'magenta', black: 'white', blue: 'yellow', red: 'cyan', magenta: 'green', white: 'black' };
+        const s = {
+          yellow: 'blue',
+          cyan: 'red',
+          green: 'magenta',
+          black: 'white',
+          blue: 'yellow',
+          red: 'cyan',
+          magenta: 'green',
+          white: 'black'
+        };
         (t.longest = (e, t) => e.reduce((e, r) => Math.max(e, t ? r[t].length : r.length), 0)), (t.hasColor = (e) => !!e && i.hasColor(e));
         const a = (t.isObject = (e) => null !== e && 'object' == typeof e && !Array.isArray(e));
         (t.nativeType = (e) => n.call(e).slice(8, -1).toLowerCase().replace(/\s/g, '')),
@@ -25370,7 +27498,13 @@ PERFORMANCE OF THIS SOFTWARE.
           return Object.keys(e).map((n) => c(n, e[n], t, r));
         }
         function c(e, t, r, i) {
-          return { dynamic: i, positive: t, negative: r, base: e, patterns: [].concat(t, r.map(n.pattern.convertToNegativePattern)) };
+          return {
+            dynamic: i,
+            positive: t,
+            negative: r,
+            base: e,
+            patterns: [].concat(t, r.map(n.pattern.convertToNegativePattern))
+          };
         }
         (t.generate = function (e, t) {
           const r = o(e),
@@ -25537,13 +27671,15 @@ PERFORMANCE OF THIS SOFTWARE.
             }
           }
           _getPatternSegments(e) {
-            return n.pattern
-              .getPatternParts(e, this._micromatchOptions)
-              .map((e) =>
-                n.pattern.isDynamicPattern(e, this._settings)
-                  ? { dynamic: !0, pattern: e, patternRe: n.pattern.makeRe(e, this._micromatchOptions) }
-                  : { dynamic: !1, pattern: e }
-              );
+            return n.pattern.getPatternParts(e, this._micromatchOptions).map((e) =>
+              n.pattern.isDynamicPattern(e, this._settings)
+                ? {
+                    dynamic: !0,
+                    pattern: e,
+                    patternRe: n.pattern.makeRe(e, this._micromatchOptions)
+                  }
+                : { dynamic: !1, pattern: e }
+            );
           }
           _splitSegmentsIntoSections(e) {
             return n.array.splitWhen(e, (e) => e.dynamic && n.pattern.hasGlobStar(e.pattern));
@@ -25806,7 +27942,14 @@ PERFORMANCE OF THIS SOFTWARE.
         Object.defineProperty(t, '__esModule', { value: !0 });
         const n = r(35747),
           i = r(12087).cpus().length;
-        t.DEFAULT_FILE_SYSTEM_ADAPTER = { lstat: n.lstat, lstatSync: n.lstatSync, stat: n.stat, statSync: n.statSync, readdir: n.readdir, readdirSync: n.readdirSync };
+        t.DEFAULT_FILE_SYSTEM_ADAPTER = {
+          lstat: n.lstat,
+          lstatSync: n.lstatSync,
+          stat: n.stat,
+          statSync: n.statSync,
+          readdir: n.readdir,
+          readdirSync: n.readdirSync
+        };
         t.default = class {
           constructor(e = {}) {
             (this._options = e),
@@ -26186,7 +28329,9 @@ PERFORMANCE OF THIS SOFTWARE.
             return void 0 === r && void 0 !== n.default ? ('function' == typeof n.default ? n.default(e) : n.default) : r;
           }
           !(function (e) {
-            throw Object.assign(new Error('invalid config key requested: ' + e), { code: 'EBADKEY' });
+            throw Object.assign(new Error('invalid config key requested: ' + e), {
+              code: 'EBADKEY'
+            });
           })(t);
         }
         function o(e, t) {
@@ -26703,7 +28848,16 @@ PERFORMANCE OF THIS SOFTWARE.
                     try {
                       for (const [r, n] of l.hooks.afterResponse.entries())
                         t = await n(t, async (t) => {
-                          const n = g.default.normalizeArguments(void 0, { ...t, retry: { calculateDelay: () => 0 }, throwHttpErrors: !1, resolveBodyOnly: !1 }, l);
+                          const n = g.default.normalizeArguments(
+                            void 0,
+                            {
+                              ...t,
+                              retry: { calculateDelay: () => 0 },
+                              throwHttpErrors: !1,
+                              resolveBodyOnly: !1
+                            },
+                            l
+                          );
                           n.hooks.afterResponse = n.hooks.afterResponse.slice(0, r);
                           for (const e of n.hooks.beforeRetry) await e(n);
                           const i = e(n);
@@ -26771,7 +28925,16 @@ PERFORMANCE OF THIS SOFTWARE.
             void 0 === e.responseType && (e.responseType = 'text');
           const { retry: r } = e;
           if (
-            ((e.retry = t ? { ...t.retry } : { calculateDelay: (e) => e.computedValue, limit: 0, methods: [], statusCodes: [], errorCodes: [], maxRetryAfter: void 0 }),
+            ((e.retry = t
+              ? { ...t.retry }
+              : {
+                  calculateDelay: (e) => e.computedValue,
+                  limit: 0,
+                  methods: [],
+                  statusCodes: [],
+                  errorCodes: [],
+                  maxRetryAfter: void 0
+                }),
             n.default.object(r)
               ? ((e.retry = { ...e.retry, ...r }),
                 (e.retry.methods = [...new Set(e.retry.methods.map((e) => e.toUpperCase()))]),
@@ -27295,7 +29458,16 @@ PERFORMANCE OF THIS SOFTWARE.
                 e.destroy(), this._beforeError(new ie(t, this));
               }),
               e.once('aborted', () => {
-                this._beforeError(new ie({ name: 'Error', message: 'The server aborted pending request', code: 'ECONNRESET' }, this));
+                this._beforeError(
+                  new ie(
+                    {
+                      name: 'Error',
+                      message: 'The server aborted pending request',
+                      code: 'ECONNRESET'
+                    },
+                    this
+                  )
+                );
               }),
               this.emit('downloadProgress', this.downloadProgress);
             const o = e.headers['set-cookie'];
@@ -27536,7 +29708,13 @@ PERFORMANCE OF THIS SOFTWARE.
                       retryOptions: t.retry,
                       error: n,
                       retryAfter: e,
-                      computedValue: k.default({ attemptCount: r, retryOptions: t.retry, error: n, retryAfter: e, computedValue: 0 })
+                      computedValue: k.default({
+                        attemptCount: r,
+                        retryOptions: t.retry,
+                        error: n,
+                        retryAfter: e,
+                        computedValue: 0
+                      })
                     }));
                 } catch (e) {
                   return void this._error(new Z(e.message, e, this));
@@ -28095,7 +30273,14 @@ PERFORMANCE OF THIS SOFTWARE.
               },
               timeout: {},
               headers: { 'user-agent': 'got (https://github.com/sindresorhus/got)' },
-              hooks: { init: [], beforeRequest: [], beforeRedirect: [], beforeRetry: [], beforeError: [], afterResponse: [] },
+              hooks: {
+                init: [],
+                beforeRequest: [],
+                beforeRedirect: [],
+                beforeRetry: [],
+                beforeError: [],
+                afterResponse: []
+              },
               cache: void 0,
               dnsCache: void 0,
               decompress: !0,
@@ -29704,7 +31889,12 @@ PERFORMANCE OF THIS SOFTWARE.
             'transfer-encoding': !0,
             upgrade: !0
           },
-          i = { 'content-length': !0, 'content-encoding': !0, 'transfer-encoding': !0, 'content-range': !0 };
+          i = {
+            'content-length': !0,
+            'content-encoding': !0,
+            'transfer-encoding': !0,
+            'content-range': !0
+          };
         function o(e) {
           const t = {};
           if (!e) return t;
@@ -29751,7 +31941,9 @@ PERFORMANCE OF THIS SOFTWARE.
                   delete this._rescc['no-cache'],
                   delete this._rescc['no-store'],
                   delete this._rescc['must-revalidate'],
-                  (this._resHeaders = Object.assign({}, this._resHeaders, { 'cache-control': A(this._rescc) })),
+                  (this._resHeaders = Object.assign({}, this._resHeaders, {
+                    'cache-control': A(this._rescc)
+                  })),
                   delete this._resHeaders.expires,
                   delete this._resHeaders.pragma),
                 !t.headers['cache-control'] && /no-cache/.test(t.headers.pragma) && (this._rescc['no-cache'] = !0);
@@ -29951,7 +32143,11 @@ PERFORMANCE OF THIS SOFTWARE.
               return { policy: new this.constructor(e, t), modified: 304 != t.status, matches: !1 };
             const n = {};
             for (const e in this._resHeaders) n[e] = e in t.headers && !i[e] ? t.headers[e] : this._resHeaders[e];
-            const o = Object.assign({}, t, { status: this._status, method: this._method, headers: n });
+            const o = Object.assign({}, t, {
+              status: this._status,
+              method: this._method,
+              headers: n
+            });
             return {
               policy: new this.constructor(e, o, {
                 shared: this._isShared,
@@ -30091,7 +32287,12 @@ PERFORMANCE OF THIS SOFTWARE.
                   const n = `${l}:${A}`;
                   let i = !1;
                   try {
-                    const d = o.connect(e, { createConnection: this.createConnection, settings: this.settings, session: this.tlsSessionCache.get(n), ...t });
+                    const d = o.connect(e, {
+                      createConnection: this.createConnection,
+                      settings: this.settings,
+                      session: this.tlsSessionCache.get(n),
+                      ...t
+                    });
                     (d[s] = 0), (d[g] = !1);
                     const I = () => d[s] < d.remoteSettings.maxConcurrentStreams;
                     let E = !0;
@@ -30824,7 +33025,10 @@ PERFORMANCE OF THIS SOFTWARE.
       48145: (e) => {
         'function' == typeof Object.create
           ? (e.exports = function (e, t) {
-              (e.super_ = t), (e.prototype = Object.create(t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } }));
+              (e.super_ = t),
+                (e.prototype = Object.create(t.prototype, {
+                  constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 }
+                }));
             })
           : (e.exports = function (e, t) {
               e.super_ = t;
@@ -32174,12 +34378,19 @@ PERFORMANCE OF THIS SOFTWARE.
       5235: (e, t, r) => {
         'use strict';
         var n = r(8212);
-        e.exports = n.DEFAULT = new n({ include: [r(65483)], explicit: [r(61425), r(61872), r(79982)] });
+        e.exports = n.DEFAULT = new n({
+          include: [r(65483)],
+          explicit: [r(61425), r(61872), r(79982)]
+        });
       },
       65483: (e, t, r) => {
         'use strict';
         var n = r(8212);
-        e.exports = new n({ include: [r(8769)], implicit: [r(83516), r(95441)], explicit: [r(34836), r(6847), r(65173), r(92025)] });
+        e.exports = new n({
+          include: [r(8769)],
+          implicit: [r(83516), r(95441)],
+          explicit: [r(34836), r(6847), r(65173), r(92025)]
+        });
       },
       44413: (e, t, r) => {
         'use strict';
@@ -32189,7 +34400,10 @@ PERFORMANCE OF THIS SOFTWARE.
       45247: (e, t, r) => {
         'use strict';
         var n = r(8212);
-        e.exports = new n({ include: [r(44413)], implicit: [r(40188), r(58357), r(82106), r(71945)] });
+        e.exports = new n({
+          include: [r(44413)],
+          implicit: [r(40188), r(58357), r(82106), r(71945)]
+        });
       },
       81704: (e, t, r) => {
         'use strict';
@@ -32507,7 +34721,12 @@ PERFORMANCE OF THIS SOFTWARE.
             }
           },
           defaultStyle: 'decimal',
-          styleAliases: { binary: [2, 'bin'], octal: [8, 'oct'], decimal: [10, 'dec'], hexadecimal: [16, 'hex'] }
+          styleAliases: {
+            binary: [2, 'bin'],
+            octal: [8, 'oct'],
+            decimal: [10, 'dec'],
+            hexadecimal: [16, 'hex']
+          }
         });
       },
       79982: (e, t, r) => {
@@ -33611,7 +35830,12 @@ PERFORMANCE OF THIS SOFTWARE.
           o = r(61977),
           A = i
             ? function (e, t) {
-                return i(e, 'toString', { configurable: !0, enumerable: !1, value: n(t), writable: !0 });
+                return i(e, 'toString', {
+                  configurable: !0,
+                  enumerable: !1,
+                  value: n(t),
+                  writable: !0
+                });
               }
             : o;
         e.exports = A;
@@ -43868,7 +46092,17 @@ PERFORMANCE OF THIS SOFTWARE.
               asm.setThrew(1, 0);
             }
           }
-          (Module.asmGlobalArg = { Math, Int8Array, Int16Array, Int32Array, Uint8Array, Uint16Array, Uint32Array, Float32Array, Float64Array }),
+          (Module.asmGlobalArg = {
+            Math,
+            Int8Array,
+            Int16Array,
+            Int32Array,
+            Uint8Array,
+            Uint16Array,
+            Uint32Array,
+            Float32Array,
+            Float64Array
+          }),
             (Module.asmLibraryArg = {
               abort,
               assert,
@@ -58980,7 +61214,13 @@ PERFORMANCE OF THIS SOFTWARE.
                     r < e ? o(n, i, ...A) : t.push(o.bind(null, n, i, ...A));
                   })(n, A, ...i)
                 );
-            return Object.defineProperties(A, { activeCount: { get: () => r }, pendingCount: { get: () => t.length } }), A;
+            return (
+              Object.defineProperties(A, {
+                activeCount: { get: () => r },
+                pendingCount: { get: () => t.length }
+              }),
+              A
+            );
           };
         (e.exports = i), (e.exports.default = i);
       },
@@ -59399,7 +61639,13 @@ PERFORMANCE OF THIS SOFTWARE.
               }
               if ('{' === U && !0 !== r.nobrace) {
                 W('braces');
-                const e = { type: 'brace', value: U, output: '(', outputIndex: x.output.length, tokensIndex: x.tokens.length };
+                const e = {
+                  type: 'brace',
+                  value: U,
+                  output: '(',
+                  outputIndex: x.output.length,
+                  tokensIndex: x.tokens.length
+                };
                 T.push(e), X(e);
                 continue;
               }
@@ -59704,7 +61950,16 @@ PERFORMANCE OF THIS SOFTWARE.
             }
             const u = (r, n = !1) => {
               const { isMatch: i, match: A, output: u } = a.test(r, c, t, { glob: e, posix: s }),
-                h = { glob: e, state: g, regex: c, posix: s, input: r, output: u, match: A, isMatch: i };
+                h = {
+                  glob: e,
+                  state: g,
+                  regex: c,
+                  posix: s,
+                  input: r,
+                  output: u,
+                  match: A,
+                  isMatch: i
+                };
               return (
                 'function' == typeof o.onResult && o.onResult(h),
                 !1 === i
@@ -59911,7 +62166,19 @@ PERFORMANCE OF THIS SOFTWARE.
             J && !0 === K && F > 0 ? ((J = S.slice(0, F)), (q = S.slice(F))) : !0 === K ? ((J = ''), (q = S)) : (J = S),
             J && '' !== J && '/' !== J && J !== S && E(J.charCodeAt(J.length - 1)) && (J = J.slice(0, -1)),
             !0 === r.unescape && (q && (q = n.removeBackslashes(q)), J && !0 === T && (J = n.removeBackslashes(J)));
-          const z = { prefix: _, input: e, start: M, base: J, glob: q, isBrace: N, isBracket: R, isGlob: K, isExtglob: L, isGlobstar: x, negated: O };
+          const z = {
+            prefix: _,
+            input: e,
+            start: M,
+            base: J,
+            glob: q,
+            isBrace: N,
+            isBracket: R,
+            isGlob: K,
+            isExtglob: L,
+            isGlobstar: x,
+            negated: O
+          };
           if ((!0 === r.tokens && ((z.maxDepth = 0), E(D) || Q.push(Y), (z.tokens = Q)), !0 === r.parts || !0 === r.tokens)) {
             let t;
             for (let n = 0; n < w.length; n++) {
@@ -60852,7 +63119,14 @@ PERFORMANCE OF THIS SOFTWARE.
         function g(e) {
           if (!(this instanceof g)) return new g(e);
           a.call(this, e),
-            (this._transformState = { afterTransform: c.bind(this), needTransform: !1, transforming: !1, writecb: null, writechunk: null, writeencoding: null }),
+            (this._transformState = {
+              afterTransform: c.bind(this),
+              needTransform: !1,
+              transforming: !1,
+              writecb: null,
+              writechunk: null,
+              writeencoding: null
+            }),
             (this._readableState.needReadable = !0),
             (this._readableState.sync = !1),
             e && ('function' == typeof e.transform && (this._transform = e.transform), 'function' == typeof e.flush && (this._flush = e.flush)),
@@ -61140,7 +63414,13 @@ PERFORMANCE OF THIS SOFTWARE.
                     c || (t.needDrain = !0);
                     if (t.writing || t.corked) {
                       var g = t.lastBufferedRequest;
-                      (t.lastBufferedRequest = { chunk: n, encoding: i, isBuf: r, callback: o, next: null }),
+                      (t.lastBufferedRequest = {
+                        chunk: n,
+                        encoding: i,
+                        isBuf: r,
+                        callback: o,
+                        next: null
+                      }),
                         g ? (g.next = t.lastBufferedRequest) : (t.bufferedRequest = t.lastBufferedRequest),
                         (t.bufferedRequestCount += 1);
                     } else Q(e, t, !1, a, n, i, o);
@@ -61219,7 +63499,17 @@ PERFORMANCE OF THIS SOFTWARE.
         'use strict';
         var n;
         function i(e, t, r) {
-          return t in e ? Object.defineProperty(e, t, { value: r, enumerable: !0, configurable: !0, writable: !0 }) : (e[t] = r), e;
+          return (
+            t in e
+              ? Object.defineProperty(e, t, {
+                  value: r,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (e[t] = r),
+            e
+          );
         }
         var o = r(91327),
           A = Symbol('lastResolve'),
@@ -61332,7 +63622,17 @@ PERFORMANCE OF THIS SOFTWARE.
       43117: (e, t, r) => {
         'use strict';
         function n(e, t, r) {
-          return t in e ? Object.defineProperty(e, t, { value: r, enumerable: !0, configurable: !0, writable: !0 }) : (e[t] = r), e;
+          return (
+            t in e
+              ? Object.defineProperty(e, t, {
+                  value: r,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (e[t] = r),
+            e
+          );
         }
         var i = r(64293).Buffer,
           o = r(31669).inspect,
@@ -63156,7 +65456,12 @@ PERFORMANCE OF THIS SOFTWARE.
       },
       76483: (e) => {
         const t = Number.MAX_SAFE_INTEGER || 9007199254740991;
-        e.exports = { SEMVER_SPEC_VERSION: '2.0.0', MAX_LENGTH: 256, MAX_SAFE_INTEGER: t, MAX_SAFE_COMPONENT_LENGTH: 16 };
+        e.exports = {
+          SEMVER_SPEC_VERSION: '2.0.0',
+          MAX_LENGTH: 256,
+          MAX_SAFE_INTEGER: t,
+          MAX_SAFE_COMPONENT_LENGTH: 16
+        };
       },
       6029: (e) => {
         const t =
@@ -64439,7 +66744,20 @@ PERFORMANCE OF THIS SOFTWARE.
             var E = A(e);
             if (256 === E) return null;
             if (E !== a(e, 148, 8)) throw new Error('Invalid tar header. Maybe the tar is corrupted or it needs to be gunzipped?');
-            return { name: i, mode: o, uid: s, gid: g, size: l, mtime: new Date(1e3 * u), type: h, linkname: p, uname: f, gname: d, devmajor: C, devminor: I };
+            return {
+              name: i,
+              mode: o,
+              uid: s,
+              gid: g,
+              size: l,
+              mtime: new Date(1e3 * u),
+              type: h,
+              linkname: p,
+              uname: f,
+              gname: d,
+              devmajor: C,
+              devminor: I
+            };
           });
       },
       59938: (e, t, r) => {
@@ -64930,7 +67248,12 @@ PERFORMANCE OF THIS SOFTWARE.
             var r = this,
               i = {};
             r.sockets.push(i);
-            var o = u({}, r.proxyOptions, { method: 'CONNECT', path: e.host + ':' + e.port, agent: !1, headers: { host: e.host + ':' + e.port } });
+            var o = u({}, r.proxyOptions, {
+              method: 'CONNECT',
+              path: e.host + ':' + e.port,
+              agent: !1,
+              headers: { host: e.host + ':' + e.port }
+            });
             e.localAddress && (o.localAddress = e.localAddress),
               o.proxyAuth && ((o.headers = o.headers || {}), (o.headers['Proxy-Authorization'] = 'Basic ' + new Buffer(o.proxyAuth).toString('base64'))),
               n('making CONNECT request');
@@ -65783,7 +68106,14 @@ PERFORMANCE OF THIS SOFTWARE.
                 function () {
                   return new Date().getTime();
                 });
-            var G = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;', '`': '&#x60;' },
+            var G = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#x27;',
+                '`': '&#x60;'
+              },
               H = d.invert(G),
               J = function (e) {
                 var t = function (t) {
@@ -65813,9 +68143,20 @@ PERFORMANCE OF THIS SOFTWARE.
               var t = ++_ + '';
               return e ? e + t : t;
             }),
-              (d.templateSettings = { evaluate: /<%([\s\S]+?)%>/g, interpolate: /<%=([\s\S]+?)%>/g, escape: /<%-([\s\S]+?)%>/g });
+              (d.templateSettings = {
+                evaluate: /<%([\s\S]+?)%>/g,
+                interpolate: /<%=([\s\S]+?)%>/g,
+                escape: /<%-([\s\S]+?)%>/g
+              });
             var q = /(.)^/,
-              z = { "'": "'", '\\': '\\', '\r': 'r', '\n': 'n', '\u2028': 'u2028', '\u2029': 'u2029' },
+              z = {
+                "'": "'",
+                '\\': '\\',
+                '\r': 'r',
+                '\n': 'n',
+                '\u2028': 'u2028',
+                '\u2029': 'u2029'
+              },
               W = /\\|'|\r|\n|\u2028|\u2029/g,
               V = function (e) {
                 return '\\' + z[e];
@@ -66242,7 +68583,12 @@ PERFORMANCE OF THIS SOFTWARE.
                   l = l || e;
                   var u = e.map(function (r, n) {
                     var i = (0, g.default)(f(), t.path, n),
-                      A = (0, o.default)({}, t, { path: i, strict: !0, parent: e, originalValue: l[n] });
+                      A = (0, o.default)({}, t, {
+                        path: i,
+                        strict: !0,
+                        parent: e,
+                        originalValue: l[n]
+                      });
                     return !s.validate || s.validate(r, A);
                   });
                   return (0, p.default)({ sync: i, path: A, value: e, errors: n, endEarly: a, validations: u });
@@ -66495,13 +68841,19 @@ PERFORMANCE OF THIS SOFTWARE.
           integer: '${path} must be an integer'
         };
         t.number = s;
-        var a = { min: '${path} field must be later than ${min}', max: '${path} field must be at earlier than ${max}' };
+        var a = {
+          min: '${path} field must be later than ${min}',
+          max: '${path} field must be at earlier than ${max}'
+        };
         t.date = a;
         var c = {};
         t.boolean = c;
         var g = { noUnknown: '${path} field cannot have keys not specified in the object shape' };
         t.object = g;
-        var l = { min: '${path} field must have at least ${min} items', max: '${path} field must have less than or equal to ${max} items' };
+        var l = {
+          min: '${path} field must have at least ${min} items',
+          max: '${path} field must have less than or equal to ${max} items'
+        };
         t.array = l;
         var u = { mixed: o, string: A, number: s, date: a, object: g, array: l, boolean: c };
         t.default = u;
@@ -66662,7 +69014,15 @@ PERFORMANCE OF THIS SOFTWARE.
                   c = t.path,
                   l = this._label;
                 A || (n = this._cast(n, (0, i.default)({ assert: !1 }, t)));
-                var u = { value: n, path: c, schema: this, options: t, label: l, originalValue: o, sync: a },
+                var u = {
+                    value: n,
+                    path: c,
+                    schema: this,
+                    options: t,
+                    label: l,
+                    originalValue: o,
+                    sync: a
+                  },
                   h = [];
                 return (
                   this._typeError && h.push(this._typeError(u)),
@@ -66781,7 +69141,10 @@ PERFORMANCE OF THIS SOFTWARE.
                           ? void 0
                           : arguments[0]
                         : 2 === arguments.length
-                        ? { name: arguments.length <= 0 ? void 0 : arguments[0], test: arguments.length <= 1 ? void 0 : arguments[1] }
+                        ? {
+                            name: arguments.length <= 0 ? void 0 : arguments[0],
+                            test: arguments.length <= 1 ? void 0 : arguments[1]
+                          }
                         : {
                             name: arguments.length <= 0 ? void 0 : arguments[0],
                             message: arguments.length <= 1 ? void 0 : arguments[1],
@@ -67438,7 +69801,16 @@ PERFORMANCE OF THIS SOFTWARE.
                 E = function (e) {
                   return a.default.isRef(e) ? e.getValue({ value: g, parent: I, context: p.context }) : e;
                 },
-                m = l({ message: r, path: u, value: g, originalValue: f, params: A, label: h, resolve: E, name: t }),
+                m = l({
+                  message: r,
+                  path: u,
+                  value: g,
+                  originalValue: f,
+                  params: A,
+                  label: h,
+                  resolve: E,
+                  name: t
+                }),
                 B = (0, o.default)({ path: u, parent: I, type: t, createError: m, resolve: E, options: p }, C);
               return (function (e, t, r, n) {
                 var i = e.call(t, r);
@@ -67497,7 +69869,10 @@ PERFORMANCE OF THIS SOFTWARE.
         var n = r(60087);
         (t.__esModule = !0),
           (t.default = function (e, t, r) {
-            (e.prototype = Object.create(t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } })), (0, i.default)(e.prototype, r);
+            (e.prototype = Object.create(t.prototype, {
+              constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 }
+            })),
+              (0, i.default)(e.prototype, r);
           });
         var i = n(r(72912));
         e.exports = t.default;
@@ -68264,8 +70639,18 @@ PERFORMANCE OF THIS SOFTWARE.
                       msync: ce.stream_ops.msync
                     }
                   },
-                  link: { node: { getattr: ce.node_ops.getattr, setattr: ce.node_ops.setattr, readlink: ce.node_ops.readlink }, stream: {} },
-                  chrdev: { node: { getattr: ce.node_ops.getattr, setattr: ce.node_ops.setattr }, stream: he.chrdev_stream_ops }
+                  link: {
+                    node: {
+                      getattr: ce.node_ops.getattr,
+                      setattr: ce.node_ops.setattr,
+                      readlink: ce.node_ops.readlink
+                    },
+                    stream: {}
+                  },
+                  chrdev: {
+                    node: { getattr: ce.node_ops.getattr, setattr: ce.node_ops.setattr },
+                    stream: he.chrdev_stream_ops
+                  }
                 });
               var i = he.createNode(e, t, r, n);
               return (
@@ -68552,7 +70937,16 @@ PERFORMANCE OF THIS SOFTWARE.
               le.isWindows = !!process.platform.match(/^win/);
               var e = { fs: Ce.constants };
               e.fs && (e = e.fs),
-                (le.flagsForNodeMap = { 1024: e.O_APPEND, 64: e.O_CREAT, 128: e.O_EXCL, 0: e.O_RDONLY, 2: e.O_RDWR, 4096: e.O_SYNC, 512: e.O_TRUNC, 1: e.O_WRONLY });
+                (le.flagsForNodeMap = {
+                  1024: e.O_APPEND,
+                  64: e.O_CREAT,
+                  128: e.O_EXCL,
+                  0: e.O_RDONLY,
+                  2: e.O_RDWR,
+                  4096: e.O_SYNC,
+                  512: e.O_TRUNC,
+                  1: e.O_WRONLY
+                });
             },
             bufferFrom: function (e) {
               return Buffer.alloc ? Buffer.from(e) : new Buffer(e);
@@ -68769,8 +71163,25 @@ PERFORMANCE OF THIS SOFTWARE.
               return { path: e, node: { mode: le.getMode(e) } };
             },
             createStandardStreams: function () {
-              he.streams[0] = { fd: 0, nfd: 0, position: 0, path: '', flags: 0, tty: !0, seekable: !1 };
-              for (var e = 1; e < 3; e++) he.streams[e] = { fd: e, nfd: e, position: 0, path: '', flags: 577, tty: !0, seekable: !1 };
+              he.streams[0] = {
+                fd: 0,
+                nfd: 0,
+                position: 0,
+                path: '',
+                flags: 0,
+                tty: !0,
+                seekable: !1
+              };
+              for (var e = 1; e < 3; e++)
+                he.streams[e] = {
+                  fd: e,
+                  nfd: e,
+                  position: 0,
+                  path: '',
+                  flags: 577,
+                  tty: !0,
+                  seekable: !1
+                };
             },
             cwd: function () {
               return process.cwd();
@@ -69410,7 +71821,20 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (a) throw new he.ErrnoError(a);
               }
               512 & t && he.truncate(A, 0), (t &= -131713);
-              var c = he.createStream({ node: A, path: he.getPath(A), flags: t, seekable: !0, position: 0, stream_ops: A.stream_ops, ungotten: [], error: !1 }, n, i);
+              var c = he.createStream(
+                {
+                  node: A,
+                  path: he.getPath(A),
+                  flags: t,
+                  seekable: !0,
+                  position: 0,
+                  stream_ops: A.stream_ops,
+                  ungotten: [],
+                  error: !1
+                },
+                n,
+                i
+              );
               c.stream_ops.open && c.stream_ops.open(c),
                 !o.logReadFiles ||
                   1 & t ||
@@ -69683,7 +72107,17 @@ PERFORMANCE OF THIS SOFTWARE.
               try {
                 e = (n = he.lookupPath(e, { follow: !t })).path;
               } catch (e) {}
-              var r = { isRoot: !1, exists: !1, error: 0, name: null, path: null, object: null, parentExists: !1, parentPath: null, parentObject: null };
+              var r = {
+                isRoot: !1,
+                exists: !1,
+                error: 0,
+                name: null,
+                path: null,
+                object: null,
+                parentExists: !1,
+                parentPath: null,
+                parentObject: null
+              };
               try {
                 var n = he.lookupPath(e, { parent: !0 });
                 (r.parentExists = !0),
@@ -70774,7 +73208,10 @@ PERFORMANCE OF THIS SOFTWARE.
               function y(e, t) {
                 var r = B(e),
                   n = B(t);
-                return { start: { offset: e, line: r.line, column: r.column }, end: { offset: t, line: n.line, column: n.column } };
+                return {
+                  start: { offset: e, line: r.line, column: r.column },
+                  end: { offset: t, line: n.line, column: n.column }
+                };
               }
               function w(e) {
                 p < C || (p > C && ((C = p), (I = [])), I.push(e));
@@ -71049,7 +73486,10 @@ PERFORMANCE OF THIS SOFTWARE.
               function pe(e, t) {
                 var r = he(e),
                   n = he(t);
-                return { start: { offset: e, line: r.line, column: r.column }, end: { offset: t, line: n.line, column: n.column } };
+                return {
+                  start: { offset: e, line: r.line, column: r.column },
+                  end: { offset: t, line: n.line, column: n.column }
+                };
               }
               function fe(e) {
                 oe < ae || (oe > ae && ((ae = oe), (ce = [])), ce.push(e));
@@ -71536,7 +73976,12 @@ PERFORMANCE OF THIS SOFTWARE.
                         for (; s !== i; ) A.push(s), L.test(e.charAt(oe)) ? ((s = e.charAt(oe)), oe++) : ((s = i), 0 === ge && fe(x));
                       else A = i;
                       A !== i
-                        ? ((Ae = t), (a = A), (t = r = { type: 'number', value: ('-' === r ? -1 : 1) * parseFloat(n.join('') + '.' + a.join('')) }))
+                        ? ((Ae = t),
+                          (a = A),
+                          (t = r = {
+                            type: 'number',
+                            value: ('-' === r ? -1 : 1) * parseFloat(n.join('') + '.' + a.join(''))
+                          }))
                         : ((oe = t), (t = i));
                     } else (oe = t), (t = i);
                   else (oe = t), (t = i);
@@ -71555,7 +74000,10 @@ PERFORMANCE OF THIS SOFTWARE.
                     n !== i
                       ? ((Ae = t),
                         (t = r = (function (e, t) {
-                          return { type: 'number', value: ('-' === e ? -1 : 1) * parseInt(t.join('')) };
+                          return {
+                            type: 'number',
+                            value: ('-' === e ? -1 : 1) * parseInt(t.join(''))
+                          };
                         })(r, n)))
                       : ((oe = t), (t = i));
                   } else (oe = t), (t = i);
@@ -71942,7 +74390,10 @@ PERFORMANCE OF THIS SOFTWARE.
               function ae(e, t) {
                 var r = se(e),
                   n = se(t);
-                return { start: { offset: e, line: r.line, column: r.column }, end: { offset: t, line: n.line, column: n.column } };
+                return {
+                  start: { offset: e, line: r.line, column: r.column },
+                  end: { offset: t, line: n.line, column: n.column }
+                };
               }
               function ce(e) {
                 X < ee || (X > ee && ((ee = X), (te = [])), te.push(e));

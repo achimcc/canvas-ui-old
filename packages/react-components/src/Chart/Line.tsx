@@ -31,11 +31,16 @@ interface Config {
 //  but we have to jiggle around here to get it to actually compile :(
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
 (Chart as any).Chart.pluginService.register({
-  beforeDraw: ({
-    chart: { ctx },
-    chartArea
-  }: {
-    chart: { ctx: { fillStyle: string; fillRect: (left: number, top: number, width: number, height: number) => void; restore: () => void; save: () => void } };
+  beforeDraw: ({ chart: { ctx },
+    chartArea }: {
+    chart: {
+      ctx: {
+        fillStyle: string;
+        fillRect: (left: number, top: number, width: number, height: number) => void;
+        restore: () => void;
+        save: () => void;
+      };
+    };
     chartArea: { bottom: number; left: number; right: number; top: number };
   }) => {
     ctx.save();
@@ -67,7 +72,7 @@ const chartOptions = {
   }
 };
 
-function calculateOptions(colors: (string | undefined)[] = [], legends: string[], labels: string[], values: (number | BN)[][]): State {
+function calculateOptions (colors: (string | undefined)[] = [], legends: string[], labels: string[], values: (number | BN)[][]): State {
   const chartData = values.reduce(
     (chartData, values, index): Config => {
       const color = colors[index] || alphaColor(COLORS[index]);
@@ -93,7 +98,7 @@ function calculateOptions(colors: (string | undefined)[] = [], legends: string[]
   };
 }
 
-function LineChart({ className = '', colors, labels, legends, values }: LineProps): React.ReactElement<LineProps> | null {
+function LineChart ({ className = '', colors, labels, legends, values }: LineProps): React.ReactElement<LineProps> | null {
   const [{ chartData, chartOptions }, setState] = useState<State>({});
 
   useEffect((): void => {
@@ -106,7 +111,8 @@ function LineChart({ className = '', colors, labels, legends, values }: LineProp
 
   return (
     <div className={className}>
-      <Chart.Line data={chartData} options={chartOptions} />
+      <Chart.Line data={chartData}
+        options={chartOptions} />
     </div>
   );
 }

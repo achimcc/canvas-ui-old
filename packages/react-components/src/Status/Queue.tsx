@@ -31,7 +31,7 @@ let nextId = 0;
 const REMOVE_TIMEOUT = 7500;
 const SUBMIT_RPC = jsonrpc.author.submitAndWatchExtrinsic;
 
-function mergeStatus(status: ActionStatus[]): ActionStatus[] {
+function mergeStatus (status: ActionStatus[]): ActionStatus[] {
   return status
     .reduce((result: StatusCount[], status): StatusCount[] => {
       const prev = result.find(({ status: prev }) => prev.action === status.action && prev.status === status.status);
@@ -47,7 +47,7 @@ function mergeStatus(status: ActionStatus[]): ActionStatus[] {
     .map(({ count, status }): ActionStatus => (count === 1 ? status : { ...status, action: `${status.action} (x${count})` }));
 }
 
-function extractEvents(result?: SubmittableResult): ActionStatus[] {
+function extractEvents (result?: SubmittableResult): ActionStatus[] {
   return mergeStatus(
     ((result && result.events) || [])
       // filter events handled globally, or those we are not interested in, these are
@@ -102,7 +102,7 @@ function extractEvents(result?: SubmittableResult): ActionStatus[] {
   );
 }
 
-function Queue({ children }: Props): React.ReactElement<Props> {
+function Queue ({ children }: Props): React.ReactElement<Props> {
   const [stqueue, _setStQueue] = useState<QueueStatus[]>([]);
   const [txqueue, _setTxQueue] = useState<QueueTx[]>([]);
   const stRef = useRef(stqueue);
@@ -185,11 +185,11 @@ function Queue({ children }: Props): React.ReactElement<Props> {
           (item): QueueTx =>
             item.id === id
               ? {
-                  ...item,
-                  error: error === undefined ? item.error : error,
-                  result: result === undefined ? (item.result as SubmittableResult) : result,
-                  status: item.status === 'completed' ? item.status : status
-                }
+                ...item,
+                error: error === undefined ? item.error : error,
+                result: result === undefined ? (item.result as SubmittableResult) : result,
+                status: item.status === 'completed' ? item.status : status
+              }
               : item
         )
       ]);

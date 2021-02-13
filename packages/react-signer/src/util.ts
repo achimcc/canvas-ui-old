@@ -10,9 +10,17 @@ import { AddressFlags } from './types';
 
 const NOOP = () => undefined;
 
-export function extractExternal(accountId: string | null): AddressFlags {
+export function extractExternal (accountId: string | null): AddressFlags {
   if (!accountId) {
-    return { isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };
+    return {
+      isHardware: false,
+      isMultisig: false,
+      isProxied: false,
+      isQr: false,
+      isUnlockable: false,
+      threshold: 0,
+      who: []
+    };
   }
 
   let publicKey;
@@ -22,7 +30,15 @@ export function extractExternal(accountId: string | null): AddressFlags {
   } catch (error) {
     console.error(error);
 
-    return { isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };
+    return {
+      isHardware: false,
+      isMultisig: false,
+      isProxied: false,
+      isQr: false,
+      isUnlockable: false,
+      threshold: 0,
+      who: []
+    };
   }
 
   const pair = keyring.getPair(publicKey);
@@ -39,11 +55,11 @@ export function extractExternal(accountId: string | null): AddressFlags {
   };
 }
 
-export function recodeAddress(address: string | Uint8Array): string {
+export function recodeAddress (address: string | Uint8Array): string {
   return keyring.encodeAddress(keyring.decodeAddress(address));
 }
 
-export function handleTxResults(
+export function handleTxResults (
   handler: 'send' | 'signAndSend',
   queueSetTxStatus: QueueTxMessageSetStatus,
   { id, txFailedCb = NOOP, txSuccessCb = NOOP, txUpdateCb = NOOP }: QueueTx,

@@ -26,13 +26,23 @@ const MAX_HEADERS = 50;
 
 const byAuthor: Record<string, string> = {};
 const eraPoints: Record<string, string> = {};
-const BlockAuthorsContext: React.Context<Authors> = React.createContext<Authors>({ byAuthor, eraPoints, lastBlockAuthors: [], lastHeaders: [] });
+const BlockAuthorsContext: React.Context<Authors> = React.createContext<Authors>({
+  byAuthor,
+  eraPoints,
+  lastBlockAuthors: [],
+  lastHeaders: []
+});
 const ValidatorsContext: React.Context<string[]> = React.createContext<string[]>([]);
 
-function BlockAuthorsBase({ children }: Props): React.ReactElement<Props> {
+function BlockAuthorsBase ({ children }: Props): React.ReactElement<Props> {
   const { api, isApiReady } = useApi();
   const queryPoints = useCall<EraRewardPoints>(isApiReady && api.derive.staking?.currentPoints, []);
-  const [state, setState] = useState<Authors>({ byAuthor, eraPoints, lastBlockAuthors: [], lastHeaders: [] });
+  const [state, setState] = useState<Authors>({
+    byAuthor,
+    eraPoints,
+    lastBlockAuthors: [],
+    lastHeaders: []
+  });
   const [validators, setValidators] = useState<string[]>([]);
   const [isChainPurged, setIsChainPurged] = useState(false);
 
@@ -106,7 +116,14 @@ function BlockAuthorsBase({ children }: Props): React.ReactElement<Props> {
                   )
                   .sort((a, b) => b.number.unwrap().cmp(a.number.unwrap()));
 
-                setState({ byAuthor, eraPoints, lastBlockAuthors: lastBlockAuthors.slice(), lastBlockNumber, lastHeader, lastHeaders });
+                setState({
+                  byAuthor,
+                  eraPoints,
+                  lastBlockAuthors: lastBlockAuthors.slice(),
+                  lastBlockNumber,
+                  lastHeader,
+                  lastHeaders
+                });
               }
             }
           )

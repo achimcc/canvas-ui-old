@@ -43,9 +43,13 @@ interface Extracted {
   values: Value[];
 }
 
-function Call({ children, className = '', labelHash, mortality, onError, tip, value, withBorder, withHash }: Props): React.ReactElement<Props> {
+function Call ({ children, className = '', labelHash, mortality, onError, tip, value, withBorder, withHash }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const [{ hash, params, values }, setExtracted] = useState<Extracted>({ hash: null, params: [], values: [] });
+  const [{ hash, params, values }, setExtracted] = useState<Extracted>({
+    hash: null,
+    params: [],
+    values: []
+  });
 
   useEffect((): void => {
     const params = GenericCall.filterOrigin(value.meta).map(
@@ -67,21 +71,28 @@ function Call({ children, className = '', labelHash, mortality, onError, tip, va
 
   return (
     <div className={classes('ui--Extrinsic', className)}>
-      <Params isDisabled onError={onError} params={params} values={values} withBorder={withBorder} />
+      <Params isDisabled
+        onError={onError}
+        params={params}
+        values={values}
+        withBorder={withBorder} />
       {children}
-      <div className="ui--Extrinsic--toplevel">
+      <div className='ui--Extrinsic--toplevel'>
         {hash && (
-          <Static className="hash" label={labelHash || t<string>('extrinsic hash')}>
+          <Static className='hash'
+            label={labelHash || t<string>('extrinsic hash')}>
             {hash.toHex()}
           </Static>
         )}
         {mortality && (
-          <Static className="mortality" label={t<string>('lifetime')}>
+          <Static className='mortality'
+            label={t<string>('lifetime')}>
             {mortality}
           </Static>
         )}
         {tip?.gtn(0) && (
-          <Static className="tip" label={t<string>('tip')}>
+          <Static className='tip'
+            label={t<string>('tip')}>
             <FormatBalance value={tip} />
           </Static>
         )}

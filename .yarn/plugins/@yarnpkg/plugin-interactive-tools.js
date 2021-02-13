@@ -146,10 +146,17 @@ module.exports = {
                   ]),
                   suggestions = [{ value: null, label: descriptor.range }];
                 return (
-                  resolution !== descriptor.range && suggestions.push({ value: resolution, label: colorizeVersionDiff(descriptor.range, resolution) }),
+                  resolution !== descriptor.range &&
+                    suggestions.push({
+                      value: resolution,
+                      label: colorizeVersionDiff(descriptor.range, resolution)
+                    }),
                   dependency !== resolution &&
                     dependency !== descriptor.range &&
-                    suggestions.push({ value: dependency, label: colorizeVersionDiff(descriptor.range, dependency) }),
+                    suggestions.push({
+                      value: dependency,
+                      label: colorizeVersionDiff(descriptor.range, dependency)
+                    }),
                   suggestions
                 );
               },
@@ -200,7 +207,11 @@ module.exports = {
                     react_1.default.createElement(ScrollableItems_1.ScrollableItems, {
                       radius: 10,
                       children: sortedDependencies.map((descriptor) =>
-                        react_1.default.createElement(UpgradeEntry, { key: descriptor.descriptorHash, active: !1, descriptor: descriptor })
+                        react_1.default.createElement(UpgradeEntry, {
+                          key: descriptor.descriptorHash,
+                          active: !1,
+                          descriptor: descriptor
+                        })
                       )
                     })
                   )
@@ -219,7 +230,11 @@ module.exports = {
               }
             if (!hasChanged) return 0;
             const installReport = await core_1.StreamReport.start(
-              { configuration: configuration, stdout: this.context.stdout, includeLogs: !this.context.quiet },
+              {
+                configuration: configuration,
+                stdout: this.context.stdout,
+                includeLogs: !this.context.quiet
+              },
               async (report) => {
                 await project.install({ cache: cache, report: report });
               }
@@ -258,7 +273,12 @@ module.exports = {
           const values = options.map(({ value: value }) => value),
             selectedIndex = values.indexOf(value);
           return (
-            useListInput_1.useListInput(value, values, { active: active, minus: 'left', plus: 'right', set: onChange }),
+            useListInput_1.useListInput(value, values, {
+              active: active,
+              minus: 'left',
+              plus: 'right',
+              set: onChange
+            }),
             react_1.default.createElement(
               react_1.default.Fragment,
               null,
@@ -371,7 +391,17 @@ module.exports = {
           return target;
         }
         function _defineProperty(obj, key, value) {
-          return key in obj ? Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }) : (obj[key] = value), obj;
+          return (
+            key in obj
+              ? Object.defineProperty(obj, key, {
+                  value: value,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (obj[key] = value),
+            obj
+          );
         }
         var _default = (node, options = {}) => {
           let instance;
@@ -438,7 +468,12 @@ module.exports = {
           render(node) {
             const tree = _react.default.createElement(
               _App.default,
-              { stdin: this.options.stdin, stdout: this.options.stdout, exitOnCtrlC: this.options.exitOnCtrlC, onExit: this.unmount },
+              {
+                stdin: this.options.stdin,
+                stdout: this.options.stdout,
+                exitOnCtrlC: this.options.exitOnCtrlC,
+                onExit: this.unmount
+              },
               node
             );
             _reconciler.default.updateContainer(tree, this.container);
@@ -712,8 +747,15 @@ module.exports = {
               var impl = ReactDebugCurrentFrame.getCurrentStack;
               return impl && (stack += impl() || ''), stack;
             });
-          var ReactSharedInternals = { ReactCurrentDispatcher: ReactCurrentDispatcher, ReactCurrentOwner: ReactCurrentOwner, assign: _assign };
-          _assign(ReactSharedInternals, { ReactDebugCurrentFrame: ReactDebugCurrentFrame, ReactComponentTreeHook: {} });
+          var ReactSharedInternals = {
+            ReactCurrentDispatcher: ReactCurrentDispatcher,
+            ReactCurrentOwner: ReactCurrentOwner,
+            assign: _assign
+          };
+          _assign(ReactSharedInternals, {
+            ReactDebugCurrentFrame: ReactDebugCurrentFrame,
+            ReactComponentTreeHook: {}
+          });
           var warning = warningWithoutStack$1,
             warning$1 = (warning = function (condition, format) {
               if (!condition) {
@@ -773,11 +815,34 @@ module.exports = {
             (warnAboutAccessingRef.isReactWarning = !0), Object.defineProperty(props, 'ref', { get: warnAboutAccessingRef, configurable: !0 });
           }
           var ReactElement = function (type, key, ref, self, source, owner, props) {
-            var element = { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key, ref: ref, props: props, _owner: owner, _store: {} };
+            var element = {
+              $$typeof: REACT_ELEMENT_TYPE,
+              type: type,
+              key: key,
+              ref: ref,
+              props: props,
+              _owner: owner,
+              _store: {}
+            };
             return (
-              Object.defineProperty(element._store, 'validated', { configurable: !1, enumerable: !1, writable: !0, value: !1 }),
-              Object.defineProperty(element, '_self', { configurable: !1, enumerable: !1, writable: !1, value: self }),
-              Object.defineProperty(element, '_source', { configurable: !1, enumerable: !1, writable: !1, value: source }),
+              Object.defineProperty(element._store, 'validated', {
+                configurable: !1,
+                enumerable: !1,
+                writable: !0,
+                value: !1
+              }),
+              Object.defineProperty(element, '_self', {
+                configurable: !1,
+                enumerable: !1,
+                writable: !1,
+                value: self
+              }),
+              Object.defineProperty(element, '_source', {
+                configurable: !1,
+                enumerable: !1,
+                writable: !1,
+                value: source
+              }),
               Object.freeze && (Object.freeze(element.props), Object.freeze(element)),
               element
             );
@@ -876,7 +941,13 @@ module.exports = {
                 traverseContext
               );
             }
-            return { result: mapResult, keyPrefix: keyPrefix, func: mapFunction, context: mapContext, count: 0 };
+            return {
+              result: mapResult,
+              keyPrefix: keyPrefix,
+              func: mapFunction,
+              context: mapContext,
+              count: 0
+            };
           }
           function releaseTraverseContext(traverseContext) {
             (traverseContext.result = null),
@@ -1022,7 +1093,11 @@ module.exports = {
             context.Provider = { $$typeof: REACT_PROVIDER_TYPE, _context: context };
             var hasWarnedAboutUsingNestedContextConsumers = !1,
               hasWarnedAboutUsingConsumerProvider = !1,
-              Consumer = { $$typeof: REACT_CONTEXT_TYPE, _context: context, _calculateChangedBits: context._calculateChangedBits };
+              Consumer = {
+                $$typeof: REACT_CONTEXT_TYPE,
+                _context: context,
+                _calculateChangedBits: context._calculateChangedBits
+              };
             return (
               Object.defineProperties(Consumer, {
                 Provider: {
@@ -1167,7 +1242,11 @@ module.exports = {
             return (
               isValidElementType(type) ||
                 warningWithoutStack(!1, 'memo: The first argument must be a component. Instead received: %s', null === type ? 'null' : typeof type),
-              { $$typeof: REACT_MEMO_TYPE, type: type, compare: void 0 === compare ? null : compare }
+              {
+                $$typeof: REACT_MEMO_TYPE,
+                type: type,
+                compare: void 0 === compare ? null : compare
+              }
             );
           }
           function resolveDispatcher() {
@@ -1390,7 +1469,13 @@ module.exports = {
           }
           var enableStableConcurrentModeAPIs = !1,
             React = {
-              Children: { map: mapChildren, forEach: forEachChildren, count: countChildren, toArray: toArray, only: onlyChild },
+              Children: {
+                map: mapChildren,
+                forEach: forEachChildren,
+                count: countChildren,
+                toArray: toArray,
+                only: onlyChild
+              },
               createRef: createRef,
               Component: Component,
               PureComponent: PureComponent,
@@ -2101,7 +2186,16 @@ module.exports = {
           function assembleStyles() {
             const codes = new Map(),
               styles = {
-                modifier: { reset: [0, 0], bold: [1, 22], dim: [2, 22], italic: [3, 23], underline: [4, 24], inverse: [7, 27], hidden: [8, 28], strikethrough: [9, 29] },
+                modifier: {
+                  reset: [0, 0],
+                  bold: [1, 22],
+                  dim: [2, 22],
+                  italic: [3, 23],
+                  underline: [4, 24],
+                  inverse: [7, 27],
+                  hidden: [8, 28],
+                  strikethrough: [9, 29]
+                },
                 color: {
                   black: [30, 39],
                   red: [31, 39],
@@ -2218,8 +2312,12 @@ module.exports = {
         }
         Object.keys(conversions).forEach(function (fromModel) {
           (convert[fromModel] = {}),
-            Object.defineProperty(convert[fromModel], 'channels', { value: conversions[fromModel].channels }),
-            Object.defineProperty(convert[fromModel], 'labels', { value: conversions[fromModel].labels });
+            Object.defineProperty(convert[fromModel], 'channels', {
+              value: conversions[fromModel].channels
+            }),
+            Object.defineProperty(convert[fromModel], 'labels', {
+              value: conversions[fromModel].labels
+            });
           var routes = route(fromModel),
             routeModels;
           Object.keys(routes).forEach(function (toModel) {
@@ -3139,7 +3237,13 @@ module.exports = {
               (currentPriorityLevel = previousPriorityLevel), (currentExpirationTime = previousExpirationTime);
             }
             if ('function' == typeof continuationCallback) {
-              var continuationNode = { callback: continuationCallback, priorityLevel: priorityLevel, expirationTime: expirationTime, next: null, previous: null };
+              var continuationNode = {
+                callback: continuationCallback,
+                priorityLevel: priorityLevel,
+                expirationTime: expirationTime,
+                next: null,
+                previous: null
+              };
               if (null === firstCallbackNode) firstCallbackNode = continuationNode.next = continuationNode.previous = continuationNode;
               else {
                 var nextAfterContinuation = null,
@@ -3273,7 +3377,13 @@ module.exports = {
                 default:
                   expirationTime = startTime + 5e3;
               }
-            var newNode = { callback: callback, priorityLevel: currentPriorityLevel, expirationTime: expirationTime, next: null, previous: null };
+            var newNode = {
+              callback: callback,
+              priorityLevel: currentPriorityLevel,
+              expirationTime: expirationTime,
+              next: null,
+              previous: null
+            };
             if (null === firstCallbackNode) (firstCallbackNode = newNode.next = newNode.previous = newNode), ensureHostCallbackIsScheduled();
             else {
               var next = null,
@@ -4520,7 +4630,11 @@ module.exports = {
               fiber = createFiber(4, pendingProps, portal.key, mode);
             return (
               (fiber.expirationTime = expirationTime),
-              (fiber.stateNode = { containerInfo: portal.containerInfo, pendingChildren: null, implementation: portal.implementation }),
+              (fiber.stateNode = {
+                containerInfo: portal.containerInfo,
+                pendingChildren: null,
+                implementation: portal.implementation
+              }),
               fiber
             );
           }
@@ -4830,7 +4944,11 @@ module.exports = {
                   var warningsForRoot = void 0;
                   pendingUnsafeLifecycleWarnings.has(strictRoot)
                     ? (warningsForRoot = pendingUnsafeLifecycleWarnings.get(strictRoot))
-                    : ((warningsForRoot = { UNSAFE_componentWillMount: [], UNSAFE_componentWillReceiveProps: [], UNSAFE_componentWillUpdate: [] }),
+                    : ((warningsForRoot = {
+                        UNSAFE_componentWillMount: [],
+                        UNSAFE_componentWillReceiveProps: [],
+                        UNSAFE_componentWillUpdate: []
+                      }),
                       pendingUnsafeLifecycleWarnings.set(strictRoot, warningsForRoot));
                   var unsafeLifecycles = [];
                   (('function' == typeof instance.componentWillMount && !0 !== instance.componentWillMount.__suppressDeprecationWarning) ||
@@ -6266,7 +6384,13 @@ module.exports = {
               (numberOfReRenders = 0);
           }
           function mountWorkInProgressHook() {
-            var hook = { memoizedState: null, baseState: null, queue: null, baseUpdate: null, next: null };
+            var hook = {
+              memoizedState: null,
+              baseState: null,
+              queue: null,
+              baseUpdate: null,
+              next: null
+            };
             return (
               null === workInProgressHook ? (firstWorkInProgressHook = workInProgressHook = hook) : (workInProgressHook = workInProgressHook.next = hook),
               workInProgressHook
@@ -6300,7 +6424,12 @@ module.exports = {
             var hook = mountWorkInProgressHook(),
               initialState = void 0;
             (initialState = void 0 !== init ? init(initialArg) : initialArg), (hook.memoizedState = hook.baseState = initialState);
-            var queue = (hook.queue = { last: null, dispatch: null, lastRenderedReducer: reducer, lastRenderedState: initialState }),
+            var queue = (hook.queue = {
+                last: null,
+                dispatch: null,
+                lastRenderedReducer: reducer,
+                lastRenderedState: initialState
+              }),
               dispatch = (queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue));
             return [hook.memoizedState, dispatch];
           }
@@ -6368,7 +6497,12 @@ module.exports = {
           function mountState(initialState) {
             var hook = mountWorkInProgressHook();
             'function' == typeof initialState && (initialState = initialState()), (hook.memoizedState = hook.baseState = initialState);
-            var queue = (hook.queue = { last: null, dispatch: null, lastRenderedReducer: basicStateReducer, lastRenderedState: initialState }),
+            var queue = (hook.queue = {
+                last: null,
+                dispatch: null,
+                lastRenderedReducer: basicStateReducer,
+                lastRenderedState: initialState
+              }),
               dispatch = (queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue));
             return [hook.memoizedState, dispatch];
           }
@@ -6515,7 +6649,13 @@ module.exports = {
             var alternate = fiber.alternate;
             if (fiber === currentlyRenderingFiber$1 || (null !== alternate && alternate === currentlyRenderingFiber$1)) {
               didScheduleRenderPhaseUpdate = !0;
-              var update = { expirationTime: renderExpirationTime, action: action, eagerReducer: null, eagerState: null, next: null };
+              var update = {
+                expirationTime: renderExpirationTime,
+                action: action,
+                eagerReducer: null,
+                eagerState: null,
+                next: null
+              };
               null === renderPhaseUpdates && (renderPhaseUpdates = new Map());
               var firstRenderPhaseUpdate = renderPhaseUpdates.get(queue);
               if (void 0 === firstRenderPhaseUpdate) renderPhaseUpdates.set(queue, update);
@@ -6527,7 +6667,13 @@ module.exports = {
               flushPassiveEffects();
               var currentTime = requestCurrentTime(),
                 _expirationTime = computeExpirationForFiber(currentTime, fiber),
-                _update2 = { expirationTime: _expirationTime, action: action, eagerReducer: null, eagerState: null, next: null },
+                _update2 = {
+                  expirationTime: _expirationTime,
+                  action: action,
+                  eagerReducer: null,
+                  eagerState: null,
+                  next: null
+                },
                 _last = queue.last;
               if (null === _last) _update2.next = _update2;
               else {
@@ -7879,7 +8025,11 @@ module.exports = {
               'number' != typeof observedBits || 1073741823 === observedBits
                 ? ((lastContextWithAllBitsObserved = context), (resolvedObservedBits = 1073741823))
                 : (resolvedObservedBits = observedBits);
-              var contextItem = { context: context, observedBits: resolvedObservedBits, next: null };
+              var contextItem = {
+                context: context,
+                observedBits: resolvedObservedBits,
+                next: null
+              };
               null === lastContextDependency
                 ? (null === currentlyRenderingFiber &&
                     invariant(
@@ -7887,7 +8037,10 @@ module.exports = {
                       'Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().'
                     ),
                   (lastContextDependency = contextItem),
-                  (currentlyRenderingFiber.contextDependencies = { first: contextItem, expirationTime: 0 }))
+                  (currentlyRenderingFiber.contextDependencies = {
+                    first: contextItem,
+                    expirationTime: 0
+                  }))
                 : (lastContextDependency = lastContextDependency.next = contextItem);
             }
             return isPrimaryRenderer ? context._currentValue : context._currentValue2;
@@ -7929,7 +8082,14 @@ module.exports = {
             };
           }
           function createUpdate(expirationTime) {
-            return { expirationTime: expirationTime, tag: 0, payload: null, callback: null, next: null, nextEffect: null };
+            return {
+              expirationTime: expirationTime,
+              tag: 0,
+              payload: null,
+              callback: null,
+              next: null,
+              nextEffect: null
+            };
           }
           function appendUpdateToQueue(queue, update) {
             null === queue.lastUpdate ? (queue.firstUpdate = queue.lastUpdate = update) : ((queue.lastUpdate.next = update), (queue.lastUpdate = update));
@@ -9945,7 +10105,9 @@ module.exports = {
             var currentMs = now() - originalStartTimeMs,
               expirationTimeMs = expirationTimeToMs(expirationTime),
               timeout;
-            callbackID = scheduleDeferredCallback(performAsyncWork, { timeout: expirationTimeMs - currentMs });
+            callbackID = scheduleDeferredCallback(performAsyncWork, {
+              timeout: expirationTimeMs - currentMs
+            });
           }
           function onFatal(root) {
             root.finishedWork = null;
@@ -10424,7 +10586,12 @@ module.exports = {
           }
           function unstable_trace(name, timestamp, callback) {
             var threadID = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-            var interaction = { __count: 1, id: interactionIDCounter++, name: name, timestamp: timestamp },
+            var interaction = {
+                __count: 1,
+                id: interactionIDCounter++,
+                name: name,
+                timestamp: timestamp
+              },
               prevInteractions = exports.__interactionsRef.current,
               interactions = new Set(prevInteractions);
             interactions.add(interaction), (exports.__interactionsRef.current = interactions);
@@ -10680,7 +10847,13 @@ module.exports = {
               (currentPriorityLevel = previousPriorityLevel), (currentExpirationTime = previousExpirationTime);
             }
             if ('function' == typeof continuationCallback) {
-              var continuationNode = { callback: continuationCallback, priorityLevel: priorityLevel, expirationTime: expirationTime, next: null, previous: null };
+              var continuationNode = {
+                callback: continuationCallback,
+                priorityLevel: priorityLevel,
+                expirationTime: expirationTime,
+                next: null,
+                previous: null
+              };
               if (null === firstCallbackNode) firstCallbackNode = continuationNode.next = continuationNode.previous = continuationNode;
               else {
                 var nextAfterContinuation = null,
@@ -10814,7 +10987,13 @@ module.exports = {
                 default:
                   expirationTime = startTime + 5e3;
               }
-            var newNode = { callback: callback, priorityLevel: currentPriorityLevel, expirationTime: expirationTime, next: null, previous: null };
+            var newNode = {
+              callback: callback,
+              priorityLevel: currentPriorityLevel,
+              expirationTime: expirationTime,
+              next: null,
+              previous: null
+            };
             if (null === firstCallbackNode) (firstCallbackNode = newNode.next = newNode.previous = newNode), ensureHostCallbackIsScheduled();
             else {
               var next = null,
@@ -10997,7 +11176,13 @@ module.exports = {
         'use strict';
         Object.defineProperty(exports, '__esModule', { value: !0 }),
           (exports.createTextNode = exports.setAttribute = exports.removeChildNode = exports.insertBeforeNode = exports.appendStaticNode = exports.appendChildNode = exports.createNode = void 0);
-        const createNode = (tagName) => ({ nodeName: tagName.toUpperCase(), style: {}, attributes: {}, childNodes: [], parentNode: null });
+        const createNode = (tagName) => ({
+          nodeName: tagName.toUpperCase(),
+          style: {},
+          attributes: {},
+          childNodes: [],
+          parentNode: null
+        });
         exports.createNode = createNode;
         const appendChildNode = (node, childNode) => {
           childNode.parentNode && removeChildNode(childNode.parentNode, childNode), (childNode.parentNode = node), node.childNodes.push(childNode);
@@ -11048,7 +11233,9 @@ module.exports = {
                 currentWidth = yogaNode.getComputedWidth();
               if (currentWidth > maxWidth) {
                 const { textWrap: textWrap } = node.parentNode.style,
-                  wrappedText = (0, _wrapText.default)(node.textContent, maxWidth, { textWrap: textWrap }),
+                  wrappedText = (0, _wrapText.default)(node.textContent, maxWidth, {
+                    textWrap: textWrap
+                  }),
                   { width: width, height: height } = (0, _measureText.default)(wrappedText);
                 yogaNode.setWidth(width), yogaNode.setHeight(height);
               }
@@ -11071,23 +11258,42 @@ module.exports = {
             if ((staticElements.length > 1 && console.error('Warning: There can only be one <Static> component'), 1 === staticElements.length)) {
               const rootNode = (0, _dom.createNode)('root');
               (0, _dom.appendStaticNode)(rootNode, staticElements[0]);
-              const { yogaNode: staticYogaNode } = (0, _buildLayout.default)(rootNode, { config: config, terminalWidth: terminalWidth, skipStaticElements: !1 });
+              const { yogaNode: staticYogaNode } = (0, _buildLayout.default)(rootNode, {
+                config: config,
+                terminalWidth: terminalWidth,
+                skipStaticElements: !1
+              });
               staticYogaNode.calculateLayout(_yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.DIRECTION_LTR),
                 calculateWrappedText(rootNode),
                 staticYogaNode.calculateLayout(_yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.DIRECTION_LTR),
                 (lastStaticYogaNode = staticYogaNode),
-                (staticOutput = new _output.default({ width: staticYogaNode.getComputedWidth(), height: staticYogaNode.getComputedHeight() })),
-                (0, _renderNodeToOutput.default)(rootNode, staticOutput, { skipStaticElements: !1 });
+                (staticOutput = new _output.default({
+                  width: staticYogaNode.getComputedWidth(),
+                  height: staticYogaNode.getComputedHeight()
+                })),
+                (0, _renderNodeToOutput.default)(rootNode, staticOutput, {
+                  skipStaticElements: !1
+                });
             }
-            const { yogaNode: yogaNode } = (0, _buildLayout.default)(node, { config: config, terminalWidth: terminalWidth, skipStaticElements: !0 });
+            const { yogaNode: yogaNode } = (0, _buildLayout.default)(node, {
+              config: config,
+              terminalWidth: terminalWidth,
+              skipStaticElements: !0
+            });
             yogaNode.calculateLayout(_yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.DIRECTION_LTR),
               calculateWrappedText(node),
               yogaNode.calculateLayout(_yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.UNDEFINED, _yogaLayoutPrebuilt.default.DIRECTION_LTR),
               (lastYogaNode = yogaNode);
-            const output = new _output.default({ width: yogaNode.getComputedWidth(), height: yogaNode.getComputedHeight() });
+            const output = new _output.default({
+              width: yogaNode.getComputedWidth(),
+              height: yogaNode.getComputedHeight()
+            });
             return (
               (0, _renderNodeToOutput.default)(node, output, { skipStaticElements: !0 }),
-              { output: output.get(), staticOutput: staticOutput ? `${staticOutput.get()}\n` : void 0 }
+              {
+                output: output.get(),
+                staticOutput: staticOutput ? `${staticOutput.get()}\n` : void 0
+              }
             );
           };
         };
@@ -11137,7 +11343,17 @@ module.exports = {
             };
           })();
         function _defineProperty(obj, key, value) {
-          return key in obj ? Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }) : (obj[key] = value), obj;
+          return (
+            key in obj
+              ? Object.defineProperty(obj, key, {
+                  value: value,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (obj[key] = value),
+            obj
+          );
         }
         function _classCallCheck(instance, Constructor) {
           if (!(instance instanceof Constructor)) throw new TypeError('Cannot call a class as a function');
@@ -19961,7 +20177,12 @@ module.exports = {
             }
             function _defineHidden(value) {
               return function (target, key) {
-                Object.defineProperty(target, key, { configurable: !1, enumerable: !1, value: value, writable: !0 });
+                Object.defineProperty(target, key, {
+                  configurable: !1,
+                  enumerable: !1,
+                  value: value,
+                  writable: !0
+                });
               };
             }
             STATICTOP += 16;
@@ -20010,7 +20231,11 @@ module.exports = {
                 }),
                 (Module.toggleLightGC = _nbind.toggleLightGC),
                 (_nbind.callUpcast = Module.dynCall_ii);
-              var globalScope = _nbind.makeType(_nbind.constructType, { flags: 2048, id: 0, name: '' }),
+              var globalScope = _nbind.makeType(_nbind.constructType, {
+                  flags: 2048,
+                  id: 0,
+                  name: ''
+                }),
                 _a;
               (globalScope.proto = Module), _nbind.BindClass.list.push(globalScope);
             }
@@ -20197,7 +20422,9 @@ module.exports = {
                         if (Browser.hasBlobConstructor)
                           try {
                             (b = new Blob([byteArray], { type: Browser.getMimetype(name) })).size !== byteArray.length &&
-                              (b = new Blob([new Uint8Array(byteArray).buffer], { type: Browser.getMimetype(name) }));
+                              (b = new Blob([new Uint8Array(byteArray).buffer], {
+                                type: Browser.getMimetype(name)
+                              }));
                           } catch (e) {
                             Runtime.warnOnce('Blob constructor present but fails: ' + e + '; falling back to blob builder');
                           }
@@ -20465,9 +20692,15 @@ module.exports = {
                   );
                 },
                 getMimetype: function (name) {
-                  return { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', bmp: 'image/bmp', ogg: 'audio/ogg', wav: 'audio/wav', mp3: 'audio/mpeg' }[
-                    name.substr(name.lastIndexOf('.') + 1)
-                  ];
+                  return {
+                    jpg: 'image/jpeg',
+                    jpeg: 'image/jpeg',
+                    png: 'image/png',
+                    bmp: 'image/bmp',
+                    ogg: 'audio/ogg',
+                    wav: 'audio/wav',
+                    mp3: 'audio/mpeg'
+                  }[name.substr(name.lastIndexOf('.') + 1)];
                 },
                 getUserMedia: function (func) {
                   window.getUserMedia || (window.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia), window.getUserMedia(func);
@@ -20520,7 +20753,10 @@ module.exports = {
                       if (void 0 === touch) return;
                       var adjustedX = touch.pageX - (scrollX + rect.left),
                         adjustedY = touch.pageY - (scrollY + rect.top),
-                        coords = { x: (adjustedX *= cw / rect.width), y: (adjustedY *= ch / rect.height) };
+                        coords = {
+                          x: (adjustedX *= cw / rect.width),
+                          y: (adjustedY *= ch / rect.height)
+                        };
                       if ('touchstart' === event.type) (Browser.lastTouches[touch.identifier] = coords), (Browser.touches[touch.identifier] = coords);
                       else if ('touchend' === event.type || 'touchmove' === event.type) {
                         var last = Browser.touches[touch.identifier];
@@ -20820,7 +21056,13 @@ module.exports = {
                 specList;
               if (5 == signatureType)
                 specList = [
-                  { direct: ptr, name: '__nbindConstructor', ptr: 0, title: bindClass.name + ' constructor', typeList: ['uint32_t'].concat(typeList.slice(1)) },
+                  {
+                    direct: ptr,
+                    name: '__nbindConstructor',
+                    ptr: 0,
+                    title: bindClass.name + ' constructor',
+                    typeList: ['uint32_t'].concat(typeList.slice(1))
+                  },
                   {
                     direct: direct,
                     name: '__nbindValueConstructor',
@@ -20833,7 +21075,16 @@ module.exports = {
                 var name_1 = _nbind.readAsciiString(namePtr),
                   title = (bindClass.name && bindClass.name + '.') + name_1;
                 (3 != signatureType && 4 != signatureType) || (name_1 = _removeAccessorPrefix(name_1)),
-                  (specList = [{ boundID: boundID, direct: direct, name: name_1, ptr: ptr, title: title, typeList: typeList }]);
+                  (specList = [
+                    {
+                      boundID: boundID,
+                      direct: direct,
+                      name: name_1,
+                      ptr: ptr,
+                      title: title,
+                      typeList: typeList
+                    }
+                  ]);
               }
               for (var _i = 0, specList_1 = specList; _i < specList_1.length; _i++) {
                 var spec = specList_1[_i];
@@ -21449,7 +21700,13 @@ module.exports = {
                   return policyTbl;
                 }
                 function getDynCall(typeList, name) {
-                  var mangleMap = { float32_t: 'd', float64_t: 'd', int64_t: 'd', uint64_t: 'd', void: 'v' },
+                  var mangleMap = {
+                      float32_t: 'd',
+                      float64_t: 'd',
+                      int64_t: 'd',
+                      uint64_t: 'd',
+                      void: 'v'
+                    },
                     signature = typeList
                       .map(function (type) {
                         return mangleMap[type.name] || 'i';
@@ -21664,7 +21921,12 @@ module.exports = {
                   function die() {
                     throw new Error('Accessing deleted object');
                   }
-                  Object.defineProperty(obj, name, { configurable: !1, enumerable: !1, get: die, set: die });
+                  Object.defineProperty(obj, name, {
+                    configurable: !1,
+                    enumerable: !1,
+                    get: die,
+                    set: die
+                  });
                 }
                 (_nbind.Wrapper = Wrapper), (_nbind.makeBound = makeBound), (_nbind.ptrMarker = {});
                 var BindClass = (function (_super) {
@@ -48355,7 +48617,10 @@ module.exports = {
               if (node.parentNode.style.textWrap) {
                 const currentWidth = (0, _widestLine.default)(text),
                   maxWidth = (0, _getMaxWidth.default)(node.parentNode.yogaNode);
-                currentWidth > maxWidth && (text = (0, _wrapText.default)(text, maxWidth, { textWrap: node.parentNode.style.textWrap }));
+                currentWidth > maxWidth &&
+                  (text = (0, _wrapText.default)(text, maxWidth, {
+                    textWrap: node.parentNode.style.textWrap
+                  }));
               }
               output.write(x, y, text, { transformers: newTransformers });
             } else if ('#text' !== node.nodeName) {
@@ -48366,12 +48631,20 @@ module.exports = {
                   if (node.style.textWrap) {
                     const currentWidth = (0, _widestLine.default)(text),
                       maxWidth = (0, _getMaxWidth.default)(yogaNode);
-                    currentWidth > maxWidth && (text = (0, _wrapText.default)(text, maxWidth, { textWrap: node.style.textWrap }));
+                    currentWidth > maxWidth &&
+                      (text = (0, _wrapText.default)(text, maxWidth, {
+                        textWrap: node.style.textWrap
+                      }));
                   }
                   return void output.write(x, y, text, { transformers: newTransformers });
                 }
                 for (const childNode of node.childNodes)
-                  renderNodeToOutput(childNode, output, { offsetX: x, offsetY: y, transformers: newTransformers, skipStaticElements: skipStaticElements });
+                  renderNodeToOutput(childNode, output, {
+                    offsetX: x,
+                    offsetY: y,
+                    transformers: newTransformers,
+                    skipStaticElements: skipStaticElements
+                  });
               }
             } else output.write(x, y, node.nodeValue, { transformers: newTransformers });
           };
@@ -48460,7 +48733,17 @@ module.exports = {
           return obj && obj.__esModule ? obj : { default: obj };
         }
         function _defineProperty(obj, key, value) {
-          return key in obj ? Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }) : (obj[key] = value), obj;
+          return (
+            key in obj
+              ? Object.defineProperty(obj, key, {
+                  value: value,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (obj[key] = value),
+            obj
+          );
         }
         class App extends _react.PureComponent {
           isRawModeSupported() {
@@ -48500,7 +48783,13 @@ module.exports = {
               { value: { exit: this.handleExit } },
               _react.default.createElement(
                 _StdinContext.default.Provider,
-                { value: { stdin: this.props.stdin, setRawMode: this.handleSetRawMode, isRawModeSupported: this.isRawModeSupported() } },
+                {
+                  value: {
+                    stdin: this.props.stdin,
+                    setRawMode: this.handleSetRawMode,
+                    isRawModeSupported: this.isRawModeSupported()
+                  }
+                },
                 _react.default.createElement(_StdoutContext.default.Provider, { value: { stdout: this.props.stdout } }, this.props.children)
               )
             );
@@ -48906,7 +49195,9 @@ module.exports = {
           return obj && obj.__esModule ? obj : { default: obj };
         }
         Object.defineProperty(exports, '__esModule', { value: !0 }), (exports.default = void 0);
-        var _default = _interopRequireDefault(__webpack_require__(8)).default.createContext({ exit() {} });
+        var _default = _interopRequireDefault(__webpack_require__(8)).default.createContext({
+          exit() {}
+        });
         exports.default = _default;
       },
       function (module, exports, __webpack_require__) {
@@ -48916,7 +49207,10 @@ module.exports = {
           return obj && obj.__esModule ? obj : { default: obj };
         }
         Object.defineProperty(exports, '__esModule', { value: !0 }), (exports.default = void 0);
-        var _default = _interopRequireDefault(__webpack_require__(8)).default.createContext({ stdin: void 0, setRawMode: void 0 });
+        var _default = _interopRequireDefault(__webpack_require__(8)).default.createContext({
+          stdin: void 0,
+          setRawMode: void 0
+        });
         exports.default = _default;
       },
       function (module, exports, __webpack_require__) {
@@ -48926,7 +49220,9 @@ module.exports = {
           return obj && obj.__esModule ? obj : { default: obj };
         }
         Object.defineProperty(exports, '__esModule', { value: !0 }), (exports.default = void 0);
-        var _default = _interopRequireDefault(__webpack_require__(8)).default.createContext({ stdout: void 0 });
+        var _default = _interopRequireDefault(__webpack_require__(8)).default.createContext({
+          stdout: void 0
+        });
         exports.default = _default;
       },
       function (module, exports, __webpack_require__) {
@@ -48970,7 +49266,17 @@ module.exports = {
           return target;
         }
         function _defineProperty(obj, key, value) {
-          return key in obj ? Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }) : (obj[key] = value), obj;
+          return (
+            key in obj
+              ? Object.defineProperty(obj, key, {
+                  value: value,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (obj[key] = value),
+            obj
+          );
         }
         class Box extends _react.PureComponent {
           constructor() {
@@ -48980,7 +49286,15 @@ module.exports = {
             const _this$props = this.props,
               { children: children, unstable__transformChildren: unstable__transformChildren } = _this$props,
               style = _objectWithoutProperties(_this$props, ['children', 'unstable__transformChildren']);
-            return _react.default.createElement('div', { ref: this.nodeRef, style: style, unstable__transformChildren: unstable__transformChildren }, children);
+            return _react.default.createElement(
+              'div',
+              {
+                ref: this.nodeRef,
+                style: style,
+                unstable__transformChildren: unstable__transformChildren
+              },
+              children
+            );
           }
           unstable__getComputedWidth() {
             return this.nodeRef.current.yogaNode.getComputedWidth();
@@ -49016,7 +49330,11 @@ module.exports = {
             unstable__transformChildren: _propTypes.default.func,
             children: _propTypes.default.node
           }),
-          _defineProperty(Box, 'defaultProps', { flexDirection: 'row', flexGrow: 0, flexShrink: 1 });
+          _defineProperty(Box, 'defaultProps', {
+            flexDirection: 'row',
+            flexGrow: 0,
+            flexShrink: 1
+          });
       },
       function (module, exports, __webpack_require__) {
         'use strict';
@@ -49053,7 +49371,13 @@ module.exports = {
           children: _propTypes.default.node.isRequired,
           unstable__transformChildren: _propTypes.default.func
         }),
-          (Text.defaultProps = { bold: !1, italic: !1, underline: !1, strikethrough: !1, unstable__transformChildren: void 0 });
+          (Text.defaultProps = {
+            bold: !1,
+            italic: !1,
+            underline: !1,
+            strikethrough: !1,
+            unstable__transformChildren: void 0
+          });
         var _default = Text;
         exports.default = _default;
       },
@@ -49111,7 +49435,11 @@ module.exports = {
                 const level = this.level;
                 return function () {
                   const open = ansiStyles.color[levelMapping[level]][model].apply(null, arguments),
-                    codes = { open: open, close: ansiStyles.color.close, closeRe: ansiStyles.color.closeRe };
+                    codes = {
+                      open: open,
+                      close: ansiStyles.color.close,
+                      closeRe: ansiStyles.color.closeRe
+                    };
                   return build.call(this, this._styles ? this._styles.concat(codes) : [codes], this._empty, model);
                 };
               }
@@ -49125,7 +49453,11 @@ module.exports = {
               const level = this.level;
               return function () {
                 const open = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments),
-                  codes = { open: open, close: ansiStyles.bgColor.close, closeRe: ansiStyles.bgColor.closeRe };
+                  codes = {
+                    open: open,
+                    close: ansiStyles.bgColor.close,
+                    closeRe: ansiStyles.bgColor.closeRe
+                  };
                 return build.call(this, this._styles ? this._styles.concat(codes) : [codes], this._empty, model);
               };
             }
@@ -49242,7 +49574,11 @@ module.exports = {
           ? (forceColor = !1)
           : (hasFlag('color') || hasFlag('colors') || hasFlag('color=true') || hasFlag('color=always')) && (forceColor = !0),
           'FORCE_COLOR' in env && (forceColor = 0 === env.FORCE_COLOR.length || 0 !== parseInt(env.FORCE_COLOR, 10)),
-          (module.exports = { supportsColor: getSupportLevel, stdout: getSupportLevel(process.stdout), stderr: getSupportLevel(process.stderr) });
+          (module.exports = {
+            supportsColor: getSupportLevel,
+            stdout: getSupportLevel(process.stdout),
+            stderr: getSupportLevel(process.stderr)
+          });
       },
       function (module, exports) {
         module.exports = require('os');
@@ -49434,7 +49770,17 @@ module.exports = {
           return target;
         }
         function _defineProperty(obj, key, value) {
-          return key in obj ? Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }) : (obj[key] = value), obj;
+          return (
+            key in obj
+              ? Object.defineProperty(obj, key, {
+                  value: value,
+                  enumerable: !0,
+                  configurable: !0,
+                  writable: !0
+                })
+              : (obj[key] = value),
+            obj
+          );
         }
         const childrenToArray = (children) => (Array.isArray(children) ? children : [children]);
         class Static extends _react.Component {
@@ -49518,7 +49864,12 @@ module.exports = {
             [activeKey, setActiveKey] = react_1.useState(initialKey),
             activeIndex = keys.indexOf(activeKey);
           useFocusRequest_1.useFocusRequest({ active: active, handler: onFocusRequest }),
-            useListInput_1.useListInput(activeKey, keys, { active: active, minus: 'up', plus: 'down', set: setActiveKey });
+            useListInput_1.useListInput(activeKey, keys, {
+              active: active,
+              minus: 'up',
+              plus: 'down',
+              set: setActiveKey
+            });
           let min = activeIndex - radius,
             max = activeIndex + radius;
           max > keys.length && ((min -= max - keys.length), (max = keys.length)), min < 0 && ((max += -min), (min = 0)), max >= keys.length && (max = keys.length - 1);
@@ -49607,11 +49958,18 @@ module.exports = {
               setRawMode && setRawMode(!0);
             }, []);
             const [data, setData] = react_1.useState(new Map()),
-              ministore = react_1.useMemo(() => ({ getAll: () => data, get: (key) => data.get(key), set: (key, value) => setData(new Map([...data, [key, value]])) }), [
-                data,
-                setData
-              ]);
-            return react_1.default.createElement(exports.MinistoreContext.Provider, { value: ministore, children: children });
+              ministore = react_1.useMemo(
+                () => ({
+                  getAll: () => data,
+                  get: (key) => data.get(key),
+                  set: (key, value) => setData(new Map([...data, [key, value]]))
+                }),
+                [data, setData]
+              );
+            return react_1.default.createElement(exports.MinistoreContext.Provider, {
+              value: ministore,
+              children: children
+            });
           });
       },
       function (module, exports, __webpack_require__) {
@@ -49905,7 +50263,11 @@ module.exports = {
             pushComponent: function pushComponent(components, added, removed) {
               var last = components[components.length - 1];
               last && last.added === added && last.removed === removed
-                ? (components[components.length - 1] = { count: last.count + 1, added: added, removed: removed })
+                ? (components[components.length - 1] = {
+                    count: last.count + 1,
+                    added: added,
+                    removed: removed
+                  })
                 : components.push({ count: 1, added: added, removed: removed });
             },
             extractCommon: function extractCommon(basePath, newString, oldString, diagonalPath) {
@@ -50417,7 +50779,13 @@ module.exports = {
           return test.oldStart < check.oldStart && test.oldStart + test.oldLines < check.oldStart;
         }
         function cloneHunk(hunk, offset) {
-          return { oldStart: hunk.oldStart, oldLines: hunk.oldLines, newStart: hunk.newStart + offset, newLines: hunk.newLines, lines: hunk.lines };
+          return {
+            oldStart: hunk.oldStart,
+            oldLines: hunk.oldLines,
+            newStart: hunk.newStart + offset,
+            newLines: hunk.newLines,
+            lines: hunk.lines
+          };
         }
         function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
           var mine = { offset: mineOffset, lines: mineLines, index: 0 },
@@ -50629,7 +50997,13 @@ module.exports = {
             i++
           )
             _loop(i);
-          return { oldFileName: oldFileName, newFileName: newFileName, oldHeader: oldHeader, newHeader: newHeader, hunks: hunks };
+          return {
+            oldFileName: oldFileName,
+            newFileName: newFileName,
+            oldHeader: oldHeader,
+            newHeader: newHeader,
+            hunks: hunks
+          };
         }
         function createTwoFilesPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options) {
           var diff = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options),

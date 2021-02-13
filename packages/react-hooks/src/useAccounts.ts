@@ -14,9 +14,14 @@ interface UseAccounts {
   isReady: boolean;
 }
 
-export default function useAccounts(): UseAccounts {
+export default function useAccounts (): UseAccounts {
   const mountedRef = useIsMountedRef();
-  const [state, setState] = useState<UseAccounts>({ allAccounts: [], hasAccounts: false, isAccount: () => false, isReady: false });
+  const [state, setState] = useState<UseAccounts>({
+    allAccounts: [],
+    hasAccounts: false,
+    isAccount: () => false,
+    isReady: false
+  });
 
   useEffect((): (() => void) => {
     const subscription = keyring.accounts.subject.subscribe((accounts): void => {
