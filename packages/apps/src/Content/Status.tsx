@@ -22,7 +22,7 @@ interface Props {
 
 let prevEventHash: string;
 
-function filterEvents (
+function filterEvents(
   allAccounts: string[],
   t: <T = string>(key: string, opts?: Record<string, unknown>) => T,
   optionsAll?: KeyringOptions,
@@ -68,7 +68,7 @@ function filterEvents (
     .filter((item): item is ActionStatus => !!item);
 }
 
-function Status ({ optionsAll, queueAction, stqueue, txqueue }: Props): React.ReactElement<Props> {
+function Status({ optionsAll, queueAction, stqueue, txqueue }: Props): React.ReactElement<Props> {
   const { api, isApiReady } = useApi();
   const { allAccounts } = useAccounts();
   const { t } = useTranslation();
@@ -80,8 +80,7 @@ function Status ({ optionsAll, queueAction, stqueue, txqueue }: Props): React.Re
     filtered && queueAction(filtered);
   }, [allAccounts, events, optionsAll, queueAction, t]);
 
-  return <StatusDisplay stqueue={stqueue}
-    txqueue={txqueue} />;
+  return <StatusDisplay stqueue={stqueue} txqueue={txqueue} />;
 }
 
 export default React.memo(Status);

@@ -14,7 +14,8 @@ import Button from './Button';
 import { StatusContext } from './Status';
 import { useTranslation } from './translate';
 
-function TxButton ({ accountId,
+function TxButton({
+  accountId,
   className = '',
   extrinsic: propsExtrinsic,
   icon,
@@ -35,7 +36,8 @@ function TxButton ({ accountId,
   tooltip,
   tx,
   withSpinner,
-  withoutLink }: Props): React.ReactElement<Props> {
+  withoutLink
+}: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const mountedRef = useIsMountedRef();
   const { queueExtrinsic } = useContext(StatusContext);

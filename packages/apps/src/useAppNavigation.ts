@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { AppNavigation } from './types';
 
-export default function useAppNavigation (): AppNavigation {
+export default function useAppNavigation(): AppNavigation {
   const history = useHistory();
 
   const navigator = useCallback(

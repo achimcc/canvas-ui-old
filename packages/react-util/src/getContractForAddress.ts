@@ -8,7 +8,7 @@ import { ContractPromise as Contract } from '@polkadot/api-contract';
 
 import { StringOrNull } from './types';
 
-export default function getContractForAddress (api: ApiPromise, address: StringOrNull): Contract | null {
+export default function getContractForAddress(api: ApiPromise, address: StringOrNull): Contract | null {
   if (!address) {
     return null;
   } else {

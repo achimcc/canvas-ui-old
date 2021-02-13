@@ -13,7 +13,7 @@ import keyring from '@polkadot/ui-keyring';
 import { useTranslation } from './translate';
 import { ComponentProps as Props } from './types';
 
-function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<Props> {
+function Add({ className, isContract, navigateTo }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const showNotification = useNotification();
@@ -104,7 +104,7 @@ function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<
     <div className={className}>
       <header>
         <h1>{t<string>('Add Existing Contract')}</h1>
-        <div className='instructions'>{t<string>('Using the existing contract address of a deployed contract instance you can add a contract to call to the UI.')}</div>
+        <div className="instructions">{t<string>('Using the existing contract address of a deployed contract instance you can add a contract to call to the UI.')}</div>
       </header>
       <section>
         <Input
@@ -116,10 +116,7 @@ function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<
           value={address || ''}
           withStatus
         />
-        <InputName isContract
-          isError={isNameError}
-          onChange={setName}
-          value={name || undefined} />
+        <InputName isContract isError={isNameError} onChange={setName} value={name || undefined} />
         <InputABI
           abi={abi}
           errorText={errorText}
@@ -133,12 +130,8 @@ function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<
           withLabel
         />
         <Button.Group>
-          <Button isDisabled={!isValid}
-            isPrimary
-            label={t<string>('Save')}
-            onClick={_onAdd} />
-          <Button label={t<string>('Cancel')}
-            onClick={navigateTo.execute} />
+          <Button isDisabled={!isValid} isPrimary label={t<string>('Save')} onClick={_onAdd} />
+          <Button label={t<string>('Cancel')} onClick={navigateTo.execute} />
         </Button.Group>
       </section>
     </div>

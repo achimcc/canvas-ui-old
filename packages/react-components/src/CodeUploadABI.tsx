@@ -18,7 +18,7 @@ interface Props extends BareProps {
   onSave: (_: FileState) => void;
 }
 
-function CodeUploadABI ({ codeHash, label, onSave }: Props): React.ReactElement<Props> {
+function CodeUploadABI({ codeHash, label, onSave }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const showNotification = useNotification();
   const [isOpen, toggleIsOpen] = useToggle();
@@ -40,10 +40,8 @@ function CodeUploadABI ({ codeHash, label, onSave }: Props): React.ReactElement<
 
   return (
     <>
-      <Button label={label}
-        onClick={toggleIsOpen} />
-      <Modal isOpen={isOpen}
-        onClose={toggleIsOpen}>
+      <Button label={label} onClick={toggleIsOpen} />
+      <Modal isOpen={isOpen} onClose={toggleIsOpen}>
         <Modal.Header>{t<string>('Upload ABI')}</Modal.Header>
         <Modal.Content>
           <InputABI
@@ -60,10 +58,7 @@ function CodeUploadABI ({ codeHash, label, onSave }: Props): React.ReactElement<
           />
         </Modal.Content>
         <Modal.Actions onCancel={toggleIsOpen}>
-          <Button isDisabled={!abiFile || !isAbiValid}
-            isPrimary
-            label={t<string>('Save')}
-            onClick={_onSave} />
+          <Button isDisabled={!abiFile || !isAbiValid} isPrimary label={t<string>('Save')} onClick={_onSave} />
         </Modal.Actions>
       </Modal>
     </>
