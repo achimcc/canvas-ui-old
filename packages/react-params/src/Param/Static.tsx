@@ -20,26 +20,21 @@ interface Props {
   withLabel?: boolean;
 }
 
-function StaticParam ({ asHex, children, className = '', defaultValue, label }: Props): React.ReactElement<Props> {
+function StaticParam({ asHex, children, className = '', defaultValue, label }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const value = defaultValue && (defaultValue.value as string) && (
-    asHex
+  const value =
+    defaultValue &&
+    (defaultValue.value as string) &&
+    (asHex
       ? (defaultValue.value as Codec).toHex()
-      : JSON.stringify(
-        (defaultValue.value as { toHuman?: () => unknown }).toHuman
-          ? (defaultValue.value as Codec).toHuman()
-          : defaultValue.value,
-        null, 2
-      ).replace(/"/g, '').replace(/\\/g, '').replace(/\],\[/g, '],\n[')
-  );
+      : JSON.stringify((defaultValue.value as { toHuman?: () => unknown }).toHuman ? (defaultValue.value as Codec).toHuman() : defaultValue.value, null, 2)
+          .replace(/"/g, '')
+          .replace(/\\/g, '')
+          .replace(/\],\[/g, '],\n['));
 
   return (
     <Bare className={className}>
-      <Static
-        className='full'
-        label={label}
-        value={<pre>{value || t<string>('<empty>')}</pre>}
-      />
+      <Static className="full" label={label} value={<pre>{value || t<string>('<empty>')}</pre>} />
       {children}
     </Bare>
   );

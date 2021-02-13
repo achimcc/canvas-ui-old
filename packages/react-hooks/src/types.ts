@@ -15,7 +15,7 @@ export type CallParam = any;
 
 export type CallParams = [] | CallParam[];
 
-export interface CallOptions <T> {
+export interface CallOptions<T> {
   defaultValue?: T;
   isSingle?: boolean;
   paramMap?: (params: any) => CallParams;
@@ -147,7 +147,7 @@ export interface UseWeight {
   isValid: boolean;
   megaGas: BN;
   percentage: number;
-  setIsEmpty: React.Dispatch<boolean>
+  setIsEmpty: React.Dispatch<boolean>;
   setMegaGas: React.Dispatch<BN | undefined>;
   weight: BN;
   weightToString: string;

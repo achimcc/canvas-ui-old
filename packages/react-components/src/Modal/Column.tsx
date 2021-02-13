@@ -6,10 +6,8 @@ import styled from 'styled-components';
 
 import { ColumnProps } from './types';
 
-function Column ({ children, className = '' }: ColumnProps): React.ReactElement<ColumnProps> {
-  return (
-    <div className={`ui--Modal-Column ${className}`}>{children}</div>
-  );
+function Column({ children, className = '' }: ColumnProps): React.ReactElement<ColumnProps> {
+  return <div className={`ui--Modal-Column ${className}`}>{children}</div>;
 }
 
 export default React.memo(styled(Column)`

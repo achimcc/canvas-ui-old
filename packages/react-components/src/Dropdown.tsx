@@ -41,9 +41,36 @@ interface Props<Option> extends BareProps {
 
 export type IDropdown<Option> = React.ComponentType<Props<Option>> & {
   Header: React.ComponentType<{ content: React.ReactNode }>;
-}
+};
 
-function BaseDropdown<Option> ({ allowAdd = false, children, className = '', defaultValue, dropdownClassName, help, isButton, isDisabled, isError, isFull, isMultiple, label, labelExtra, onAdd, onBlur, onChange, onClose, onSearch, options, placeholder, renderLabel, searchInput, transform, value, withEllipsis, withLabel }: Props<Option>): React.ReactElement<Props<Option>> {
+function BaseDropdown<Option>({
+  allowAdd = false,
+  children,
+  className = '',
+  defaultValue,
+  dropdownClassName,
+  help,
+  isButton,
+  isDisabled,
+  isError,
+  isFull,
+  isMultiple,
+  label,
+  labelExtra,
+  onAdd,
+  onBlur,
+  onChange,
+  onClose,
+  onSearch,
+  options,
+  placeholder,
+  renderLabel,
+  searchInput,
+  transform,
+  value,
+  withEllipsis,
+  withLabel
+}: Props<Option>): React.ReactElement<Props<Option>> {
   const lastUpdate = useRef<string>('');
   const [stored, setStored] = useState<string | undefined>();
 
@@ -56,11 +83,7 @@ function BaseDropdown<Option> ({ allowAdd = false, children, className = '', def
 
         setStored(value);
 
-        onChange && onChange(
-          transform
-            ? transform(value)
-            : value
-        );
+        onChange && onChange(transform ? transform(value) : value);
       }
     },
     [onChange, transform]
@@ -70,17 +93,9 @@ function BaseDropdown<Option> ({ allowAdd = false, children, className = '', def
     _setStored(isUndefined(value) ? defaultValue : value);
   }, [_setStored, defaultValue, value]);
 
-  const _onAdd = useCallback(
-    (_: React.SyntheticEvent<HTMLElement>, { value }: DropdownProps): void =>
-      onAdd && onAdd(value),
-    [onAdd]
-  );
+  const _onAdd = useCallback((_: React.SyntheticEvent<HTMLElement>, { value }: DropdownProps): void => onAdd && onAdd(value), [onAdd]);
 
-  const _onChange = useCallback(
-    (_: React.SyntheticEvent<HTMLElement> | null, { value }: DropdownProps): void =>
-      _setStored(value as string),
-    [_setStored]
-  );
+  const _onChange = useCallback((_: React.SyntheticEvent<HTMLElement> | null, { value }: DropdownProps): void => _setStored(value as string), [_setStored]);
 
   const dropdown = (
     <SUIDropdown
@@ -106,29 +121,25 @@ function BaseDropdown<Option> ({ allowAdd = false, children, className = '', def
     />
   );
 
-  return isButton
-    ? (
-      <SUIButton.Group primary>
-        {dropdown}
-      </SUIButton.Group>
-    )
-    : (
-      <Labelled
-        className={classes('ui--Dropdown', className)}
-        help={help}
-        isFull={isFull}
-        label={label}
-        labelExtra={labelExtra}
-        withEllipsis={withEllipsis}
-        withLabel={withLabel}
-      >
-        {dropdown}
-        {children}
-      </Labelled>
-    );
+  return isButton ? (
+    <SUIButton.Group primary>{dropdown}</SUIButton.Group>
+  ) : (
+    <Labelled
+      className={classes('ui--Dropdown', className)}
+      help={help}
+      isFull={isFull}
+      label={label}
+      labelExtra={labelExtra}
+      withEllipsis={withEllipsis}
+      withLabel={withLabel}
+    >
+      {dropdown}
+      {children}
+    </Labelled>
+  );
 }
 
-const Dropdown = React.memo(styled(BaseDropdown)`
+const Dropdown = (React.memo(styled(BaseDropdown)`
   .ui--Dropdown-item {
     position: relative;
     white-space: nowrap;
@@ -189,7 +200,7 @@ const Dropdown = React.memo(styled(BaseDropdown)`
       }
     }
   }
-`) as unknown as IDropdown<any>;
+`) as unknown) as IDropdown<any>;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 (Dropdown as any).Header = SUIDropdown.Header;

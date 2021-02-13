@@ -5,7 +5,7 @@ import StatusContext from '@canvas-ui/react-components/Status/Context';
 import { ActionStatus } from '@canvas-ui/react-components/Status/types';
 import { useCallback, useContext } from 'react';
 
-export default function useNotification (): (_: ActionStatus) => void {
+export default function useNotification(): (_: ActionStatus) => void {
   const { queueAction } = useContext(StatusContext);
 
   return useCallback(

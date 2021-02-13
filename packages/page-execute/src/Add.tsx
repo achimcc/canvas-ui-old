@@ -13,7 +13,7 @@ import keyring from '@polkadot/ui-keyring';
 import { useTranslation } from './translate';
 import { ComponentProps as Props } from './types';
 
-function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<Props> {
+function Add({ className, isContract, navigateTo }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const showNotification = useNotification();
@@ -41,84 +41,70 @@ function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<
     setIsStored(!!contractInfo?.isSome);
   }, [contractInfo?.isSome]);
 
-  const [isAddressValid, status] = useMemo(
-    (): [boolean, React.ReactNode | null] => {
-      const isAddressValid = isAddress && isStored && isNotAdded;
+  const [isAddressValid, status] = useMemo((): [boolean, React.ReactNode | null] => {
+    const isAddressValid = isAddress && isStored && isNotAdded;
 
-      let status = null;
+    let status = null;
 
-      if (isAddressTouched) {
-        if (!isAddress) {
-          status = t<string>('The value is not in a valid address format');
-        } else if (!isStored) {
-          status = t<string>('Unable to find deployed contract code at the specified address');
-        } else if (!isNotAdded) {
-          status = t<string>('You have already added this contract address');
-        } else if (isAddressValid) {
-          status = t<string>('Contract code successfully found at address');
-        }
+    if (isAddressTouched) {
+      if (!isAddress) {
+        status = t<string>('The value is not in a valid address format');
+      } else if (!isStored) {
+        status = t<string>('Unable to find deployed contract code at the specified address');
+      } else if (!isNotAdded) {
+        status = t<string>('You have already added this contract address');
+      } else if (isAddressValid) {
+        status = t<string>('Contract code successfully found at address');
       }
+    }
 
-      return [
-        isAddressValid,
-        status
-      ];
-    },
-    [isAddress, isAddressTouched, isNotAdded, isStored, t]
-  );
+    return [isAddressValid, status];
+  }, [isAddress, isAddressTouched, isNotAdded, isStored, t]);
 
-  const isValid = useMemo(
-    (): boolean => isAbiValid && isAddressValid && isNameValid,
-    [isAddressValid, isAbiValid, isNameValid]
-  );
+  const isValid = useMemo((): boolean => isAbiValid && isAddressValid && isNameValid, [isAddressValid, isAbiValid, isNameValid]);
 
-  const _onAdd = useCallback(
-    (): void => {
-      if (!address || !abi || !name) {
-        return;
-      }
+  const _onAdd = useCallback((): void => {
+    if (!address || !abi || !name) {
+      return;
+    }
 
-      try {
-        const json = {
-          contract: {
-            abi: abi.json,
-            genesisHash: api.genesisHash.toHex()
-          },
-          name,
-          tags: []
-        };
+    try {
+      const json = {
+        contract: {
+          abi: abi.json,
+          genesisHash: api.genesisHash.toHex()
+        },
+        name,
+        tags: []
+      };
 
-        keyring.saveContract(address, json);
+      keyring.saveContract(address, json);
 
-        showNotification({
-          account: address,
-          action: 'created',
-          message: t<string>('contract added'),
-          status: address ? 'success' : 'error'
-        });
+      showNotification({
+        account: address,
+        action: 'created',
+        message: t<string>('contract added'),
+        status: address ? 'success' : 'error'
+      });
 
-        navigateTo.execute();
-      } catch (error) {
-        console.error(error);
+      navigateTo.execute();
+    } catch (error) {
+      console.error(error);
 
-        showNotification({
-          account: address,
-          action: 'created',
-          message: (error as Error).message,
-          status: 'error'
-        });
-      }
-    },
-    [abi, address, api, name, navigateTo, showNotification, t]
-  );
+      showNotification({
+        account: address,
+        action: 'created',
+        message: (error as Error).message,
+        status: 'error'
+      });
+    }
+  }, [abi, address, api, name, navigateTo, showNotification, t]);
 
   return (
     <div className={className}>
       <header>
         <h1>{t<string>('Add Existing Contract')}</h1>
-        <div className='instructions'>
-          {t<string>('Using the existing contract address of a deployed contract instance you can add a contract to call to the UI.')}
-        </div>
+        <div className="instructions">{t<string>('Using the existing contract address of a deployed contract instance you can add a contract to call to the UI.')}</div>
       </header>
       <section>
         <Input
@@ -130,12 +116,7 @@ function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<
           value={address || ''}
           withStatus
         />
-        <InputName
-          isContract
-          isError={isNameError}
-          onChange={setName}
-          value={name || undefined}
-        />
+        <InputName isContract isError={isNameError} onChange={setName} value={name || undefined} />
         <InputABI
           abi={abi}
           errorText={errorText}
@@ -149,21 +130,12 @@ function Add ({ className, isContract, navigateTo }: Props): React.ReactElement<
           withLabel
         />
         <Button.Group>
-          <Button
-            isDisabled={!isValid}
-            isPrimary
-            label={t<string>('Save')}
-            onClick={_onAdd}
-          />
-          <Button
-            label={t<string>('Cancel')}
-            onClick={navigateTo.execute}
-          />
+          <Button isDisabled={!isValid} isPrimary label={t<string>('Save')} onClick={_onAdd} />
+          <Button label={t<string>('Cancel')} onClick={navigateTo.execute} />
         </Button.Group>
       </section>
     </div>
   );
 }
 
-export default styled(React.memo(Add))`
-`;
+export default styled(React.memo(Add))``;

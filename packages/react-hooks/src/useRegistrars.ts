@@ -26,7 +26,7 @@ interface State {
   skipQuery?: boolean;
 }
 
-export default function useRegistrars (skipQuery?: boolean): State {
+export default function useRegistrars(skipQuery?: boolean): State {
   const { api } = useApi();
   const { allAccounts, hasAccounts } = useAccounts();
   const query = useCall<Option<RegistrarInfo>[]>(!skipQuery && hasAccounts && api.query.identity?.registrars, []);
@@ -36,12 +36,12 @@ export default function useRegistrars (skipQuery?: boolean): State {
   useEffect((): void => {
     if (allAccounts && query) {
       const registrars = query
-        .map((registrar, index): RegistrarNull => ({
-          address: registrar.isSome
-            ? registrar.unwrap().account.toString()
-            : null,
-          index
-        }))
+        .map(
+          (registrar, index): RegistrarNull => ({
+            address: registrar.isSome ? registrar.unwrap().account.toString() : null,
+            index
+          })
+        )
         .filter((registrar): registrar is Registrar => !!registrar.address);
 
       setState({

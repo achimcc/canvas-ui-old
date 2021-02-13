@@ -10,12 +10,14 @@ interface Props extends BareProps {
   label?: React.ReactNode;
 }
 
-function Chain ({ children, className = '', label }: Props): React.ReactElement<Props> {
+function Chain({ children, className = '', label }: Props): React.ReactElement<Props> {
   const { systemChain } = useApi();
 
   return (
     <div className={className}>
-      {label || ''}{systemChain}{children}
+      {label || ''}
+      {systemChain}
+      {children}
     </div>
   );
 }

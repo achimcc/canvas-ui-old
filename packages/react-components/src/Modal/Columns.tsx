@@ -6,10 +6,8 @@ import styled from 'styled-components';
 
 import { ColumnProps } from './types';
 
-function Columns ({ children, className = '' }: ColumnProps): React.ReactElement<ColumnProps> {
-  return (
-    <div className={`ui--Modal-Columns ${className}`}>{children}</div>
-  );
+function Columns({ children, className = '' }: ColumnProps): React.ReactElement<ColumnProps> {
+  return <div className={`ui--Modal-Columns ${className}`}>{children}</div>;
 }
 
 export default React.memo(styled(Columns)`
@@ -18,7 +16,7 @@ export default React.memo(styled(Columns)`
   flex-layout: row;
   justify-content: space-between;
 
-  &+& {
+  & + & {
     margin-top: 0.25rem;
   }
 `);

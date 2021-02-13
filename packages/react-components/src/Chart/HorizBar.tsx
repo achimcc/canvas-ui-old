@@ -32,24 +32,29 @@ const alphaColor = (hexColor: string): string =>
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
   ChartJs.helpers.color(hexColor).alpha(0.65).rgbString();
 
-function calculateOptions (aspectRatio: number, values: HorizBarValue[], jsonValues: string, max: number, showLabels: boolean): State {
-  const chartData = values.reduce((data, { colors: [normalColor = '#00f', hoverColor], label, value }): Config => {
-    const dataset = data.datasets[0];
+function calculateOptions(aspectRatio: number, values: HorizBarValue[], jsonValues: string, max: number, showLabels: boolean): State {
+  const chartData = values.reduce(
+    (data, { colors: [normalColor = '#00f', hoverColor], label, value }): Config => {
+      const dataset = data.datasets[0];
 
-    dataset.backgroundColor.push(alphaColor(normalColor));
-    dataset.hoverBackgroundColor.push(alphaColor(hoverColor || normalColor));
-    dataset.data.push(isNumber(value) ? value : bnToBn(value).toNumber());
-    data.labels.push(label);
+      dataset.backgroundColor.push(alphaColor(normalColor));
+      dataset.hoverBackgroundColor.push(alphaColor(hoverColor || normalColor));
+      dataset.data.push(isNumber(value) ? value : bnToBn(value).toNumber());
+      data.labels.push(label);
 
-    return data;
-  }, {
-    datasets: [{
-      backgroundColor: [] as string[],
-      data: [] as number[],
-      hoverBackgroundColor: [] as string[]
-    }],
-    labels: [] as string[]
-  });
+      return data;
+    },
+    {
+      datasets: [
+        {
+          backgroundColor: [] as string[],
+          data: [] as number[],
+          hoverBackgroundColor: [] as string[]
+        }
+      ],
+      labels: [] as string[]
+    }
+  );
 
   return {
     chartData,
@@ -61,16 +66,15 @@ function calculateOptions (aspectRatio: number, values: HorizBarValue[], jsonVal
         display: false
       },
       scales: {
-        xAxes: [{
-          ticks: showLabels
-            ? { beginAtZero: true, max }
-            : { display: false }
-        }]
+        xAxes: [
+          {
+            ticks: showLabels ? { beginAtZero: true, max } : { display: false }
+          }
+        ]
       },
       tooltips: {
         callbacks: {
-          label: (item: TooltipItem): string =>
-            values[item.index].tooltip || values[item.index].label
+          label: (item: TooltipItem): string => values[item.index].tooltip || values[item.index].label
         }
       }
     },
@@ -78,7 +82,7 @@ function calculateOptions (aspectRatio: number, values: HorizBarValue[], jsonVal
   };
 }
 
-function ChartHorizBar ({ aspectRatio = 8, className = '', max = 100, showLabels = false, values }: HorizBarProps): React.ReactElement<HorizBarProps> | null {
+function ChartHorizBar({ aspectRatio = 8, className = '', max = 100, showLabels = false, values }: HorizBarProps): React.ReactElement<HorizBarProps> | null {
   const [{ chartData, chartOptions, jsonValues }, setState] = useState<State>({});
 
   useEffect((): void => {
@@ -96,12 +100,7 @@ function ChartHorizBar ({ aspectRatio = 8, className = '', max = 100, showLabels
   // HACK on width/height to get the aspectRatio to work
   return (
     <div className={className}>
-      <HorizontalBar
-        data={chartData}
-        height={null as unknown as number}
-        options={chartOptions}
-        width={null as unknown as number}
-      />
+      <HorizontalBar data={chartData} height={(null as unknown) as number} options={chartOptions} width={(null as unknown) as number} />
     </div>
   );
 }

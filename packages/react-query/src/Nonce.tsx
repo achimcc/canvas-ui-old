@@ -16,13 +16,15 @@ interface Props extends BareProps {
   params?: string | null;
 }
 
-function Nonce ({ children, className = '', label, params }: Props): React.ReactElement<Props> {
+function Nonce({ children, className = '', label, params }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const allBalances = useCall<DeriveBalancesAll>(api.derive.balances.all, [params]);
 
   return (
     <div className={className}>
-      {label || ''}{formatNumber(allBalances?.accountNonce)}{children}
+      {label || ''}
+      {formatNumber(allBalances?.accountNonce)}
+      {children}
     </div>
   );
 }

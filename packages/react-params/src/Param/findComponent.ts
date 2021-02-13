@@ -44,7 +44,33 @@ const SPECIAL_TYPES = ['AccountId', 'AccountIndex', 'Address', 'Balance'];
 
 const componentDef: TypeToComponent[] = [
   { c: Account, t: ['AccountId', 'AccountIdOf', 'Address', 'AuthorityId', 'LookupSource', 'LookupTarget', 'SessionKey', 'ValidatorId'] },
-  { c: Amount, t: ['AccountIndex', 'AssetId', 'BlockNumber', 'Gas', 'Index', 'Nonce', 'ParaId', 'ProposalIndex', 'PropIndex', 'ReferendumIndex', 'i8', 'i16', 'i32', 'i64', 'i128', 'u8', 'u16', 'u32', 'u64', 'u128', 'u256', 'VoteIndex'] },
+  {
+    c: Amount,
+    t: [
+      'AccountIndex',
+      'AssetId',
+      'BlockNumber',
+      'Gas',
+      'Index',
+      'Nonce',
+      'ParaId',
+      'ProposalIndex',
+      'PropIndex',
+      'ReferendumIndex',
+      'i8',
+      'i16',
+      'i32',
+      'i64',
+      'i128',
+      'u8',
+      'u16',
+      'u32',
+      'u64',
+      'u128',
+      'u256',
+      'VoteIndex'
+    ]
+  },
   { c: Balance, t: ['Amount', 'AssetOf', 'Balance', 'BalanceOf'] },
   { c: Bool, t: ['bool'] },
   { c: Bytes, t: ['Bytes'] },
@@ -77,11 +103,11 @@ const components: ComponentMap = componentDef.reduce((components, { c, t }): Com
   });
 
   return components;
-}, {} as unknown as ComponentMap);
+}, ({} as unknown) as ComponentMap);
 
 const warnList: string[] = [];
 
-function fromDef ({ displayName, info, sub, type }: TypeDef): string {
+function fromDef({ displayName, info, sub, type }: TypeDef): string {
   if (displayName && SPECIAL_TYPES.includes(displayName)) {
     return displayName;
   }
@@ -111,9 +137,7 @@ function fromDef ({ displayName, info, sub, type }: TypeDef): string {
         return 'Bytes';
       }
 
-      return ['Vec<KeyValue>'].includes(type)
-        ? 'Vec<KeyValue>'
-        : 'Vec';
+      return ['Vec<KeyValue>'].includes(type) ? 'Vec<KeyValue>' : 'Vec';
 
     case TypeDefInfo.VecFixed:
       if ((sub as TypeDef).type === 'u8') {
@@ -127,9 +151,8 @@ function fromDef ({ displayName, info, sub, type }: TypeDef): string {
   }
 }
 
-export default function findComponent (def: TypeDef, overrides: ComponentMap = {}): React.ComponentType<Props> {
-  const findOne = (type: string): React.ComponentType<Props> | null =>
-    overrides[type] || components[type];
+export default function findComponent(def: TypeDef, overrides: ComponentMap = {}): React.ComponentType<Props> {
+  const findOne = (type: string): React.ComponentType<Props> | null => overrides[type] || components[type];
   const type = fromDef(def);
   let Component = findOne(type);
 

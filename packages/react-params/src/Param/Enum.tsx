@@ -22,7 +22,7 @@ interface Options {
   subTypes: TypeDef[];
 }
 
-function EnumParam (props: Props): React.ReactElement<Props> {
+function EnumParam(props: Props): React.ReactElement<Props> {
   const { className = '', defaultValue, isDisabled, isError, label, onChange, overrides, type, withLabel } = props;
   const [current, setCurrent] = useState<ParamDef[] | null>(null);
   const [initialValue, setInitialValue] = useState<string | null>(null);
@@ -34,10 +34,12 @@ function EnumParam (props: Props): React.ReactElement<Props> {
     const subTypes = type.sub as TypeDef[];
 
     setOptions({
-      options: subTypes.map(({ name }): Option => ({
-        text: name,
-        value: name
-      })),
+      options: subTypes.map(
+        ({ name }): Option => ({
+          text: name,
+          value: name
+        })
+      ),
       subTypes
     });
     setCurrent([{ name: subTypes[0].name, type: subTypes[0] }]);
@@ -57,21 +59,19 @@ function EnumParam (props: Props): React.ReactElement<Props> {
     (value: string): void => {
       const newType = subTypes.find(({ name }): boolean => name === value) || null;
 
-      setCurrent(
-        newType
-          ? [{ name: newType.name, type: newType }]
-          : null
-      );
+      setCurrent(newType ? [{ name: newType.name, type: newType }] : null);
     },
     [subTypes]
   );
 
   const _onChangeParam = useCallback(
     ([{ isValid, value }]: RawParam[]): void => {
-      current && onChange && onChange({
-        isValid,
-        value: { [current[0].name as string]: value }
-      });
+      current &&
+        onChange &&
+        onChange({
+          isValid,
+          value: { [current[0].name as string]: value }
+        });
     },
     [current, onChange]
   );
@@ -83,7 +83,7 @@ function EnumParam (props: Props): React.ReactElement<Props> {
   return (
     <Bare className={className}>
       <Dropdown
-        className='full'
+        className="full"
         defaultValue={initialValue}
         isDisabled={isDisabled}
         isError={isError}
@@ -93,13 +93,7 @@ function EnumParam (props: Props): React.ReactElement<Props> {
         withEllipsis
         withLabel={withLabel}
       />
-      {current && (
-        <Params
-          onChange={_onChangeParam}
-          overrides={overrides}
-          params={current}
-        />
-      )}
+      {current && <Params onChange={_onChangeParam} overrides={overrides} params={current} />}
     </Bare>
   );
 }

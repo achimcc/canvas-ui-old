@@ -54,9 +54,7 @@ interface Props extends BareProps {
 }
 
 // Find decimal separator used in current locale
-const getDecimalSeparator = (): string => 1.1
-  .toLocaleString()
-  .replace(/\d/g, '');
+const getDecimalSeparator = (): string => (1.1).toLocaleString().replace(/\d/g, '');
 
 // note: KeyboardEvent.keyCode and KeyboardEvent.which are deprecated
 const KEYS = {
@@ -80,27 +78,58 @@ const KEYS = {
 const KEYS_PRE: any[] = [KEYS.ALT, KEYS.CMD, KEYS.CTRL];
 
 // reference: degrade key to keyCode for cross-browser compatibility https://www.w3schools.com/jsref/event_key_keycode.asp
-const isCopy = (key: string, isPreKeyDown: boolean): boolean =>
-  isPreKeyDown && key === KEYS.C;
+const isCopy = (key: string, isPreKeyDown: boolean): boolean => isPreKeyDown && key === KEYS.C;
 
-const isCut = (key: string, isPreKeyDown: boolean): boolean =>
-  isPreKeyDown && key === KEYS.X;
+const isCut = (key: string, isPreKeyDown: boolean): boolean => isPreKeyDown && key === KEYS.X;
 
-const isPaste = (key: string, isPreKeyDown: boolean): boolean =>
-  isPreKeyDown && key === KEYS.V;
+const isPaste = (key: string, isPreKeyDown: boolean): boolean => isPreKeyDown && key === KEYS.V;
 
-const isSelectAll = (key: string, isPreKeyDown: boolean): boolean =>
-  isPreKeyDown && key === KEYS.A;
+const isSelectAll = (key: string, isPreKeyDown: boolean): boolean => isPreKeyDown && key === KEYS.A;
 
 let counter = 0;
 
-function Input ({ autoFocus = false, children, className, defaultValue, help, icon, inputClassName, isAction = false, isDisabled = false, isDisabledError = false, isEditable = false, isError = false, isFull = false, isHidden = false, isInPlaceEditor = false, isReadOnly = false, label, labelExtra, max, maxLength, min, name, onBlur, onChange, onEnter, onEscape, onKeyDown, onKeyUp, onPaste, placeholder, status, tabIndex, type = 'text', value, withEllipsis, withLabel, withStatus = false }: Props): React.ReactElement<Props> {
+function Input({
+  autoFocus = false,
+  children,
+  className,
+  defaultValue,
+  help,
+  icon,
+  inputClassName,
+  isAction = false,
+  isDisabled = false,
+  isDisabledError = false,
+  isEditable = false,
+  isError = false,
+  isFull = false,
+  isHidden = false,
+  isInPlaceEditor = false,
+  isReadOnly = false,
+  label,
+  labelExtra,
+  max,
+  maxLength,
+  min,
+  name,
+  onBlur,
+  onChange,
+  onEnter,
+  onEscape,
+  onKeyDown,
+  onKeyUp,
+  onPaste,
+  placeholder,
+  status,
+  tabIndex,
+  type = 'text',
+  value,
+  withEllipsis,
+  withLabel,
+  withStatus = false
+}: Props): React.ReactElement<Props> {
   const [stateName] = useState(`in_${counter++}_at_${Date.now()}`);
 
-  const _onBlur = useCallback(
-    () => onBlur && onBlur(),
-    [onBlur]
-  );
+  const _onBlur = useCallback(() => onBlur && onBlur(), [onBlur]);
 
   const _onChange = useCallback(
     ({ target }: React.SyntheticEvent<HTMLInputElement>): void => {
@@ -109,11 +138,7 @@ function Input ({ autoFocus = false, children, className, defaultValue, help, ic
     [onChange]
   );
 
-  const _onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>): void =>
-      onKeyDown && onKeyDown(event),
-    [onKeyDown]
-  );
+  const _onKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => onKeyDown && onKeyDown(event), [onKeyDown]);
 
   const _onKeyUp = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -132,52 +157,24 @@ function Input ({ autoFocus = false, children, className, defaultValue, help, ic
     [onEnter, onEscape, onKeyUp]
   );
 
-  const _onPaste = useCallback(
-    (event: React.ClipboardEvent<HTMLInputElement>): void =>
-      onPaste && onPaste(event),
-    [onPaste]
-  );
+  const _onPaste = useCallback((event: React.ClipboardEvent<HTMLInputElement>): void => onPaste && onPaste(event), [onPaste]);
 
   return (
-    <Labelled
-      className={className}
-      help={help}
-      isFull={isFull}
-      label={label}
-      labelExtra={labelExtra}
-      withEllipsis={withEllipsis}
-      withLabel={withLabel}
-    >
+    <Labelled className={className} help={help} isFull={isFull} label={label} labelExtra={labelExtra} withEllipsis={withEllipsis} withLabel={withLabel}>
       <SUIInput
         action={isAction}
         autoFocus={autoFocus}
-        className={
-          [
-            isEditable
-              ? 'ui--Input edit icon'
-              : 'ui--Input',
-            isInPlaceEditor
-              ? 'inPlaceEditor'
-              : '',
-            isDisabled
-              ? 'retain-appearance'
-              : '',
-            inputClassName || ''
-          ].join(' ')
-        }
-        defaultValue={
-          isUndefined(value)
-            ? (defaultValue || '')
-            : undefined
-        }
+        className={[
+          isEditable ? 'ui--Input edit icon' : 'ui--Input',
+          isInPlaceEditor ? 'inPlaceEditor' : '',
+          isDisabled ? 'retain-appearance' : '',
+          inputClassName || ''
+        ].join(' ')}
+        defaultValue={isUndefined(value) ? defaultValue || '' : undefined}
         disabled={isDisabled}
         error={(!isDisabled && isError) || isDisabledError}
         hidden={isHidden}
-        iconPosition={
-          isUndefined(icon)
-            ? undefined
-            : 'left'
-        }
+        iconPosition={isUndefined(icon) ? undefined : 'left'}
         id={name}
         max={max}
         maxLength={maxLength}
@@ -193,29 +190,11 @@ function Input ({ autoFocus = false, children, className, defaultValue, help, ic
         type={type}
         value={value}
       >
-        <input
-          autoCapitalize='off'
-          autoComplete={
-            type === 'password'
-              ? 'new-password'
-              : 'off'
-          }
-          autoCorrect='off'
-          onPaste={_onPaste}
-          spellCheck={false}
-        />
-        {isEditable && (
-          <i className='edit icon' />
-        )}
+        <input autoCapitalize="off" autoComplete={type === 'password' ? 'new-password' : 'off'} autoCorrect="off" onPaste={_onPaste} spellCheck={false} />
+        {isEditable && <i className="edit icon" />}
         {icon}
       </SUIInput>
-      {withStatus && (
-        <InputStatus
-          isError={isError}
-          isValid={!isError}
-          text={status}
-        />
-      )}
+      {withStatus && <InputStatus isError={isError} isValid={!isError} text={status} />}
       {children}
     </Labelled>
   );
@@ -223,11 +202,4 @@ function Input ({ autoFocus = false, children, className, defaultValue, help, ic
 
 export default React.memo(Input);
 
-export {
-  isCopy,
-  isCut,
-  isPaste,
-  isSelectAll,
-  KEYS,
-  KEYS_PRE
-};
+export { isCopy, isCut, isPaste, isSelectAll, KEYS, KEYS_PRE };

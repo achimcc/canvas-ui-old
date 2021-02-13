@@ -20,20 +20,21 @@ interface Props {
   tip?: BN;
 }
 
-function PaymentInfo ({ accountId, className = '', extrinsic }: Props): React.ReactElement<Props> | null {
+function PaymentInfo({ accountId, className = '', extrinsic }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const [dispatchInfo, setDispatchInfo] = useState<RuntimeDispatchInfo | null>(null);
   const mountedRef = useIsMountedRef();
 
   useEffect((): void => {
     // eslint-disable-next-line @typescript-eslint/unbound-method
-    accountId && extrinsic && isFunction(extrinsic.paymentInfo) && isFunction(api.rpc.payment?.queryInfo) &&
+    accountId &&
+      extrinsic &&
+      isFunction(extrinsic.paymentInfo) &&
+      isFunction(api.rpc.payment?.queryInfo) &&
       Promise.resolve(
-        extrinsic
-          .paymentInfo(accountId)
-          .then((info): void => {
-            mountedRef.current && setDispatchInfo(info);
-          })
+        extrinsic.paymentInfo(accountId).then((info): void => {
+          mountedRef.current && setDispatchInfo(info);
+        })
       ).catch((error: Error) => console.error(error.message));
   }, [api, accountId, extrinsic, mountedRef]);
 
@@ -45,8 +46,8 @@ function PaymentInfo ({ accountId, className = '', extrinsic }: Props): React.Re
     <Expander
       className={className}
       summary={
-        <Trans i18nKey='feesForSubmission'>
-          Fees of <span className='highlight'>{formatBalance(dispatchInfo.partialFee, { withSiFull: true })}</span> will be applied to the submission
+        <Trans i18nKey="feesForSubmission">
+          Fees of <span className="highlight">{formatBalance(dispatchInfo.partialFee, { withSiFull: true })}</span> will be applied to the submission
         </Trans>
       }
       withDot

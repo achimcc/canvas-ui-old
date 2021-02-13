@@ -23,10 +23,13 @@ const chainColors: Record<string, any> = [
   ['Polkadot', chainPolkadot],
   ['Polkadot CC1', chainPolkadot],
   ['Westend', chainWestend]
-].reduce((colors, [chain, color]): Record<string, any> => ({
-  ...colors,
-  [chain.toLowerCase()]: color
-}), {});
+].reduce(
+  (colors, [chain, color]): Record<string, any> => ({
+    ...colors,
+    [chain.toLowerCase()]: color
+  }),
+  {}
+);
 
 // overrides based on the actual software node type (all '-' converted to ' ')
 const nodeColors: Record<string, any> = [
@@ -36,14 +39,12 @@ const nodeColors: Record<string, any> = [
   // ['node template', emptyColor],
   // ['parity polkadot', emptyColor],
   // ['substrate node', emptyColor]
-].reduce((colors, [node, color]): Record<string, any> => ({
-  ...colors,
-  [node.toLowerCase().replace(/-/g, ' ')]: color
-}), {});
+].reduce(
+  (colors, [node, color]): Record<string, any> => ({
+    ...colors,
+    [node.toLowerCase().replace(/-/g, ' ')]: color
+  }),
+  {}
+);
 
-export {
-  defaultColor,
-  chainColors,
-  emptyColor,
-  nodeColors
-};
+export { defaultColor, chainColors, emptyColor, nodeColors };

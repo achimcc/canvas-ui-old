@@ -6,11 +6,11 @@ import { useHistory } from 'react-router-dom';
 
 import { AppNavigation } from './types';
 
-export default function useAppNavigation (): AppNavigation {
+export default function useAppNavigation(): AppNavigation {
   const history = useHistory();
 
   const navigator = useCallback(
-    (path: string): () => void => {
+    (path: string): (() => void) => {
       return function (): void {
         history.push(path);
       };
@@ -21,13 +21,13 @@ export default function useAppNavigation (): AppNavigation {
   return {
     deploy: navigator('/deploy'),
     deployNew: useCallback(
-      (id: string, constructorIndex = 0): () => void => {
+      (id: string, constructorIndex = 0): (() => void) => {
         return navigator(`/deploy/new/${id}/${constructorIndex}`);
       },
       [navigator]
     ),
     deploySuccess: useCallback(
-      (address: string): () => void => {
+      (address: string): (() => void) => {
         return navigator(`/deploy/success/${address}`);
       },
       [navigator]
@@ -35,7 +35,7 @@ export default function useAppNavigation (): AppNavigation {
     execute: navigator('/execute'),
     executeAdd: navigator('/execute/add'),
     executeCall: useCallback(
-      (address: string, messageIndex = 0): () => void => {
+      (address: string, messageIndex = 0): (() => void) => {
         return navigator(`/execute/${address}/${messageIndex}`);
       },
       [navigator]
@@ -43,7 +43,7 @@ export default function useAppNavigation (): AppNavigation {
     upload: navigator('/upload'),
     uploadAdd: navigator('/upload/add'),
     uploadSuccess: useCallback(
-      (id: string): () => void => {
+      (id: string): (() => void) => {
         return navigator(`/upload/success/${id}`);
       },
       [navigator]

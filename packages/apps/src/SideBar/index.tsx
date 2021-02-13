@@ -21,42 +21,20 @@ interface Props {
   toggleMenu: () => void;
 }
 
-function SideBar ({ className = '', handleResize, isCollapsed }: Props): React.ReactElement<Props> {
+function SideBar({ className = '', handleResize, isCollapsed }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const routing = useMemo<Routes>(
-    () => createRoutes(t),
-    [t]
-  );
+  const routing = useMemo<Routes>(() => createRoutes(t), [t]);
 
   return (
-    <Responsive
-      className={`apps--SideBar-Wrapper ${className} ${isCollapsed ? 'collapsed' : 'expanded'}`}
-      onUpdate={handleResize}
-    >
-      <div className='apps--SideBar'>
-        <Menu
-          secondary
-          vertical
-        >
-          <div className='apps--SideBar-Scroll'>
-            {routing.map((route, index): React.ReactNode => (
-              route
-                ? (
-                  <Item
-                    isCollapsed={isCollapsed}
-                    key={route.name}
-                    onClick={handleResize}
-                    route={route}
-                  />
-                )
-                : (
-                  <Menu.Divider
-                    hidden
-                    key={index}
-                  />
-                )
-            ))}
+    <Responsive className={`apps--SideBar-Wrapper ${className} ${isCollapsed ? 'collapsed' : 'expanded'}`} onUpdate={handleResize}>
+      <div className="apps--SideBar">
+        <Menu secondary vertical>
+          <div className="apps--SideBar-Scroll">
+            {routing.map(
+              (route, index): React.ReactNode =>
+                route ? <Item isCollapsed={isCollapsed} key={route.name} onClick={handleResize} route={route} /> : <Menu.Divider hidden key={index} />
+            )}
           </div>
         </Menu>
         <Settings />
@@ -144,7 +122,7 @@ export default React.memo(styled(SideBar)`
     .apps--SideBar-collapse {
       bottom: 0;
       left: 0;
-      padding: 0.75rem 0 .75rem 0.65rem;
+      padding: 0.75rem 0 0.75rem 0.65rem;
       position: sticky;
       right: 0;
       text-align: left;
@@ -168,7 +146,7 @@ export default React.memo(styled(SideBar)`
       width: 6px;
 
       &:hover {
-        background: rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.15);
         cursor: pointer;
       }
     }

@@ -5,10 +5,10 @@ import { useEffect, useRef } from 'react';
 
 export type MountedRef = React.MutableRefObject<boolean>;
 
-export default function useIsMountedRef (): MountedRef {
+export default function useIsMountedRef(): MountedRef {
   const isMounted = useRef(false);
 
-  useEffect((): () => void => {
+  useEffect((): (() => void) => {
     isMounted.current = true;
 
     return (): void => {

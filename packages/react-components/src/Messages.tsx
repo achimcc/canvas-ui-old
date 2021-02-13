@@ -21,25 +21,22 @@ export interface Props extends BareProps {
   withConstructors?: boolean;
 }
 
-function Messages (props: Props): React.ReactElement<Props> {
-  const { abi: { constructors, messages }, className = '', isLabelled, /* isRemovable, onRemove = NOOP, */ withConstructors } = props;
+function Messages(props: Props): React.ReactElement<Props> {
+  const {
+    abi: { constructors, messages },
+    className = '',
+    isLabelled,
+    /* isRemovable, onRemove = NOOP, */ withConstructors
+  } = props;
 
   return (
     <div className={classes(className, 'ui--Messages', isLabelled && 'labelled')}>
-      {withConstructors && constructors.map((constructor, index): React.ReactNode => ((
-        <Message
-          isConstructor
-          key={`constructor-${index}`}
-          message={constructor}
-        />
-      )))}
-      {messages.map((message, index): React.ReactNode => ((
-        <Message
-          isConstructor
-          key={`message-${index}`}
-          message={message}
-        />
-      )))}
+      {withConstructors && constructors.map((constructor, index): React.ReactNode => <Message isConstructor key={`constructor-${index}`} message={constructor} />)}
+      {messages.map(
+        (message, index): React.ReactNode => (
+          <Message isConstructor key={`message-${index}`} message={message} />
+        )
+      )}
     </div>
   );
 }
@@ -48,7 +45,8 @@ export default React.memo(styled(Messages)`
   .remove-abi {
     float: right;
 
-    &:hover, &:hover :not(i) {
+    &:hover,
+    &:hover :not(i) {
       text-decoration: underline;
     }
   }

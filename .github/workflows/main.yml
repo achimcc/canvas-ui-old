@@ -8,7 +8,7 @@ jobs:
   www:
     strategy:
       matrix:
-        step: ["ghpages"]
+        step: ['ghpages']
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     steps:

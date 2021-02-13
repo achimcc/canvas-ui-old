@@ -9,31 +9,26 @@ import keyring from '@polkadot/ui-keyring';
 
 import useApi from './useApi';
 
-export default function useContract (address: StringOrNull): Contract | null {
+export default function useContract(address: StringOrNull): Contract | null {
   const { api } = useApi();
 
-  return useMemo(
-    (): Contract | null => {
-      if (!address) {
-        return null;
+  return useMemo((): Contract | null => {
+    if (!address) {
+      return null;
+    }
+
+    try {
+      const pair = keyring.getAddress(address, 'contract');
+
+      if (!pair) {
+        throw new Error();
       }
 
-      try {
-        const pair = keyring.getAddress(address, 'contract');
+      const data = pair?.meta.contract?.abi;
 
-        if (!pair) {
-          throw new Error();
-        }
-
-        const data = pair?.meta.contract?.abi;
-
-        return data
-          ? new Contract(api, data, address)
-          : null;
-      } catch (error) {
-        return null;
-      }
-    },
-    [address, api]
-  );
+      return data ? new Contract(api, data, address) : null;
+    } catch (error) {
+      return null;
+    }
+  }, [address, api]);
 }

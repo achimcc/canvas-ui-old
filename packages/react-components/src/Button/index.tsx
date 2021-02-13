@@ -6,7 +6,7 @@ import type { ButtonType } from './types';
 import IButton from './Button';
 import Group from './Group';
 
-const Button = IButton as unknown as ButtonType;
+const Button = (IButton as unknown) as ButtonType;
 
 Button.Group = Group;
 

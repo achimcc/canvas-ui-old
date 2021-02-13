@@ -61,25 +61,27 @@ let api: ApiPromise;
 
 export { api };
 
-async function retrieve (api: ApiPromise): Promise<ChainData> {
+async function retrieve(api: ApiPromise): Promise<ChainData> {
   const [properties, systemChain, systemChainType, systemName, systemVersion, injectedAccounts] = await Promise.all([
     api.rpc.system.properties(),
     api.rpc.system.chain(),
-    api.rpc.system.chainType
-      ? api.rpc.system.chainType()
-      : Promise.resolve(registry.createType('ChainType', 'Live')),
+    api.rpc.system.chainType ? api.rpc.system.chainType() : Promise.resolve(registry.createType('ChainType', 'Live')),
     api.rpc.system.name(),
     api.rpc.system.version(),
     injectedPromise
       .then(() => web3Accounts())
-      .then((accounts) => accounts.map(({ address, meta }, whenCreated): InjectedAccountExt => ({
-        address,
-        meta: {
-          ...meta,
-          name: `${meta.name || 'unknown'} (${meta.source === 'polkadot-js' ? 'extension' : meta.source})`,
-          whenCreated
-        }
-      })))
+      .then((accounts) =>
+        accounts.map(
+          ({ address, meta }, whenCreated): InjectedAccountExt => ({
+            address,
+            meta: {
+              ...meta,
+              name: `${meta.name || 'unknown'} (${meta.source === 'polkadot-js' ? 'extension' : meta.source})`,
+              whenCreated
+            }
+          })
+        )
+      )
       .catch((error): InjectedAccountExt[] => {
         console.error('web3Enable', error);
 
@@ -97,11 +99,9 @@ async function retrieve (api: ApiPromise): Promise<ChainData> {
   };
 }
 
-async function loadOnReady (api: ApiPromise, store?: KeyringStore): Promise<ApiState> {
+async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiState> {
   const { injectedAccounts, properties, systemChain, systemChainType, systemName, systemVersion } = await retrieve(api);
-  const ss58Format = uiSettings.prefix === -1
-    ? properties.ss58Format.unwrapOr(DEFAULT_SS58).toNumber()
-    : uiSettings.prefix;
+  const ss58Format = uiSettings.prefix === -1 ? properties.ss58Format.unwrapOr(DEFAULT_SS58).toNumber() : uiSettings.prefix;
   const tokenSymbol = properties.tokenSymbol.unwrapOr(undefined)?.toString();
   const tokenDecimals = properties.tokenDecimals.unwrapOr(DEFAULT_DECIMALS).toNumber();
   const isDevelopment = systemChainType.isDevelopment || systemChainType.isLocal || isTestChain(systemChain);
@@ -122,13 +122,16 @@ async function loadOnReady (api: ApiPromise, store?: KeyringStore): Promise<ApiS
   TokenUnit.setAbbr(tokenSymbol);
 
   // finally load the keyring
-  keyring.loadAll({
-    genesisHash: api.genesisHash,
-    isDevelopment,
-    ss58Format,
-    store,
-    type: 'ed25519'
-  }, injectedAccounts);
+  keyring.loadAll(
+    {
+      genesisHash: api.genesisHash,
+      isDevelopment,
+      ss58Format,
+      store,
+      type: 'ed25519'
+    },
+    injectedAccounts
+  );
 
   const defaultSection = Object.keys(api.tx)[0];
   const defaultMethod = Object.keys(api.tx[defaultSection])[0];
@@ -151,16 +154,18 @@ async function loadOnReady (api: ApiPromise, store?: KeyringStore): Promise<ApiS
   };
 }
 
-function Api ({ children, store, url }: Props): React.ReactElement<Props> | null {
+function Api({ children, store, url }: Props): React.ReactElement<Props> | null {
   const { queuePayload, queueSetTxStatus } = useContext(StatusContext);
-  const [state, setState] = useState<ApiState>({ isApiReady: false } as unknown as ApiState);
+  const [state, setState] = useState<ApiState>(({ isApiReady: false } as unknown) as ApiState);
   const [isApiConnected, setIsApiConnected] = useState(false);
   const [isApiInitialized, setIsApiInitialized] = useState(false);
   const [extensions, setExtensions] = useState<InjectedExtension[] | undefined>();
-  const props = useMemo<ApiProps>(
-    () => ({ ...state, api, extensions, isApiConnected, isApiInitialized, isWaitingInjected: !extensions }),
-    [extensions, isApiConnected, isApiInitialized, state]
-  );
+  const props = useMemo<ApiProps>(() => ({ ...state, api, extensions, isApiConnected, isApiInitialized, isWaitingInjected: !extensions }), [
+    extensions,
+    isApiConnected,
+    isApiInitialized,
+    state
+  ]);
 
   // initial initialization
   useEffect((): void => {
@@ -171,31 +176,28 @@ function Api ({ children, store, url }: Props): React.ReactElement<Props> | null
 
     api.on('connected', () => setIsApiConnected(true));
     api.on('disconnected', () => setIsApiConnected(false));
-    api.on('ready', async (): Promise<void> => {
-      try {
-        setState(await loadOnReady(api, store));
-      } catch (error) {
-        console.error('Unable to load chain', error);
+    api.on(
+      'ready',
+      async (): Promise<void> => {
+        try {
+          setState(await loadOnReady(api, store));
+        } catch (error) {
+          console.error('Unable to load chain', error);
+        }
       }
-    });
+    );
 
-    injectedPromise
-      .then(setExtensions)
-      .catch((error) => console.error(error));
+    injectedPromise.then(setExtensions).catch((error) => console.error(error));
 
     setIsApiInitialized(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!props.isApiInitialized) {
     return null;
   }
 
-  return (
-    <ApiContext.Provider value={props}>
-      {children}
-    </ApiContext.Provider>
-  );
+  return <ApiContext.Provider value={props}>{children}</ApiContext.Provider>;
 }
 
 export default React.memo(Api);

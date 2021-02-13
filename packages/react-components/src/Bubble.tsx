@@ -17,24 +17,14 @@ interface Props extends BareProps {
   label?: React.ReactNode;
 }
 
-function Bubble ({ children, className = '', color, icon, label }: Props): React.ReactElement<Props> {
+function Bubble({ children, className = '', color, icon, label }: Props): React.ReactElement<Props> {
   return (
-    <SUILabel
-      className={classes('theme--default', 'ui--Bubble', className)}
-      color={color}
-    >
-      <div className='ui--Bubble-header'>
-        {icon && (
-          <Icon
-            icon={icon}
-            size='large'
-          />
-        )}
-        {label && <div className='text'>{label}</div>}
+    <SUILabel className={classes('theme--default', 'ui--Bubble', className)} color={color}>
+      <div className="ui--Bubble-header">
+        {icon && <Icon icon={icon} size="large" />}
+        {label && <div className="text">{label}</div>}
       </div>
-      <div className='ui--Bubble-children'>
-        {children}
-      </div>
+      <div className="ui--Bubble-children">{children}</div>
     </SUILabel>
   );
 }
@@ -61,7 +51,7 @@ export default React.memo(styled(Bubble)`
   .ui--Bubble-header {
     background: rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
-    border-radius: .28571429rem 0 0 .28571429rem;
+    border-radius: 0.28571429rem 0 0 0.28571429rem;
     height: 2.75rem;
     margin-right: 0.75rem;
     padding: 0 0.75rem;

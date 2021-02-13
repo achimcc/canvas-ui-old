@@ -13,17 +13,15 @@ interface Props extends BareProps {
   label?: React.ReactNode;
 }
 
-function BestFinalized ({ children, className = '', label }: Props): React.ReactElement<Props> {
+function BestFinalized({ children, className = '', label }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const bestNumberFinalized = useCall<BlockNumber>(api.derive.chain.bestNumberFinalized, []);
 
   return (
     <div className={className}>
-      {label || ''}{
-        bestNumberFinalized
-          ? formatNumber(bestNumberFinalized)
-          : '-'
-      }{children}
+      {label || ''}
+      {bestNumberFinalized ? formatNumber(bestNumberFinalized) : '-'}
+      {children}
     </div>
   );
 }

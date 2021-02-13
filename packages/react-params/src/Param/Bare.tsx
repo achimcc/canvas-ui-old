@@ -10,12 +10,8 @@ interface Props {
   className?: string;
 }
 
-function Bare ({ children, className = '' }: Props): React.ReactElement<Props> {
-  return (
-    <div className={classes('ui--row', className)}>
-      {children}
-    </div>
-  );
+function Bare({ children, className = '' }: Props): React.ReactElement<Props> {
+  return <div className={classes('ui--row', className)}>{children}</div>;
 }
 
 export default React.memo(styled(Bare)`

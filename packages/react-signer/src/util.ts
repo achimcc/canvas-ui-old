@@ -10,7 +10,7 @@ import { AddressFlags } from './types';
 
 const NOOP = () => undefined;
 
-export function extractExternal (accountId: string | null): AddressFlags {
+export function extractExternal(accountId: string | null): AddressFlags {
   if (!accountId) {
     return { isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };
   }
@@ -39,11 +39,16 @@ export function extractExternal (accountId: string | null): AddressFlags {
   };
 }
 
-export function recodeAddress (address: string | Uint8Array): string {
+export function recodeAddress(address: string | Uint8Array): string {
   return keyring.encodeAddress(keyring.decodeAddress(address));
 }
 
-export function handleTxResults (handler: 'send' | 'signAndSend', queueSetTxStatus: QueueTxMessageSetStatus, { id, txFailedCb = NOOP, txSuccessCb = NOOP, txUpdateCb = NOOP }: QueueTx, unsubscribe: () => void): (result: SubmittableResult) => void {
+export function handleTxResults(
+  handler: 'send' | 'signAndSend',
+  queueSetTxStatus: QueueTxMessageSetStatus,
+  { id, txFailedCb = NOOP, txSuccessCb = NOOP, txUpdateCb = NOOP }: QueueTx,
+  unsubscribe: () => void
+): (result: SubmittableResult) => void {
   return (result: SubmittableResult): void => {
     if (!result || !result.status) {
       return;

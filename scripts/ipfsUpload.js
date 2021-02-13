@@ -109,11 +109,10 @@
 //   console.log(`Dnslink ${hash} for ${records.join(', ')}`);
 // }
 
-async function main () {
+async function main() {
   // only run on non-beta versions
   // if (!lernaInfo.version.includes('-beta.')) {
   //   const hash = await pin();
-
   //   await dnslink(hash);
   //   await unpin(hash);
   // }

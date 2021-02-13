@@ -17,13 +17,15 @@ interface UseSendUnsigned {
 
 const NOOP = () => undefined;
 
-async function sendUnsigned (queueSetTxStatus: QueueTxMessageSetStatus, currentItem: QueueTx, tx: SubmittableExtrinsic<'promise'>): Promise<void> {
+async function sendUnsigned(queueSetTxStatus: QueueTxMessageSetStatus, currentItem: QueueTx, tx: SubmittableExtrinsic<'promise'>): Promise<void> {
   currentItem.txStartCb && currentItem.txStartCb();
 
   try {
-    const unsubscribe = await tx.send(handleTxResults('send', queueSetTxStatus, currentItem, (): void => {
-      unsubscribe();
-    }));
+    const unsubscribe = await tx.send(
+      handleTxResults('send', queueSetTxStatus, currentItem, (): void => {
+        unsubscribe();
+      })
+    );
   } catch (error) {
     console.error('send: error:', error);
     queueSetTxStatus(currentItem.id, 'error', {}, error);
@@ -32,30 +34,24 @@ async function sendUnsigned (queueSetTxStatus: QueueTxMessageSetStatus, currentI
   }
 }
 
-export default function useSendTx (currentItem: QueueTx): UseSendUnsigned {
+export default function useSendTx(currentItem: QueueTx): UseSendUnsigned {
   const { queueSetTxStatus } = useContext(StatusContext);
 
-  const onCancel = useCallback(
-    (): void => {
-      if (currentItem) {
-        const { id, signerCb = NOOP, txFailedCb = NOOP } = currentItem;
+  const onCancel = useCallback((): void => {
+    if (currentItem) {
+      const { id, signerCb = NOOP, txFailedCb = NOOP } = currentItem;
 
-        queueSetTxStatus(id, 'cancelled');
-        signerCb(id, null);
-        txFailedCb(null);
-      }
-    },
-    [currentItem, queueSetTxStatus]
-  );
+      queueSetTxStatus(id, 'cancelled');
+      signerCb(id, null);
+      txFailedCb(null);
+    }
+  }, [currentItem, queueSetTxStatus]);
 
-  const onSendUnsigned = useCallback(
-    async (): Promise<void> => {
-      if (currentItem.extrinsic) {
-        await sendUnsigned(queueSetTxStatus, currentItem, currentItem.extrinsic);
-      }
-    },
-    [currentItem, queueSetTxStatus]
-  );
+  const onSendUnsigned = useCallback(async (): Promise<void> => {
+    if (currentItem.extrinsic) {
+      await sendUnsigned(queueSetTxStatus, currentItem, currentItem.extrinsic);
+    }
+  }, [currentItem, queueSetTxStatus]);
 
   return { onCancel, onSendUnsigned };
 }

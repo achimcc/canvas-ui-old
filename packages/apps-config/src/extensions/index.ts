@@ -19,12 +19,15 @@ const availableExtensions: Record<Browser, Extension[]> = [
     desc: 'Basic account injection and signer',
     name: 'polkadot-js extension'
   }
-].reduce((available: Record<Browser, Extension[]>, { browsers, desc, name }): Record<Browser, Extension[]> => {
-  Object.entries(browsers).forEach(([browser, link]): void => {
-    available[browser as 'chrome'].push({ desc, link, name });
-  });
+].reduce(
+  (available: Record<Browser, Extension[]>, { browsers, desc, name }): Record<Browser, Extension[]> => {
+    Object.entries(browsers).forEach(([browser, link]): void => {
+      available[browser as 'chrome'].push({ desc, link, name });
+    });
 
-  return available;
-}, { chrome: [], firefox: [] });
+    return available;
+  },
+  { chrome: [], firefox: [] }
+);
 
 export { availableExtensions };

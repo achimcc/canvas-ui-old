@@ -22,77 +22,52 @@ export interface Props extends BareProps {
   withTooltip?: boolean;
 }
 
-function MessageSignature ({ className, message: { args, identifier, isConstructor, isMutating, isPayable, returnType }, params = [], registry, withTooltip = false }: Props): React.ReactElement<Props> {
+function MessageSignature({
+  className,
+  message: { args, identifier, isConstructor, isMutating, isPayable, returnType },
+  params = [],
+  registry,
+  withTooltip = false
+}: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   return (
     <div className={classes(className, isConstructor && 'isConstructor')}>
-      <span className='ui--MessageSignature-name'>
-        {identifier}
-      </span>
-      (
-      {args.map((arg, index): React.ReactNode => {
-        return (
-          <React.Fragment key={arg.name}>
-            <MessageArg
-              arg={arg}
-              param={params[index]}
-              registry={registry}
-            />
-            {index < args.length - 1 && ', '}
-          </React.Fragment>
-        );
-      })}
+      <span className="ui--MessageSignature-name">{identifier}</span>(
+      {args.map(
+        (arg, index): React.ReactNode => {
+          return (
+            <React.Fragment key={arg.name}>
+              <MessageArg arg={arg} param={params[index]} registry={registry} />
+              {index < args.length - 1 && ', '}
+            </React.Fragment>
+          );
+        }
+      )}
       )
-      {(!isConstructor && returnType) && (
+      {!isConstructor && returnType && (
         <>
-          :
-          {' '}
-          <span className='ui--MessageSignature-returnType'>
+          :{' '}
+          <span className="ui--MessageSignature-returnType">
             {encodeTypeDef({
               ...returnType,
-              ...(
-                (returnType.displayName || '').length > 0
-                  ? { displayName: returnType.displayName }
-                  : {}
-              )
+              ...((returnType.displayName || '').length > 0 ? { displayName: returnType.displayName } : {})
             })}
           </span>
         </>
       )}
       {isMutating && (
         <>
-          <Icon
-            className='ui--MessageSignature-icon'
-            data-for={`mutates-${identifier}`}
-            data-tip
-            icon='database'
-          />
-          {withTooltip && (
-            <Tooltip
-              text={t<string>('Mutates contract state')}
-              trigger={`mutates-${identifier}`}
-            />
-          )}
+          <Icon className="ui--MessageSignature-icon" data-for={`mutates-${identifier}`} data-tip icon="database" />
+          {withTooltip && <Tooltip text={t<string>('Mutates contract state')} trigger={`mutates-${identifier}`} />}
         </>
       )}
       {isPayable && (
         <>
-          <Icon
-            className='ui--MessageSignature-icon'
-            data-for={`payable-${identifier}`}
-            data-tip
-            icon='paper-plane'
-          />
-          {withTooltip && (
-            <Tooltip
-              text={t<string>('Payable')}
-              trigger={`payable-${identifier}`}
-            />
-          )}
+          <Icon className="ui--MessageSignature-icon" data-for={`payable-${identifier}`} data-tip icon="paper-plane" />
+          {withTooltip && <Tooltip text={t<string>('Payable')} trigger={`payable-${identifier}`} />}
         </>
       )}
-
     </div>
   );
 }

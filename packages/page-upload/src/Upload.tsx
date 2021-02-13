@@ -17,7 +17,7 @@ import { compactAddLength, isNull, isWasm } from '@polkadot/util';
 
 import { useTranslation } from './translate';
 
-function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
+function Upload({ basePath, navigateTo }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const [accountId, setAccountId] = useAccountId();
@@ -38,9 +38,7 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
 
   useEffect((): void => {
     if (abi && isWasm(abi.project.source.wasm)) {
-      setWasm(
-        [abi.project.source.wasm, true]
-      );
+      setWasm([abi.project.source.wasm, true]);
 
       if (currentName.current === '') {
         setName(`${abi.project.contract.name.toString()}.contract`);
@@ -50,9 +48,7 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
     }
 
     if (wasmFromFile && isWasmFromFileSupplied && isWasmFromFileValid) {
-      setWasm(
-        [compactAddLength(wasmFromFile.data), true]
-      );
+      setWasm([compactAddLength(wasmFromFile.data), true]);
 
       return;
     }
@@ -62,10 +58,14 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
 
   const pendingTx = usePendingTx('contracts.putCode');
 
-  const isSubmittable = useMemo(
-    (): boolean => !!accountId && (!isNull(name) && isNameValid) && isWasmValid && (!isAbiSupplied || isAbiValid),
-    [accountId, name, isAbiSupplied, isAbiValid, isNameValid, isWasmValid]
-  );
+  const isSubmittable = useMemo((): boolean => !!accountId && !isNull(name) && isNameValid && isWasmValid && (!isAbiSupplied || isAbiValid), [
+    accountId,
+    name,
+    isAbiSupplied,
+    isAbiValid,
+    isNameValid,
+    isWasmValid
+  ]);
 
   const _onChangeName = useCallback(
     (name: string | null): void => {
@@ -87,7 +87,8 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
           return;
         }
 
-        store.saveCode({ abi: abi?.json || undefined, codeHash: codeHash.toHex(), name, tags: [] })
+        store
+          .saveCode({ abi: abi?.json || undefined, codeHash: codeHash.toHex(), name, tags: [] })
           .then((id): void => navigateTo.uploadSuccess(id)())
           .catch((error: any): void => {
             console.error('Unable to save code', error);
@@ -109,11 +110,9 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
     >
       <header>
         <h1>{t<string>('Upload WASM Code Blob')}</h1>
-        <div className='instructions'>
+        <div className="instructions">
           {t<string>('You can upload an existing Wasm blob here. Already have a blob on chain? ')}
-          <Link to={`${basePath}/add`}>
-            {t<string>('Add an existing code hash.')}
-          </Link>
+          <Link to={`${basePath}/add`}>{t<string>('Add an existing code hash.')}</Link>
         </div>
       </header>
       <section>
@@ -122,7 +121,7 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
           isInput={false}
           label={t<string>('Account')}
           onChange={setAccountId}
-          type='account'
+          type="account"
           value={accountId}
         />
         <Input
@@ -133,27 +132,16 @@ function Upload ({ basePath, navigateTo }: Props): React.ReactElement<Props> {
           placeholder={t<string>('Give your bundle a descriptive name')}
           value={name}
         />
-        <InputABI
-          abi={abi}
-          errorText={errorText}
-          file={abiFile}
-          isError={isAbiError}
-          isSupplied={isAbiSupplied}
-          isValid={isAbiValid}
-          setFile={setAbiFile}
-          withLabel
-        />
+        <InputABI abi={abi} errorText={errorText} file={abiFile} isError={isAbiError} isSupplied={isAbiSupplied} isValid={isAbiValid} setFile={setAbiFile} withLabel />
         {abi?.project.source.wasm && abi.project.source.wasm.length === 0 && (
           <InputFile
-            help={t<string>('The compiled WASM for the contract that you wish to deploy. Each unique code blob will be attached with a code hash that can be used to create new instances.')}
+            help={t<string>(
+              'The compiled WASM for the contract that you wish to deploy. Each unique code blob will be attached with a code hash that can be used to create new instances.'
+            )}
             isError={isWasmFromFileSupplied && !isWasmFromFileValid}
             label={t<string>('Upload Wasm Blob')}
             onChange={setWasmFromFile}
-            placeholder={
-              wasmFromFile && !isWasmFromFileValid
-                ? t<string>('The code is not recognized as being in valid WASM format')
-                : null
-            }
+            placeholder={wasmFromFile && !isWasmFromFileValid ? t<string>('The code is not recognized as being in valid WASM format') : null}
             value={wasmFromFile}
           />
         )}

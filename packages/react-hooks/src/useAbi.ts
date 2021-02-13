@@ -31,10 +31,10 @@ interface AbiSpecOutdated {
   messages?: any;
   registry?: {
     strings?: any;
-  }
+  };
 }
 
-export default function useAbi (source: Code | null = null, isRequired = false): UseAbi {
+export default function useAbi(source: Code | null = null, isRequired = false): UseAbi {
   const { api } = useApi();
   const { t } = useTranslation();
   const initialState: State = source
@@ -43,14 +43,11 @@ export default function useAbi (source: Code | null = null, isRequired = false):
   const [[abi, isAbiSupplied, isAbiValid], setAbi] = useState<State>(initialState);
   const [[isAbiError, errorText], setError] = useState<[boolean, string | null]>([false, null]);
 
-  useEffect(
-    (): void => {
-      if (!!source?.abi && abi?.json !== source.abi) {
-        setAbi([new Abi(source.abi, api.registry.getChainProperties()), !!source.abi, !isRequired || !!source.abi]);
-      }
-    },
-    [abi, api.registry, source, isRequired]
-  );
+  useEffect((): void => {
+    if (!!source?.abi && abi?.json !== source.abi) {
+      setAbi([new Abi(source.abi, api.registry.getChainProperties()), !!source.abi, !isRequired || !!source.abi]);
+    }
+  }, [abi, api.registry, source, isRequired]);
 
   const onChangeAbi = useCallback(
     ({ data }: FileState): void => {
@@ -67,10 +64,7 @@ export default function useAbi (source: Code | null = null, isRequired = false):
 
         setAbi([new Abi(newAbi, api.registry.getChainProperties()), true, true]);
         setError([false, null]);
-        source?.id && store.saveCode(
-          { abi: newAbi },
-          source.id
-        );
+        source?.id && store.saveCode({ abi: newAbi }, source.id);
       } catch (error) {
         console.error(error);
 
@@ -81,20 +75,20 @@ export default function useAbi (source: Code | null = null, isRequired = false):
     [api.registry, source, t]
   );
 
-  const onRemoveAbi = useCallback(
-    (): void => {
-      setAbi([null, false, false]);
-      setError([false, null]);
+  const onRemoveAbi = useCallback((): void => {
+    setAbi([null, false, false]);
+    setError([false, null]);
 
-      source?.id && store.saveCode(
-        { abi: null },
-        source?.id
-      );
-    },
-    [source]
-  );
+    source?.id && store.saveCode({ abi: null }, source?.id);
+  }, [source]);
 
   return {
-    abi, errorText, isAbiError, isAbiSupplied, isAbiValid, onChangeAbi, onRemoveAbi
+    abi,
+    errorText,
+    isAbiError,
+    isAbiSupplied,
+    isAbiValid,
+    onChangeAbi,
+    onRemoveAbi
   };
 }

@@ -8,7 +8,7 @@ import React, { useCallback } from 'react';
 
 import ExtrinsicDisplay from './Extrinsic';
 
-function ProposalDisplay ({ className = '', isDisabled, isError, label, onChange, onEnter, onEscape, withLabel }: Props): React.ReactElement<Props> {
+function ProposalDisplay({ className = '', isDisabled, isError, label, onChange, onEnter, onEscape, withLabel }: Props): React.ReactElement<Props> {
   const { apiDefaultTxSudo } = useApi();
   const _onChange = useCallback(
     ({ isValid, value }: RawParam): void => {
@@ -18,10 +18,11 @@ function ProposalDisplay ({ className = '', isDisabled, isError, label, onChange
         proposal = registry.createType('Proposal', value);
       }
 
-      onChange && onChange({
-        isValid,
-        value: proposal
-      });
+      onChange &&
+        onChange({
+          isValid,
+          value: proposal
+        });
     },
     [onChange]
   );

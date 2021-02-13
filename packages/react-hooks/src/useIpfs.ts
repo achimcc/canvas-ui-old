@@ -17,8 +17,8 @@ interface State {
   isIpns: boolean;
 }
 
-function extractLocalIpfs (url: string): State {
-  const [,, _ipfsPath] = url.split('/');
+function extractLocalIpfs(url: string): State {
+  const [, , _ipfsPath] = url.split('/');
   const ipfsPath = _ipfsPath.split(':')[0];
 
   return {
@@ -31,8 +31,8 @@ function extractLocalIpfs (url: string): State {
   };
 }
 
-function extractLocalIpns (url: string): State {
-  const [,, _ipfsPath] = url.split('/');
+function extractLocalIpns(url: string): State {
+  const [, , _ipfsPath] = url.split('/');
   const ipfsPath = _ipfsPath.split(':')[0];
 
   const dnsLink = ipfsPath.replace(LOCAL_IPNS, '');
@@ -57,7 +57,7 @@ function extractLocalIpns (url: string): State {
   };
 }
 
-function extractOther (url: string): State {
+function extractOther(url: string): State {
   const isIpfs = SECTIONS.some((part) => url.includes(part));
   const isIpns = url.includes(SECTIONS[1]);
 
@@ -100,18 +100,14 @@ function extractOther (url: string): State {
   };
 }
 
-export function extractIpfsDetails (): State {
+export function extractIpfsDetails(): State {
   // get url and check to see if we are ipfs/ipns
   const [url] = window.location.href.split('#');
 
-  return url.includes(LOCAL_IPFS)
-    ? extractLocalIpfs(url)
-    : url.includes(LOCAL_IPNS)
-      ? extractLocalIpns(url)
-      : extractOther(url);
+  return url.includes(LOCAL_IPFS) ? extractLocalIpfs(url) : url.includes(LOCAL_IPNS) ? extractLocalIpns(url) : extractOther(url);
 }
 
-export default function useIpfs (): State {
+export default function useIpfs(): State {
   const [state] = useState(extractIpfsDetails());
 
   return state;

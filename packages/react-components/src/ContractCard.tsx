@@ -18,32 +18,22 @@ interface Props extends ComponentProps {
   contract: Contract;
 }
 
-function ContractCard ({ className, contract: { abi, address }, navigateTo }: Props): React.ReactElement<Props> {
+function ContractCard({ className, contract: { abi, address }, navigateTo }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const onExecute = useCallback(
-    (): void => {
-      navigateTo.executeCall(address.toString())();
-    },
-    [address, navigateTo]
-  );
+  const onExecute = useCallback((): void => {
+    navigateTo.executeCall(address.toString())();
+  }, [address, navigateTo]);
 
   return (
     <article className={className}>
-      <ContractInfo
-        address={address.toString()}
-        isEditable
-      >
+      <ContractInfo address={address.toString()} isEditable>
         <Abi abi={abi} />
       </ContractInfo>
-      <div className='footer'>
+      <div className="footer">
         <Button.Group>
           <ContractForget address={address.toString()} />
-          <Button
-            isPrimary
-            label={t<string>('Execute')}
-            onClick={onExecute}
-          />
+          <Button isPrimary label={t<string>('Execute')} onClick={onExecute} />
         </Button.Group>
       </div>
     </article>

@@ -24,10 +24,13 @@ const chainLogos: Record<string, any> = [
   ['Kusama CC1', chainKusama],
   ['Kusama CC2', chainKusama],
   ['Kusama CC3', chainKusama]
-].reduce((logos, [chain, logo]): Record<string, any> => ({
-  ...logos,
-  [(chain as string).toLowerCase()]: logo
-}), {});
+].reduce(
+  (logos, [chain, logo]): Record<string, any> => ({
+    ...logos,
+    [(chain as string).toLowerCase()]: logo
+  }),
+  {}
+);
 
 // overrides based on the actual software node type (all '-' converted to ' ')
 const nodeLogos: Record<string, any> = [
@@ -41,10 +44,13 @@ const nodeLogos: Record<string, any> = [
   ['parity-polkadot', nodePolkadot],
   ['polkadot-js', nodePolkadotJs],
   ['substrate-node', nodeSubstrate]
-].reduce((logos, [node, logo]): Record<string, any> => ({
-  ...logos,
-  [(node as string).toLowerCase().replace(/-/g, ' ')]: logo
-}), {});
+].reduce(
+  (logos, [node, logo]): Record<string, any> => ({
+    ...logos,
+    [(node as string).toLowerCase().replace(/-/g, ' ')]: logo
+  }),
+  {}
+);
 
 // overrides when we pass an explicit logo name
 const namedLogos: Record<string, any> = {
@@ -64,10 +70,4 @@ const extensionLogos: Record<string, any> = {
   'polkadot-js': extensionPolkadotJs
 };
 
-export {
-  chainLogos,
-  emptyLogo,
-  extensionLogos,
-  namedLogos,
-  nodeLogos
-};
+export { chainLogos, emptyLogo, extensionLogos, namedLogos, nodeLogos };

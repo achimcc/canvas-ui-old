@@ -10,12 +10,14 @@ interface Props extends BareProps {
   label?: React.ReactNode;
 }
 
-function NodeName ({ children, className = '', label }: Props): React.ReactElement<Props> {
+function NodeName({ children, className = '', label }: Props): React.ReactElement<Props> {
   const { systemName } = useApi();
 
   return (
     <div className={className}>
-      {label || ''}{systemName}{children}
+      {label || ''}
+      {systemName}
+      {children}
     </div>
   );
 }

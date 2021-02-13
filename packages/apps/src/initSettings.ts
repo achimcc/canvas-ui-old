@@ -9,7 +9,7 @@ import store from 'store';
 
 import settings from '@polkadot/ui-settings';
 
-function getApiUrl (): string {
+function getApiUrl(): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?rpc=wss://substrate-rpc.parity.io/#/explorer
   //  - http://localhost:3000/#/explorer?rpc=wss://substrate-rpc.parity.io
@@ -24,7 +24,7 @@ function getApiUrl (): string {
     return urlOptions.rpc.split('#')[0]; // https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer;
   }
 
-  const endpoints = createEndpoints(<T = string>(): T => ('' as unknown as T));
+  const endpoints = createEndpoints(<T = string>(): T => ('' as unknown) as T);
   const { ipnsChain } = extractIpfsDetails();
 
   // check against ipns domains (could be expanded to others)
@@ -36,15 +36,15 @@ function getApiUrl (): string {
     }
   }
 
-  const stored = store.get('settings') as Record<string, unknown> || {};
+  const stored = (store.get('settings') as Record<string, unknown>) || {};
   const fallbackUrl = endpoints.find(({ value }) => !!value);
 
   // via settings, or the default chain
   return [stored.apiUrl, process.env.WS_URL].includes(settings.apiUrl)
     ? settings.apiUrl // keep as-is
     : fallbackUrl
-      ? fallbackUrl.value as string // grab the fallback
-      : 'ws://127.0.0.1:9944'; // nothing found, go local
+    ? (fallbackUrl.value as string) // grab the fallback
+    : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
 const apiUrl = getApiUrl();
@@ -56,7 +56,7 @@ console.log('WS endpoint=', apiUrl);
 
 try {
   const types = {
-    ...store.get('types') as Record<string, Record<string, string>> || {},
+    ...((store.get('types') as Record<string, Record<string, string>>) || {}),
     Address: 'AccountId',
     LookupSource: 'AccountId'
   };

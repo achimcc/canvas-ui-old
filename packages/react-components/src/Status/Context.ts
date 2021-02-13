@@ -16,7 +16,4 @@ const QueueProvider: React.Provider<QueueProps> = StatusContext.Provider;
 
 export default StatusContext;
 
-export {
-  QueueConsumer,
-  QueueProvider
-};
+export { QueueConsumer, QueueProvider };

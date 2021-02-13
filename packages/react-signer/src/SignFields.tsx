@@ -18,17 +18,18 @@ interface Props {
   signedTx: string | null;
 }
 
-function SignFields ({ address, onChange, signedTx }: Props): React.ReactElement<Props> {
+function SignFields({ address, onChange, signedTx }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const [blocks, setBlocks] = useState(new BN(64));
   const [nonce, setNonce] = useState(BN_ZERO);
   const { t } = useTranslation();
 
   useEffect((): void => {
-    address && api.derive.balances
-      .account(address)
-      .then(({ accountNonce }) => setNonce(accountNonce))
-      .catch(console.error);
+    address &&
+      api.derive.balances
+        .account(address)
+        .then(({ accountNonce }) => setNonce(accountNonce))
+        .catch(console.error);
   }, [address, api]);
 
   useEffect((): void => {
@@ -36,15 +37,9 @@ function SignFields ({ address, onChange, signedTx }: Props): React.ReactElement
     onChange({ era: blocks.toNumber(), nonce });
   }, [blocks, nonce, onChange]);
 
-  const _setBlocks = useCallback(
-    (blocks = BN_ZERO) => setBlocks(blocks),
-    []
-  );
+  const _setBlocks = useCallback((blocks = BN_ZERO) => setBlocks(blocks), []);
 
-  const _setNonce = useCallback(
-    (nonce = BN_ZERO) => setNonce(nonce),
-    []
-  );
+  const _setNonce = useCallback((nonce = BN_ZERO) => setNonce(nonce), []);
 
   return (
     <>
@@ -74,17 +69,9 @@ function SignFields ({ address, onChange, signedTx }: Props): React.ReactElement
       {!!signedTx && (
         <Modal.Columns>
           <Modal.Column>
-            <Output
-              isFull
-              isTrimmed
-              label={t<string>('Signed transaction')}
-              value={signedTx}
-              withCopy
-            />
+            <Output isFull isTrimmed label={t<string>('Signed transaction')} value={signedTx} withCopy />
           </Modal.Column>
-          <Modal.Column>
-            {t<string>('The actual fully constructed signed output. This can be used for submission via other channels.')}
-          </Modal.Column>
+          <Modal.Column>{t<string>('The actual fully constructed signed output. This can be used for submission via other channels.')}</Modal.Column>
         </Modal.Columns>
       )}
     </>

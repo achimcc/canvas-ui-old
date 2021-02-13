@@ -12,9 +12,11 @@ interface Props {
   withBottomMargin?: boolean;
 }
 
-function Card ({ children, className = '', isError, isSuccess, withBottomMargin }: Props): React.ReactElement<Props> {
+function Card({ children, className = '', isError, isSuccess, withBottomMargin }: Props): React.ReactElement<Props> {
   return (
-    <article className={`ui--Card ${className} ${(isError && !isSuccess) ? 'error' : ''} ${(!isError && isSuccess) ? 'success' : ''} ${withBottomMargin ? 'withBottomMargin' : ''}`}>
+    <article
+      className={`ui--Card ${className} ${isError && !isSuccess ? 'error' : ''} ${!isError && isSuccess ? 'success' : ''} ${withBottomMargin ? 'withBottomMargin' : ''}`}
+    >
       {children}
     </article>
   );
@@ -39,7 +41,14 @@ export default React.memo(styled(Card)`
   &.error {
     background: rgba(255, 0, 0, 0.05);
 
-    &, h1, h2, h3, h4, h5, h6, p {
+    &,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
       color: rgba(156, 0, 0) !important;
     }
   }
@@ -48,7 +57,14 @@ export default React.memo(styled(Card)`
     border: 1px solid rgb(168, 255, 136);
     background: rgba(0, 255, 0, 0.05);
 
-    &, h1, h2, h3, h4, h5, h6, p {
+    &,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
       color: rgba(34, 125, 0) !important;
     }
   }

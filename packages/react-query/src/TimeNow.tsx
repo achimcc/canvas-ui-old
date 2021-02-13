@@ -15,17 +15,13 @@ interface Props extends BareProps {
   label?: React.ReactNode;
 }
 
-function TimeNow ({ children, className = '', label }: Props): React.ReactElement<Props> {
+function TimeNow({ children, className = '', label }: Props): React.ReactElement<Props> {
   const { api, isSubstrateV2 } = useApi();
   const timestamp = useCall<Moment>(api.query.timestamp.now, []);
   const [now, setNow] = useState<BN | undefined>();
 
   useEffect((): void => {
-    setNow(
-      isSubstrateV2 || !timestamp
-        ? timestamp
-        : timestamp.muln(1000)
-    );
+    setNow(isSubstrateV2 || !timestamp ? timestamp : timestamp.muln(1000));
   }, [timestamp, isSubstrateV2]);
 
   return (

@@ -11,12 +11,8 @@ interface Props {
   withPadding?: boolean;
 }
 
-function Holder ({ children, className = '', withBorder, withPadding }: Props): React.ReactElement<Props> {
-  return (
-    <div className={`ui--Params ${className} ${withBorder ? 'withBorder' : 'withoutBorder'} ${withPadding ? 'withPadding' : ''}`}>
-      {children}
-    </div>
-  );
+function Holder({ children, className = '', withBorder, withPadding }: Props): React.ReactElement<Props> {
+  return <div className={`ui--Params ${className} ${withBorder ? 'withBorder' : 'withoutBorder'} ${withPadding ? 'withPadding' : ''}`}>{children}</div>;
 }
 
 export default React.memo(styled(Holder)`
@@ -72,7 +68,7 @@ export default React.memo(styled(Holder)`
   }
 
   .ui--Param-text.name {
-    color: rgba(0, 0, 0, .6);
+    color: rgba(0, 0, 0, 0.6);
     font-style: italic;
   }
 

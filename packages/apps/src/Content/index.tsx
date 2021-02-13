@@ -34,33 +34,33 @@ const NOT_FOUND: Route = {
   text: 'Unknown'
 };
 
-function Content ({ className }: Props): React.ReactElement<Props> {
+function Content({ className }: Props): React.ReactElement<Props> {
   const location = useLocation();
   const { t } = useTranslation();
   const { isApiConnected, isApiReady } = useApi();
   const navigateTo = useAppNavigation();
   const { queueAction, stqueue, txqueue } = useContext(StatusContext);
-  const { Component, display: { needsApi }, name } = useMemo(
-    (): Route => {
-      const app = location.pathname.slice(1) || '';
-      const found = createRoutes(t).find((route) => !!(route && app.startsWith(route.name)));
+  const {
+    Component,
+    display: { needsApi },
+    name
+  } = useMemo((): Route => {
+    const app = location.pathname.slice(1) || '';
+    const found = createRoutes(t).find((route) => !!(route && app.startsWith(route.name)));
 
-      return found || NOT_FOUND;
-    },
-    [location, t]
-  );
+    return found || NOT_FOUND;
+  }, [location, t]);
 
-  const setSawGuide = useCallback(
-    (): void => { store.set(sawGuideKey, true); },
-    []
-  );
+  const setSawGuide = useCallback((): void => {
+    store.set(sawGuideKey, true);
+  }, []);
 
   if (!isApiConnected && name !== 'settings') {
     return (
       <div className={className}>
-        <div className='disconnected'>
+        <div className="disconnected">
           <div>
-            <Icon icon='warning-circle' />
+            <Icon icon="warning-circle" />
             {t<string>('You are not connected to a node.')}
             <br />
             {t<string>('Ensure that your node is running and that your Websocket endpoint is reachable.')}
@@ -76,33 +76,21 @@ function Content ({ className }: Props): React.ReactElement<Props> {
 
   return (
     <div className={classes(className, isLoading && 'isLoading')}>
-      <WithLoader
-        isLoading={isLoading}
-        text={t<string>('Initializing connection')}
-      >
-        <Suspense fallback={
-          <WithLoader text={t<string>('Loading')}>
-            <div />
-          </WithLoader>
-        }>
+      <WithLoader isLoading={isLoading} text={t<string>('Initializing connection')}>
+        <Suspense
+          fallback={
+            <WithLoader text={t<string>('Loading')}>
+              <div />
+            </WithLoader>
+          }
+        >
           <ErrorBoundary trigger={name}>
-            <Component
-              basePath={`/${name}`}
-              location={location}
-              navigateTo={navigateTo}
-              onStatusChange={queueAction}
-            />
-            {!sawGuide && !isLoading && (
-              <GuideModal onClose={setSawGuide} />
-            )}
+            <Component basePath={`/${name}`} location={location} navigateTo={navigateTo} onStatusChange={queueAction} />
+            {!sawGuide && !isLoading && <GuideModal onClose={setSawGuide} />}
             <HelpWidget />
           </ErrorBoundary>
         </Suspense>
-        <Status
-          queueAction={queueAction}
-          stqueue={stqueue}
-          txqueue={txqueue}
-        />
+        <Status queueAction={queueAction} stqueue={stqueue} txqueue={txqueue} />
       </WithLoader>
     </div>
   );
@@ -122,7 +110,7 @@ export default React.memo(styled(Content)`
     align-items: center;
   }
 
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 0 0.5rem;
   }
 

@@ -11,28 +11,29 @@ const webpack = require('webpack');
 
 const findPackages = require('../../scripts/findPackages');
 
-function mapChunks (name, regs, inc) {
-  return regs.reduce((result, test, index) => ({
-    ...result,
-    [`${name}${index}`]: {
-      chunks: 'initial',
-      enforce: true,
-      name: `${name}.${`0${index + (inc || 0)}`.slice(-2)}`,
-      test
-    }
-  }), {});
+function mapChunks(name, regs, inc) {
+  return regs.reduce(
+    (result, test, index) => ({
+      ...result,
+      [`${name}${index}`]: {
+        chunks: 'initial',
+        enforce: true,
+        name: `${name}.${`0${index + (inc || 0)}`.slice(-2)}`,
+        test
+      }
+    }),
+    {}
+  );
 }
 
-function createWebpack (context, mode = 'production') {
+function createWebpack(context, mode = 'production') {
   const pkgJson = require(path.join(context, 'package.json'));
   const alias = findPackages().reduce((alias, { dir, name }) => {
     alias[name] = path.resolve(context, `../${dir}/src`);
 
     return alias;
   }, {});
-  const plugins = fs.existsSync(path.join(context, 'public'))
-    ? new CopyWebpackPlugin({ patterns: [{ from: 'public' }] })
-    : [];
+  const plugins = fs.existsSync(path.join(context, 'public')) ? new CopyWebpackPlugin({ patterns: [{ from: 'public' }] }) : [];
 
   return {
     context,
@@ -48,10 +49,7 @@ function createWebpack (context, mode = 'production') {
         {
           include: /node_modules/,
           test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            require.resolve('css-loader')
-          ]
+          use: [MiniCssExtractPlugin.loader, require.resolve('css-loader')]
         },
         {
           exclude: /(node_modules)/,
@@ -66,10 +64,7 @@ function createWebpack (context, mode = 'production') {
         },
         {
           test: /\.md$/,
-          use: [
-            require.resolve('html-loader'),
-            require.resolve('markdown-loader')
-          ]
+          use: [require.resolve('html-loader'), require.resolve('markdown-loader')]
         },
         {
           exclude: [/semantic-ui-css/],
@@ -117,11 +112,7 @@ function createWebpack (context, mode = 'production') {
       minimize: mode === 'production',
       splitChunks: {
         cacheGroups: {
-          ...mapChunks('robohash', [
-            /* 00 */ /RoboHash\/(backgrounds|sets\/set1)/,
-            /* 01 */ /RoboHash\/sets\/set(2|3)/,
-            /* 02 */ /RoboHash\/sets\/set(4|5)/
-          ]),
+          ...mapChunks('robohash', [/* 00 */ /RoboHash\/(backgrounds|sets\/set1)/, /* 01 */ /RoboHash\/sets\/set(2|3)/, /* 02 */ /RoboHash\/sets\/set(4|5)/]),
           ...mapChunks('polkadot', [
             /* 00 */ /node_modules\/@polkadot\/(wasm)/,
             /* 01 */ /node_modules\/(@polkadot\/(api|metadata|rpc|types))/,
@@ -142,7 +133,7 @@ function createWebpack (context, mode = 'production') {
     output: {
       chunkFilename: '[name].[chunkhash:8].js',
       filename: '[name].[contenthash:8].js',
-      globalObject: '(typeof self !== \'undefined\' ? self : this)',
+      globalObject: "(typeof self !== 'undefined' ? self : this)",
       path: path.join(context, 'build'),
       publicPath: ''
     },

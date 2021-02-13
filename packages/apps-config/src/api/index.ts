@@ -4,12 +4,8 @@
 import typesChain from './chain';
 import typesSpec from './spec';
 
-export function getChainTypes (): Record<string, string | Record<string, unknown>> {
-  return {
-  };
+export function getChainTypes(): Record<string, string | Record<string, unknown>> {
+  return {};
 }
 
-export {
-  typesChain,
-  typesSpec
-};
+export { typesChain, typesSpec };

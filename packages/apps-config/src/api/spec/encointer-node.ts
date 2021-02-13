@@ -9,11 +9,7 @@ export default {
   Address: 'AccountId',
   LookupSource: 'AccountId',
   CeremonyPhaseType: {
-    _enum: [
-      'Registering',
-      'Assigning',
-      'Attesting'
-    ]
+    _enum: ['Registering', 'Assigning', 'Attesting']
   },
   CeremonyIndexType: 'u32',
   ParticipantIndexType: 'u64',
@@ -34,12 +30,7 @@ export default {
     lon: 'i64'
   },
   Reputation: {
-    _enum: [
-      'Unverified',
-      'UnverifiedReputable',
-      'VerifiedUnlinked',
-      'VerifiedLinked'
-    ]
+    _enum: ['Unverified', 'UnverifiedReputable', 'VerifiedUnlinked', 'VerifiedLinked']
   },
   CurrencyPropertiesType: {
     name_utf8: 'Text',

@@ -92,7 +92,7 @@ export default css`
         background: rgba(230, 230, 230, 0.8) !important;
         border: 0 !important;
         border-radius: 0 !important;
-        box-shadow: 0 3px 3px rgba(0,0,0,.2);
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
       }
     }
 

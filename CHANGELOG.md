@@ -101,7 +101,7 @@
 - Optimize Transfers, no unneeded useEffect
 - Cleanups, remove unused components with no references (dropped in earlier refactoring)
 - More components to functional, specific focus on TxModal extends
-- Bumps to all @polkadot/* packages for latest support everywhere
+- Bumps to all @polkadot/\* packages for latest support everywhere
 
 ## 0.40.1 Apr 9, 2020
 
@@ -235,7 +235,7 @@
 - Lots of UI updated to support both Substrate 1.x & 2.x chains
 - Add of claims app for Kusama (and Polkadot)
 - Basic Council, Parachains & Treasury apps
-- Moved ui-* packages to react-*
+- Moved ui-_ packages to react-_
 
 ## 0.33.1
 
@@ -244,7 +244,7 @@
 - Rework Account & Address layouts with cards
 - Transfer can happen from any point (via Transfer modal)
 - Use new api.derive functions
-- Introduce multi support (most via api.derive.*)
+- Introduce multi support (most via api.derive.\*)
 - Update all account and address modals
 - Add seconding of proposals
 - Staking updates, including un-bonding & withdrawals
@@ -299,13 +299,13 @@
 
 - Swap to publishing -beta.x on merge (non-breaking testing)
 
- ## 0.24.1
+## 0.24.1
 
- Storage now handles Option type properly
+Storage now handles Option type properly
 
- ## 0.23.1
+## 0.23.1
 
- JavaScript console introduced
+JavaScript console introduced
 
 ## 0.22.1
 

@@ -11,16 +11,17 @@ import { useTranslation } from '../translate';
 import { Props } from '../types';
 import Bare from './Bare';
 
-function doChange (onChange?: (value: any) => void): (_: number) => void {
+function doChange(onChange?: (value: any) => void): (_: number) => void {
   return function (value: number): void {
-    onChange && onChange({
-      isValid: true,
-      value
-    });
+    onChange &&
+      onChange({
+        isValid: true,
+        value
+      });
   };
 }
 
-function Vote ({ className = '', defaultValue: { value }, isDisabled, isError, onChange, withLabel }: Props): React.ReactElement<Props> {
+function Vote({ className = '', defaultValue: { value }, isDisabled, isError, onChange, withLabel }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   const optAyeRef = useRef([
@@ -38,19 +39,13 @@ function Vote ({ className = '', defaultValue: { value }, isDisabled, isError, o
     { text: t<string>('Locked6x'), value: 6 }
   ]);
 
-  const defaultValue = value instanceof BN
-    ? value.toNumber()
-    : value instanceof GenericVote
-      ? (value.isAye ? -1 : 0)
-      : value as number;
-  const defaultConv = value instanceof GenericVote
-    ? value.conviction.index
-    : 0;
+  const defaultValue = value instanceof BN ? value.toNumber() : value instanceof GenericVote ? (value.isAye ? -1 : 0) : (value as number);
+  const defaultConv = value instanceof GenericVote ? value.conviction.index : 0;
 
   return (
     <Bare className={className}>
       <Dropdown
-        className='full'
+        className="full"
         defaultValue={defaultValue}
         isDisabled={isDisabled}
         isError={isError}
@@ -61,7 +56,7 @@ function Vote ({ className = '', defaultValue: { value }, isDisabled, isError, o
       />
       {isDisabled && (
         <Dropdown
-          className='full'
+          className="full"
           defaultValue={defaultConv}
           isDisabled={isDisabled}
           isError={isError}

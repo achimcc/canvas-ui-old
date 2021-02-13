@@ -141,7 +141,6 @@ export default css`
       height: auto;
       visibility: visible;
       width: auto;
-
     }
 
     td.ui--media-small,

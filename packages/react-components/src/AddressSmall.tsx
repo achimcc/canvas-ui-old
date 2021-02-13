@@ -23,13 +23,23 @@ interface Props {
   value?: string | Address | AccountId | null | Uint8Array;
 }
 
-function AddressSmall ({ children, className = '', defaultName, onClickName, overrideName, toggle, value, withIndex, withSidebar = true }: Props): React.ReactElement<Props> {
+function AddressSmall({
+  children,
+  className = '',
+  defaultName,
+  onClickName,
+  overrideName,
+  toggle,
+  value,
+  withIndex,
+  withSidebar = true
+}: Props): React.ReactElement<Props> {
   return (
     <div className={`ui--AddressSmall ${className}`}>
       <IdentityIcon value={value as Uint8Array} />
       <div className={classes('nameInfo', withSidebar && 'withSidebar')}>
         <AccountName
-          className={(overrideName || !onClickName) ? '' : 'name--clickable'}
+          className={overrideName || !onClickName ? '' : 'name--clickable'}
           defaultName={defaultName}
           onClick={onClickName}
           override={overrideName}
@@ -39,9 +49,7 @@ function AddressSmall ({ children, className = '', defaultName, onClickName, ove
         >
           {children}
         </AccountName>
-        {withIndex && (
-          <AccountIndex value={value} />
-        )}
+        {withIndex && <AccountIndex value={value} />}
       </div>
     </div>
   );

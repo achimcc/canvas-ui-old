@@ -17,8 +17,7 @@ interface Props {
 
 const defaultHighlight = '#2477B3'; // #999
 
-const getHighlight = (props: Props): string =>
-  (props.uiHighlight || defaultHighlight);
+const getHighlight = (props: Props): string => props.uiHighlight || defaultHighlight;
 
 export * from './constants';
 

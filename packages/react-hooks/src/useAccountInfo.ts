@@ -32,7 +32,7 @@ const IS_NONE = {
   isTechCommittee: false
 };
 
-export default function useAccountInfo (value: string | null, isContract = false): UseAccountInfo {
+export default function useAccountInfo(value: string | null, isContract = false): UseAccountInfo {
   const { api } = useApi();
   const { isAccount } = useAccounts();
   const { isAddress } = useAddresses();
@@ -49,10 +49,11 @@ export default function useAccountInfo (value: string | null, isContract = false
   const [isEditingTags, toggleIsEditingTags] = useToggle();
 
   useEffect((): void => {
-    accountFlags && setFlags((flags) => ({
-      ...flags,
-      ...accountFlags
-    }));
+    accountFlags &&
+      setFlags((flags) => ({
+        ...flags,
+        ...accountFlags
+      }));
   }, [accountFlags]);
 
   useEffect((): void => {
@@ -105,104 +106,101 @@ export default function useAccountInfo (value: string | null, isContract = false
       const isInContacts = isAddress(value);
 
       setGenesisHash(accountOrAddress?.meta.genesisHash || null);
-      setFlags((flags): AddressFlags => ({
-        ...flags,
-        isDevelopment: accountOrAddress?.meta.isTesting || false,
-        isEditable: !!(!identity?.display && (isInContacts || accountOrAddress?.meta.isMultisig || (accountOrAddress && !(accountOrAddress.meta.isInjected || accountOrAddress.meta.isHardware)))) || false,
-        isExternal: !!accountOrAddress?.meta.isExternal || false,
-        isInContacts,
-        isMultisig: !!accountOrAddress?.meta.isMultisig || false,
-        isOwned,
-        isProxied: !!accountOrAddress?.meta.isProxied || false
-      }));
+      setFlags(
+        (flags): AddressFlags => ({
+          ...flags,
+          isDevelopment: accountOrAddress?.meta.isTesting || false,
+          isEditable:
+            !!(
+              !identity?.display &&
+              (isInContacts || accountOrAddress?.meta.isMultisig || (accountOrAddress && !(accountOrAddress.meta.isInjected || accountOrAddress.meta.isHardware)))
+            ) || false,
+          isExternal: !!accountOrAddress?.meta.isExternal || false,
+          isInContacts,
+          isMultisig: !!accountOrAddress?.meta.isMultisig || false,
+          isOwned,
+          isProxied: !!accountOrAddress?.meta.isProxied || false
+        })
+      );
       setMeta(accountOrAddress?.meta);
       setName(accountOrAddress?.meta.name || '');
       setSortedTags(accountOrAddress?.meta.tags ? (accountOrAddress.meta.tags as string[]).sort() : []);
     }
   }, [identity, isAccount, isAddress, value]);
 
-  const onSaveName = useCallback(
-    (): void => {
-      if (isEditingName) {
-        toggleIsEditingName();
-      }
+  const onSaveName = useCallback((): void => {
+    if (isEditingName) {
+      toggleIsEditingName();
+    }
 
-      const meta = { name, whenEdited: Date.now() };
+    const meta = { name, whenEdited: Date.now() };
 
-      if (isContract) {
-        try {
-          if (value) {
-            const originalMeta = keyring.getAddress(value)?.meta;
-
-            keyring.saveContract(value, { ...originalMeta, ...meta });
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      } else if (value) {
-        try {
-          const pair = keyring.getPair(value);
-
-          pair && keyring.saveAccountMeta(pair, meta);
-        } catch (error) {
-          const pair = keyring.getAddress(value);
-
-          if (pair) {
-            keyring.saveAddress(value, meta);
-          } else {
-            keyring.saveAddress(value, { genesisHash: api.genesisHash.toHex(), ...meta });
-          }
-        }
-      }
-    },
-    [api, isContract, isEditingName, name, toggleIsEditingName, value]
-  );
-
-  const onSaveTags = useCallback(
-    (): void => {
-      const meta = { tags, whenEdited: Date.now() };
-
-      if (isContract) {
-        try {
-          if (value) {
-            const originalMeta = keyring.getAddress(value)?.meta;
-
-            value && keyring.saveContract(value, { ...originalMeta, ...meta });
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      } else if (value) {
-        try {
-          const currentKeyring = keyring.getPair(value);
-
-          currentKeyring && keyring.saveAccountMeta(currentKeyring, meta);
-        } catch (error) {
-          keyring.saveAddress(value, meta);
-        }
-      }
-    },
-    [isContract, tags, value]
-  );
-
-  const onForgetAddress = useCallback(
-    (): void => {
-      if (isEditingName) {
-        toggleIsEditingName();
-      }
-
-      if (isEditingTags) {
-        toggleIsEditingTags();
-      }
-
+    if (isContract) {
       try {
-        value && keyring.forgetAddress(value);
-      } catch (e) {
-        console.error(e);
+        if (value) {
+          const originalMeta = keyring.getAddress(value)?.meta;
+
+          keyring.saveContract(value, { ...originalMeta, ...meta });
+        }
+      } catch (error) {
+        console.error(error);
       }
-    },
-    [isEditingName, isEditingTags, toggleIsEditingName, toggleIsEditingTags, value]
-  );
+    } else if (value) {
+      try {
+        const pair = keyring.getPair(value);
+
+        pair && keyring.saveAccountMeta(pair, meta);
+      } catch (error) {
+        const pair = keyring.getAddress(value);
+
+        if (pair) {
+          keyring.saveAddress(value, meta);
+        } else {
+          keyring.saveAddress(value, { genesisHash: api.genesisHash.toHex(), ...meta });
+        }
+      }
+    }
+  }, [api, isContract, isEditingName, name, toggleIsEditingName, value]);
+
+  const onSaveTags = useCallback((): void => {
+    const meta = { tags, whenEdited: Date.now() };
+
+    if (isContract) {
+      try {
+        if (value) {
+          const originalMeta = keyring.getAddress(value)?.meta;
+
+          value && keyring.saveContract(value, { ...originalMeta, ...meta });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else if (value) {
+      try {
+        const currentKeyring = keyring.getPair(value);
+
+        currentKeyring && keyring.saveAccountMeta(currentKeyring, meta);
+      } catch (error) {
+        keyring.saveAddress(value, meta);
+      }
+    }
+  }, [isContract, tags, value]);
+
+  const onForgetAddress = useCallback((): void => {
+    if (isEditingName) {
+      toggleIsEditingName();
+    }
+
+    if (isEditingTags) {
+      toggleIsEditingTags();
+    }
+
+    try {
+      value && keyring.forgetAddress(value);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [isEditingName, isEditingTags, toggleIsEditingName, toggleIsEditingTags, value]);
 
   const onSetGenesisHash = useCallback(
     (genesisHash: string | null): void => {
@@ -217,10 +215,7 @@ export default function useAccountInfo (value: string | null, isContract = false
     [value]
   );
 
-  const setTags = useCallback(
-    (tags: string[]): void => setSortedTags(tags.sort()),
-    []
-  );
+  const setTags = useCallback((tags: string[]): void => setSortedTags(tags.sort()), []);
 
   return {
     accountIndex,

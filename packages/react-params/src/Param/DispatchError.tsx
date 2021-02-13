@@ -12,7 +12,7 @@ import Static from './Static';
 import Unknown from './Unknown';
 
 interface ModuleErrorDefault {
-  isModule?: boolean
+  isModule?: boolean;
 }
 
 interface Details {
@@ -20,11 +20,11 @@ interface Details {
   type?: string;
 }
 
-function isModuleError (value?: ModuleErrorDefault): value is DispatchError {
+function isModuleError(value?: ModuleErrorDefault): value is DispatchError {
   return !!value?.isModule;
 }
 
-function ErrorDisplay (props: Props): React.ReactElement<Props> {
+function ErrorDisplay(props: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [{ details, type }, setDetails] = useState<Details>({});
 
@@ -55,20 +55,8 @@ function ErrorDisplay (props: Props): React.ReactElement<Props> {
 
   return (
     <Static {...props}>
-      <Input
-        className='full'
-        isDisabled
-        label={t<string>('type')}
-        value={type}
-      />
-      {details && (
-        <Input
-          className='full'
-          isDisabled
-          label={t<string>('details')}
-          value={details}
-        />
-      )}
+      <Input className="full" isDisabled label={t<string>('type')} value={type} />
+      {details && <Input className="full" isDisabled label={t<string>('details')} value={details} />}
     </Static>
   );
 }

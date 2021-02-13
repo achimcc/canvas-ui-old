@@ -9,20 +9,21 @@ import Base from './Base';
 import Static from './Static';
 import useParamDefs from './useParamDefs';
 
-function StructParam (props: Props): React.ReactElement<Props> {
+function StructParam(props: Props): React.ReactElement<Props> {
   const params = useParamDefs(props.type);
   const { className = '', isDisabled, label, onChange, overrides, withLabel } = props;
 
   const _onChangeParams = useCallback(
     (values: RawParam[]): void => {
-      onChange && onChange({
-        isValid: values.reduce((result: boolean, { isValid }) => result && isValid, true),
-        value: params.reduce((value: Record<string, unknown>, { name }, index): Record<string, unknown> => {
-          value[name as string] = values[index].value;
+      onChange &&
+        onChange({
+          isValid: values.reduce((result: boolean, { isValid }) => result && isValid, true),
+          value: params.reduce((value: Record<string, unknown>, { name }, index): Record<string, unknown> => {
+            value[name as string] = values[index].value;
 
-          return value;
-        }, {})
-      });
+            return value;
+          }, {})
+        });
     },
     [params, onChange]
   );
@@ -32,17 +33,9 @@ function StructParam (props: Props): React.ReactElement<Props> {
   }
 
   return (
-    <div className='ui--Params-Struct'>
-      <Base
-        className={className}
-        label={label}
-        withLabel={withLabel}
-      />
-      <Params
-        onChange={_onChangeParams}
-        overrides={overrides}
-        params={params}
-      />
+    <div className="ui--Params-Struct">
+      <Base className={className} label={label} withLabel={withLabel} />
+      <Params onChange={_onChangeParams} overrides={overrides} params={params} />
     </div>
   );
 }

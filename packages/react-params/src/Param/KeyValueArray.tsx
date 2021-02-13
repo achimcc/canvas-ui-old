@@ -26,7 +26,7 @@ const BYTES_TYPE = {
 
 const EMPTY_PLACEHOLDER = 'click to select or drag and drop JSON key/value (hex-encoded) file';
 
-function parseFile (raw: Uint8Array): Parsed {
+function parseFile(raw: Uint8Array): Parsed {
   const json = JSON.parse(u8aToString(raw)) as Record<string, string>;
   const keys = Object.keys(json);
   let isValid = keys.length !== 0;
@@ -49,7 +49,7 @@ function parseFile (raw: Uint8Array): Parsed {
   };
 }
 
-function KeyValueArray ({ className = '', defaultValue, isDisabled, isError, label, onChange, onEnter, onEscape, withLabel }: Props): React.ReactElement<Props> {
+function KeyValueArray({ className = '', defaultValue, isDisabled, isError, label, onChange, onEnter, onEscape, withLabel }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [placeholder, setPlaceholder] = useState<string>(t(EMPTY_PLACEHOLDER));
 
@@ -60,11 +60,13 @@ function KeyValueArray ({ className = '', defaultValue, isDisabled, isError, lab
       try {
         encoded = parseFile(raw);
 
-        setPlaceholder(t('{{count}} key/value pairs encoded for submission', {
-          replace: {
-            count: encoded.value.length
-          }
-        }));
+        setPlaceholder(
+          t('{{count}} key/value pairs encoded for submission', {
+            replace: {
+              count: encoded.value.length
+            }
+          })
+        );
       } catch (error) {
         console.error('Error converting json k/v', error);
 
@@ -81,45 +83,34 @@ function KeyValueArray ({ className = '', defaultValue, isDisabled, isError, lab
 
     return (
       <>
-        <Base
-          className={className}
-          label={label}
-        >
+        <Base className={className} label={label}>
           <div />
         </Base>
-        <div className='ui--Params'>
-          {pairs.map(([key, value]): React.ReactNode => {
-            const keyHex = u8aToHex(key.toU8a(true));
+        <div className="ui--Params">
+          {pairs.map(
+            ([key, value]): React.ReactNode => {
+              const keyHex = u8aToHex(key.toU8a(true));
 
-            return (
-              <Bytes
-                defaultValue={{ value } as unknown as RawParam}
-                isDisabled
-                key={keyHex}
-                label={keyHex}
-                name={keyHex}
-                onEnter={onEnter}
-                onEscape={onEscape}
-                type={BYTES_TYPE}
-              />
-            );
-          })}
+              return (
+                <Bytes
+                  defaultValue={({ value } as unknown) as RawParam}
+                  isDisabled
+                  key={keyHex}
+                  label={keyHex}
+                  name={keyHex}
+                  onEnter={onEnter}
+                  onEscape={onEscape}
+                  type={BYTES_TYPE}
+                />
+              );
+            }
+          )}
         </div>
       </>
     );
   }
 
-  return (
-    <File
-      className={className}
-      isDisabled={isDisabled}
-      isError={isError}
-      label={label}
-      onChange={_onChange}
-      placeholder={placeholder}
-      withLabel={withLabel}
-    />
-  );
+  return <File className={className} isDisabled={isDisabled} isError={isError} label={label} onChange={_onChange} placeholder={placeholder} withLabel={withLabel} />;
 }
 
 export default React.memo(KeyValueArray);

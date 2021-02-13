@@ -20,29 +20,22 @@ interface Props {
 
 let badgeId = 0;
 
-function Badge ({ className = '', hover, info, isGray, isInline, isSmall, isTooltip, onClick, type }: Props): React.ReactElement<Props> | null {
+function Badge({ className = '', hover, info, isGray, isInline, isSmall, isTooltip, onClick, type }: Props): React.ReactElement<Props> | null {
   const [trigger] = useState(`badge-hover-${Date.now()}-${badgeId++}`);
 
   return (
     <div
-      className={`ui--Badge ${isGray ? 'isGray' : ''} ${isInline ? 'isInline' : ''} ${isTooltip ? 'isTooltip' : ''} ${isSmall ? 'isSmall' : ''} ${onClick ? 'isClickable' : ''} ${type} ${className}`}
+      className={`ui--Badge ${isGray ? 'isGray' : ''} ${isInline ? 'isInline' : ''} ${isTooltip ? 'isTooltip' : ''} ${isSmall ? 'isSmall' : ''} ${
+        onClick ? 'isClickable' : ''
+      } ${type} ${className}`}
       data-for={trigger}
       data-tip={true}
       data-tip-disable={!isTooltip}
       onClick={onClick}
     >
-      <div className='badge'>
-        {info}
-      </div>
-      <div className='detail'>
-        {hover}
-      </div>
-      {hover && (
-        <Tooltip
-          text={hover}
-          trigger={trigger}
-        />
-      )}
+      <div className="badge">{info}</div>
+      <div className="detail">{hover}</div>
+      {hover && <Tooltip text={hover} trigger={trigger} />}
     </div>
   );
 }
@@ -108,7 +101,8 @@ export default React.memo(styled(Badge)`
     vertical-align: middle;
   }
 
-  &.gray, &.isGray {
+  &.gray,
+  &.isGray {
     background: #eee !important;
     color: #aaa;
   }

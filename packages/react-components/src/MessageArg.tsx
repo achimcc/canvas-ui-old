@@ -16,7 +16,7 @@ export interface Props extends BareProps {
   registry?: Registry;
 }
 
-function MessageArg ({ arg, param, registry }: Props): React.ReactElement<Props> | null {
+function MessageArg({ arg, param, registry }: Props): React.ReactElement<Props> | null {
   if (!arg) {
     return null;
   }
@@ -30,16 +30,13 @@ function MessageArg ({ arg, param, registry }: Props): React.ReactElement<Props>
         </>
       )}
       <span>
-        {param
-          ? <b>
-            <Data
-              registry={registry}
-              type={arg.type}
-              value={param}
-            />
+        {param ? (
+          <b>
+            <Data registry={registry} type={arg.type} value={param} />
           </b>
-          : encodeTypeDef(arg.type)
-        }
+        ) : (
+          encodeTypeDef(arg.type)
+        )}
       </span>
     </>
   );

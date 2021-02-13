@@ -14,28 +14,26 @@ interface Props extends BareProps {
   label?: string;
 }
 
-function CryptoType ({ accountId, className = '', label = '' }: Props): React.ReactElement<Props> {
+function CryptoType({ accountId, className = '', label = '' }: Props): React.ReactElement<Props> {
   const [type, setType] = useState('unknown');
 
   useEffect((): void => {
     try {
-      const current = accountId
-        ? keyring.getPair(accountId.toString())
-        : null;
+      const current = accountId ? keyring.getPair(accountId.toString()) : null;
 
       if (current) {
         setType(
           current.meta.isInjected
             ? 'injected'
             : current.meta.isHardware
-              ? current.meta.hardwareType as string || 'hardware'
-              : current.meta.isExternal
-                ? current.meta.isMultisig
-                  ? 'multisig'
-                  : current.meta.isProxied
-                    ? 'proxied'
-                    : 'external'
-                : current.type
+            ? (current.meta.hardwareType as string) || 'hardware'
+            : current.meta.isExternal
+            ? current.meta.isMultisig
+              ? 'multisig'
+              : current.meta.isProxied
+              ? 'proxied'
+              : 'external'
+            : current.type
         );
       }
     } catch (error) {
@@ -45,7 +43,8 @@ function CryptoType ({ accountId, className = '', label = '' }: Props): React.Re
 
   return (
     <div className={classes('ui--CryptoType', className)}>
-      {label}{type}
+      {label}
+      {type}
     </div>
   );
 }

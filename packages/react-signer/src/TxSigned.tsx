@@ -21,10 +21,11 @@ interface Props {
   requestAddress: string;
 }
 
-function TxSigned ({ className, currentItem, requestAddress }: Props): React.ReactElement<Props> | null {
+function TxSigned({ className, currentItem, requestAddress }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const { t } = useTranslation();
-  const { addQrSignature,
+  const {
+    addQrSignature,
     flags,
     multiCall,
     onCancel,
@@ -37,7 +38,8 @@ function TxSigned ({ className, currentItem, requestAddress }: Props): React.Rea
     setSenderInfo,
     setSignedOptions,
     setTip,
-    signedTx } = useSendTx(currentItem, requestAddress);
+    signedTx
+  } = useSendTx(currentItem, requestAddress);
   const [isRenderError, toggleRenderError] = useToggle();
   const [isSubmit, setIsSubmit] = useState(true);
 
@@ -45,94 +47,41 @@ function TxSigned ({ className, currentItem, requestAddress }: Props): React.Rea
     <>
       <Modal.Content className={className}>
         <ErrorBoundary onError={toggleRenderError}>
-          {isQrVisible
-            ? (
-              <Qr
-                address={qrAddress}
-                genesisHash={api.genesisHash}
-                isHashed={isQrHashed}
-                onSignature={addQrSignature}
-                payload={qrPayload}
-              />
-            )
-            : (
-              <>
-                <Transaction
-                  currentItem={currentItem}
-                  onError={toggleRenderError}
-                />
-                <Address
-                  currentItem={currentItem}
-                  onChange={setSenderInfo}
-                  passwordError={passwordError}
-                  requestAddress={requestAddress}
-                />
-                {!currentItem.payload && (
-                  <Tip onChange={setTip} />
-                )}
-                {!isSubmit && (
-                  <SignFields
-                    address={senderInfo.signAddress}
-                    onChange={setSignedOptions}
-                    signedTx={signedTx}
-                  />
-                )}
-                {isSubmit && !senderInfo.isMultiCall && multiCall && (
-                  <Modal.Columns>
-                    <Modal.Column>
-                      <Output
-                        isFull
-                        isTrimmed
-                        label={t<string>('multisig call data')}
-                        value={multiCall}
-                        withCopy
-                      />
-                    </Modal.Column>
-                    <Modal.Column>
-                      {t<string>('The call data that can be supplied to a final call to multi approvals')}
-                    </Modal.Column>
-                  </Modal.Columns>
-                )}
-              </>
-            )
-          }
+          {isQrVisible ? (
+            <Qr address={qrAddress} genesisHash={api.genesisHash} isHashed={isQrHashed} onSignature={addQrSignature} payload={qrPayload} />
+          ) : (
+            <>
+              <Transaction currentItem={currentItem} onError={toggleRenderError} />
+              <Address currentItem={currentItem} onChange={setSenderInfo} passwordError={passwordError} requestAddress={requestAddress} />
+              {!currentItem.payload && <Tip onChange={setTip} />}
+              {!isSubmit && <SignFields address={senderInfo.signAddress} onChange={setSignedOptions} signedTx={signedTx} />}
+              {isSubmit && !senderInfo.isMultiCall && multiCall && (
+                <Modal.Columns>
+                  <Modal.Column>
+                    <Output isFull isTrimmed label={t<string>('multisig call data')} value={multiCall} withCopy />
+                  </Modal.Column>
+                  <Modal.Column>{t<string>('The call data that can be supplied to a final call to multi approvals')}</Modal.Column>
+                </Modal.Columns>
+              )}
+            </>
+          )}
         </ErrorBoundary>
       </Modal.Content>
       <Modal.Actions onCancel={onCancel}>
         {!isQrVisible && (
           <>
             <Button
-              icon={
-                flags.isQr
-                  ? 'qrcode'
-                  : 'sign-in'
-              }
+              icon={flags.isQr ? 'qrcode' : 'sign-in'}
               isDisabled={!senderInfo.signAddress || isRenderError}
               isPrimary
-              label={
-                flags.isQr
-                  ? t<string>('Sign via Qr')
-                  : isSubmit
-                    ? t<string>('Sign and Submit')
-                    : t<string>('Sign (no submission)')
-              }
-              onClick={
-                isSubmit
-                  ? currentItem.payload
-                    ? onSendPayload
-                    : onSend
-                  : onSign
-              }
+              label={flags.isQr ? t<string>('Sign via Qr') : isSubmit ? t<string>('Sign and Submit') : t<string>('Sign (no submission)')}
+              onClick={isSubmit ? (currentItem.payload ? onSendPayload : onSend) : onSign}
               tabIndex={2}
             />
             <Toggle
-              className='signToggle'
+              className="signToggle"
               isDisabled={isQrVisible || !!currentItem.payload}
-              label={
-                isSubmit
-                  ? t<string>('Sign and Submit')
-                  : t<string>('Sign (no submission)')
-              }
+              label={isSubmit ? t<string>('Sign and Submit') : t<string>('Sign (no submission)')}
               onChange={setIsSubmit}
               value={isSubmit}
             />
