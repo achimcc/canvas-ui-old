@@ -26,7 +26,12 @@
     "@polkadot/dev": "^0.61.24",
     "nanoid": "^3.1.10",
     "query-string": "^6.13.1",
-    "rxjs-compat": "^6.5.5"
+    "rxjs-compat": "^6.5.5",
+    "react": "^16.13.1",
+    "crypto-browserify": "^3.11.0",
+    "path-browserify": "0.0.1",
+    "stream-browserify": "^2.0.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
     "babel-loader": "^8.1.0",
